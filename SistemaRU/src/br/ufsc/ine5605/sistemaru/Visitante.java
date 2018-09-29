@@ -9,6 +9,21 @@ package br.ufsc.ine5605.sistemaru;
  *
  * @author 12041789921
  */
-public class Visitante {
+public class Visitante extends Pessoa{
+    int id;
+    
+    public Visitante(int id, String nome){
+        super(nome);
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     
 }
