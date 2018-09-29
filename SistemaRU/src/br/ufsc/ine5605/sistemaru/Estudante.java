@@ -9,6 +9,24 @@ package br.ufsc.ine5605.sistemaru;
  *
  * @author 12041789921
  */
-public class Estudante {
+public class Estudante extends UsuarioUFSC{
+    private boolean isencao;
+
+    public Estudante(String nome, int matricula, boolean admin, boolean isencao) {
+        super(nome, matricula, admin);
+        this.isencao = isencao;
+    }
+    
+    
+
+    public boolean isIsencao() {
+        return isencao;
+    }
+
+    public void setIsencao(boolean isencao) {
+        this.isencao = isencao;
+    }
+    
+    
     
 }
