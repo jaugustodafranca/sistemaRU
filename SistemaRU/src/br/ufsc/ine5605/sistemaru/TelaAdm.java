@@ -42,6 +42,9 @@ public class TelaAdm extends TelaPadrao{
             
          
         }while (opcao==0);
+        switch(opcao){
+            case 1: mostraTelaCadastroUsuarioUFSC();
+        }
     }
     
     public void mostraTelaCadastroUsuarioUFSC(){

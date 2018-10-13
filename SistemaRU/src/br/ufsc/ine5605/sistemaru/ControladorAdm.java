@@ -102,9 +102,11 @@ public class ControladorAdm {
         return random.nextInt((999999 - 100000) + 1) + 100000;
     }
 
-    public ConteudoTelaAdm getConteudoTelaAdm() {
-        return conteudoTelaAdm;
+    public TelaAdm getTelaAdm() {
+        return telaAdm;
     }
+
+    
      
      
 }
