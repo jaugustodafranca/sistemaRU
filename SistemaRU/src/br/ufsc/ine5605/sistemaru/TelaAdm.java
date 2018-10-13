@@ -12,16 +12,10 @@ import java.util.ArrayList;
  * @author jfranca
  */
 public class TelaAdm extends TelaPadrao{
-     
-    
-    
-    
     private ControladorAdm controlador;
     
     public TelaAdm(ControladorAdm controlador){
         this.controlador = controlador;
-        mostraConteudoTela();
-    
     }
     
     

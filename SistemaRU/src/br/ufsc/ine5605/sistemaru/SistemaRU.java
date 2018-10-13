@@ -21,11 +21,11 @@ public class SistemaRU {
         ControladorAdm b = a.getControladorAdm();
         ConteudoTelaAdm j = new ConteudoTelaAdm("admin",123456, true);
         b.cadastraUsuarioUFSC(j);
-        a.getTelaPrincipal().mostraConteudoTela();
+        //a.getTelaPrincipal().mostraConteudoTela();
         
         
-        /*TelaAdm c = b.getTelaAdm();
-        c.mostraConteudoTela();*/
+        TelaAdm c = b.getTelaAdm();
+        c.mostraConteudoTela();
     }
     
 }
