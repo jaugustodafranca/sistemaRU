@@ -11,4 +11,29 @@ package br.ufsc.ine5605.sistemaru;
  */
 public class ControladorUsuario {
     
+    private ControladorPrincipal controladorPirncipal;
+    private TelaUsuario telaUsuario;
+    private Pessoa pessoa;
+
+    public ControladorUsuario(ControladorPrincipal controladorPirncipal) {
+        this.controladorPirncipal = controladorPirncipal;
+        this.telaUsuario = new TelaUsuario(this);
+    }
+    
+    public ControladorPrincipal getControladorPirncipal() {
+        return controladorPirncipal;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+    
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+    
+    public TelaUsuario getTelaUsuario() {
+        return telaUsuario;
+    }
+    
 }

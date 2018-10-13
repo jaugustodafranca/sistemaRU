@@ -24,7 +24,7 @@ public class ControladorPrincipal {
         this.conteudoTelaPrincipal = new ConteudoTelaPrincipal();
         this.controladorRelatorioAdm = new ControladorRelatorioAdm ();
         this.restaurante = new Restaurante(this);
-        this.controladorUsuario = new ControladorUsuario();
+        this.controladorUsuario = new ControladorUsuario(this);
         this.controladorAdm = new ControladorAdm();
     }
 
@@ -52,23 +52,30 @@ public class ControladorPrincipal {
         return controladorAdm;
     }
     
-    public Pessoa validaLogin(int id){
+    public void validaLogin(int id){
         ArrayList<Pessoa> pessoas = this.getControladorAdm().getPessoas();
+        Pessoa result  = null;
         for(Pessoa pessoa : pessoas){
             String classeCompleta = pessoa.getClass().toString();
             String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
+            
             if(classe.equals("Visitante")){
                 if(((Visitante)pessoa).getId() == id){
-                    return pessoa;
+                    result = pessoa;
+                    
                 }
             }else{
                 if(((UsuarioUFSC) pessoa).getMatricula() == id){
                     System.out.println(pessoa.getNome());
-                    return pessoa;
+                    result = pessoa;
                 }
             }
         }
-        return null;
+        if(result !=null){
+            controladorUsuario.setPessoa(result);
+            controladorUsuario.getTelaUsuario().mostraConteudoTela();
+        }
+        
     }
     
 

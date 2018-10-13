@@ -17,7 +17,6 @@ public class Visitante extends Pessoa{
         this.id = id;
     }
     
-    @Override
     public int getId() {
         return this.id;
     }
@@ -25,11 +24,5 @@ public class Visitante extends Pessoa{
     public void setId(int id) {
         this.id = id;
     }
-
-    @Override
-    public int getMatricula() {
-        return this.id;
-    }
-    
     
 }
