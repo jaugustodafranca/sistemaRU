@@ -56,10 +56,11 @@ public class TelaUsuario extends TelaPadrao{
             
             opcao = leInteiro();
             
+            switch(opcao){
+                case 4: controladorUsuario.getControladorPrincipal().getControladorAdm().getTelaAdm().mostraConteudoTela();
+                
+            }
          
         }while (opcao==0);
-        switch(opcao){
-            case 1: break;
-        }
     }
 }
