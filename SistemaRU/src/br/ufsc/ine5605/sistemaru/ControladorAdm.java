@@ -6,13 +6,14 @@
 package br.ufsc.ine5605.sistemaru;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
  * @author jfranca
  */
 public class ControladorAdm {
-    private ArrayList<Pessoa> pessoas ;
+    private ArrayList<Pessoa> pessoas;
     private ControladorPrincipal ControladorPrincipal;
     private TelaAdm telaAdm;
     private ConteudoTelaAdm conteudoTelaAdm;
@@ -94,9 +95,8 @@ public class ControladorAdm {
         return new Visitante (id, conteudoTelaAdm.nome);
     }
     
-     public int geraID (){    
-        int id;
-        id = (int)((100000)*(Math.random() * 999999));
-        return id;
+     public int geraID (){       
+        Random random = new Random();
+        return random.nextInt((999999 - 100000) + 1) + 100000;
     }
 }

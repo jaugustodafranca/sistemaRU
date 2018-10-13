@@ -20,9 +20,12 @@ public class SistemaRU {
      */
     public static void main(String[] args) {
         ControladorPrincipal a = new ControladorPrincipal ();
-        Restaurante r = new Restaurante (a);
-        DateFormat dataSimple = new SimpleDateFormat("dd/MM/yyyy");
-        System.out.println(dataSimple.format(r.getDiaAtual()));
+        ControladorAdm b = a.getControladorAdm();
+        System.out.println(b.geraID());
+        System.out.println(b.geraID());
+        System.out.println(b.geraID());
+        System.out.println(b.geraID());
+        System.out.println(b.geraID());
     }
     
 }
