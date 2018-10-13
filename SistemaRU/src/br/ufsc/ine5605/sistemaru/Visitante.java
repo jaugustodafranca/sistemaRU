@@ -16,13 +16,19 @@ public class Visitante extends Pessoa{
         super(nome);
         this.id = id;
     }
-
+    
+    @Override
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public int getMatricula() {
+        return this.id;
     }
     
     

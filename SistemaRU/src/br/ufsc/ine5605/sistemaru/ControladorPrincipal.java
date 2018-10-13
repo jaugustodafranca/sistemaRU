@@ -7,14 +7,14 @@ package br.ufsc.ine5605.sistemaru;
 
 /**
  *
- * @author 12041789921
+ * @author jfranca
  */
 public class ControladorPrincipal {
     private TelaPrincipal telaPrincipal;
     private ConteudoTelaPrincipal conteudoTelaPrincipal;
     private ControladorRelatorioAdm controladorRelatorioAdm;
     private Restaurante restaurante;
-    private ControladorUsuarios controladorUsuarios;
+    private ControladorUsuario controladorUsuario;
     private ControladorAdm controladorAdm;
 
     public ControladorPrincipal() {
@@ -22,7 +22,7 @@ public class ControladorPrincipal {
         this.conteudoTelaPrincipal = new ConteudoTelaPrincipal();
         this.controladorRelatorioAdm = new ControladorRelatorioAdm ();
         this.restaurante = new Restaurante(this);
-        this.controladorUsuarios = new ControladorUsuarios();
+        this.controladorUsuario = new ControladorUsuario();
         this.controladorAdm = new ControladorAdm();
     }
 
@@ -42,8 +42,8 @@ public class ControladorPrincipal {
         return restaurante;
     }
 
-    public ControladorUsuarios getControladorUsuarios() {
-        return controladorUsuarios;
+    public ControladorUsuario getControladorUsuarios() {
+        return controladorUsuario;
     }
 
     public ControladorAdm getControladorAdm() {

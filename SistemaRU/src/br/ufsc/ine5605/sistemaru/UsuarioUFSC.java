@@ -20,8 +20,9 @@ public class UsuarioUFSC extends Pessoa{
         this.admin = admin;
     }
      
+    @Override
     public int getMatricula() {
-        return matricula;
+        return this.matricula;
     }
 
     public void setMatricula(int matricula) {
@@ -34,6 +35,11 @@ public class UsuarioUFSC extends Pessoa{
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    @Override
+    public int getId() {
+        return this.matricula;
     }
     
     

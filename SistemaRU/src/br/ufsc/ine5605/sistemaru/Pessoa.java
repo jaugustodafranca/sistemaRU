@@ -15,7 +15,7 @@ import java.util.HashMap;
  */
 public abstract class Pessoa implements Crebitavel{
     private String nome;
-    private float saldo;
+    float saldo;
     private HashMap<Date, ArrayList<TipoRefeicao>>registrosRefeicoes;
 
     public Pessoa(String nome) {
@@ -57,5 +57,7 @@ public abstract class Pessoa implements Crebitavel{
         }
         registrosRefeicoes.put(data, refeicoesDiaInclusa);
     }
-    
+    public abstract int getMatricula();
+    public abstract int getId();
+
 }

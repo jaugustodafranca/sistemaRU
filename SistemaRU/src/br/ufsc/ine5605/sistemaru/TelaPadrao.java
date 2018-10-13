@@ -19,20 +19,23 @@ public abstract class TelaPadrao {
         this.teclado = new Scanner(System.in);
     }
     
-    private int leInteiro() {
+    public int leInteiro() {
         int i = teclado.nextInt();
         teclado.nextLine();
         return i;
     }
     
-    private float leFloat() {
+    public float leFloat() {
         float i = teclado.nextFloat();
         teclado.nextLine();
         return i;
     }
     
-    private String leString() {
+    public String leString() {
         return teclado.nextLine();
+    }
+    public boolean leBoolean() {
+        return teclado.nextBoolean();
     }
      
     public abstract void mostraConteudoTela(); 
