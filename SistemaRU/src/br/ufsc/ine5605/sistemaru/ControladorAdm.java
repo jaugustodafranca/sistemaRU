@@ -20,6 +20,8 @@ public class ControladorAdm {
 
     public ControladorAdm() {
         this.pessoas = new ArrayList();
+        this.telaAdm = new TelaAdm (this);
+        
     }
 
     public ArrayList<Pessoa> getPessoas() {
@@ -99,4 +101,10 @@ public class ControladorAdm {
         Random random = new Random();
         return random.nextInt((999999 - 100000) + 1) + 100000;
     }
+
+    public ConteudoTelaAdm getConteudoTelaAdm() {
+        return conteudoTelaAdm;
+    }
+     
+     
 }
