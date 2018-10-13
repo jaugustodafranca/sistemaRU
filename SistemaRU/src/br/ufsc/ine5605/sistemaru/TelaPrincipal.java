@@ -20,12 +20,10 @@ class TelaPrincipal extends TelaPadrao{
             System.out.println("######  SISTEMA DE CONTROLE DO RESTAURANTE UNIVERSITÁRIO  ######");
             System.out.println();
             System.out.println("DIGITE SEU NÚMERO DE MATRÍCULA");
-
             System.out.println();
-            System.out.println("[0] VOLTAR PARA O MENU DE USUÁRIO");
+            System.out.println("[0] FINALIZAR SISTEMA");
             
             opcao = leInteiro();
-            
          
         }while (opcao==0);
     }
