@@ -32,6 +32,7 @@ public class ControladorAdm {
         UsuarioUFSC usuario = desempacotaUsuarioUFSC(conteudoTelaAdm);
         if (!idJaExiste(conteudoTelaAdm.codigo)){
             pessoas.add(usuario);
+            telaAdm.operacaoRealizada();
         }else{
             telaAdm.mostraMatriculaExistente();
         }
@@ -40,6 +41,7 @@ public class ControladorAdm {
         Estudante estudante = desempacotaEstudante(conteudoTelaAdm);
         if (!idJaExiste(conteudoTelaAdm.codigo)){
             pessoas.add(estudante);
+            telaAdm.operacaoRealizada();
         }else{
             telaAdm.mostraMatriculaExistente();
         }
@@ -49,6 +51,7 @@ public class ControladorAdm {
         Visitante visitante = desempacotaVisitante(conteudoTelaAdm);
         if (!idJaExiste(conteudoTelaAdm.codigo)){
             pessoas.add(visitante);
+            telaAdm.operacaoRealizada();
         }else{
             telaAdm.mostraMatriculaExistente();
         }
@@ -63,6 +66,8 @@ public class ControladorAdm {
             if(classe.equals("Visitante")){
                 if(((Visitante)pessoa).getId() == id){
                     pessoas.remove(pessoa);
+                    telaAdm.operacaoRealizada();
+                    
                 }
             }else{
                 if(((UsuarioUFSC) pessoa).getMatricula() == id){
@@ -75,12 +80,26 @@ public class ControladorAdm {
     
     public void listarUsuariosCadastrados(){
         if (getPessoas().size() > 0){
-            getTelaAdm().mostraListaCadastro(getPessoas());
+            
+            int cont = 1;
+            ArrayList<String> relatorioCadastro = new ArrayList();
+            for (Pessoa pessoa : pessoas){
+                String classeCompleta = pessoa.getClass().toString();
+                String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
+                if(classe.equals("Visitante")){
+                    String linha = ("# "+cont+" - NOME: "+ pessoa.getNome() + " - ID: "+ ((Visitante)pessoa).getId() + " - TIPO CADASTRO: "+ classe.toUpperCase());
+                    relatorioCadastro.add(linha);
+                }else{
+                    String linha = ("# "+cont+" - NOME: "+ pessoa.getNome() + " - MATRÍCULA: "+ ((UsuarioUFSC)pessoa).getMatricula()+ " - TIPO CADASTRO: "+ classe.toUpperCase());
+                    relatorioCadastro.add(linha);
+                }
+                cont++;
+            }
+            telaAdm.mostraListaCadastro(relatorioCadastro);
         }else{
-            System.out.println("NÃO HÁ USUÁRIOS CADASTRADOS");
+            System.out.println("-> NÃO HÁ USUÁRIOS CADASTRADO NO SISTEMA");
         }
     }
-    
     private Estudante desempacotaEstudante(ConteudoTelaAdm conteudoTelaAdm){
         return new Estudante (conteudoTelaAdm.nome,conteudoTelaAdm.codigo, conteudoTelaAdm.admin, conteudoTelaAdm.isencao);
     }

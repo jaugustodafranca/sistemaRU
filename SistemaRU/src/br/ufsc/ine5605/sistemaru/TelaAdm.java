@@ -66,7 +66,6 @@ public class TelaAdm extends TelaPadrao{
         conteudoTela.admin = leBoolean();
         
         controlador.cadastraUsuarioUFSC(conteudoTela);
-        operacaoRealizada();
         mostraConteudoTela();
         
         
@@ -86,7 +85,6 @@ public class TelaAdm extends TelaPadrao{
         conteudoTela.isencao = leBoolean();
         
         controlador.cadastraEstudante(conteudoTela);
-        operacaoRealizada();
         mostraConteudoTela();
         
     }
@@ -99,7 +97,6 @@ public class TelaAdm extends TelaPadrao{
         conteudoTela.nome = leString();
                 
         controlador.cadastraVisitante(conteudoTela);
-        operacaoRealizada();
         mostraConteudoTela();
         
         
@@ -112,7 +109,6 @@ public class TelaAdm extends TelaPadrao{
         System.out.print("MATRÍCULA OU ID: ");
         conteudoTela.codigo = leInteiro();
         controlador.excluirUsiario(conteudoTela.codigo);
-        operacaoRealizada();
         mostraConteudoTela();
         
     }
@@ -121,18 +117,19 @@ public class TelaAdm extends TelaPadrao{
         
     }
     
-    public void mostraListaCadastro(ArrayList<Pessoa> pessoas){
+    public void mostraListaCadastro(ArrayList<String> relatorioCadastro){
         System.out.println("###################################");
         System.out.println("  LISTA DE USUÁRIOS CADASTRADOS");
         System.out.println();
-        int cont = 1;
-        for (Pessoa pessoa : pessoas){
-            System.out.println("# "+cont+" - NOME: "+ pessoa.getNome());
-            cont++;
+        for (String linhaDoRelatorio: relatorioCadastro){
+            System.out.println(linhaDoRelatorio);
         }
+        System.out.println();
         System.out.println("###################################");
     }
     public void mostraMatriculaExistente(){
+        System.out.println("");
         System.out.println("-> USUÁRIO JÁ CADASTRADO COM ESSA MATRÍCULA OU ID");
+        System.out.println("");
     }
 }

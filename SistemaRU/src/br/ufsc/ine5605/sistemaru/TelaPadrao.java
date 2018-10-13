@@ -43,6 +43,7 @@ public abstract class TelaPadrao {
     public void operacaoRealizada(){
         System.out.println("");
         System.out.println("-> OPERAÇÃO REALIZADA COM SUCESSO");
+        System.out.println("");
     }
     
 }
