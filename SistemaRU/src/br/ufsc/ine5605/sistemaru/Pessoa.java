@@ -14,7 +14,7 @@ import java.util.HashMap;
  * @author 12041789921
  */
 public abstract class Pessoa implements Crebitavel{
-    private String nome;
+    String nome;
     float saldo;
     private HashMap<Date, ArrayList<TipoRefeicao>>registrosRefeicoes;
 

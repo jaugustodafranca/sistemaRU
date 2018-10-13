@@ -10,11 +10,12 @@ package br.ufsc.ine5605.sistemaru;
  * @author franca
  */
 public class ConteudoTelaAdm {
-    public int id;
+    
     public String nome;
-    public boolean Isencao;
+    public boolean isencao;
     public boolean admin;
-    public int matricula;
+    public int codigo;
+    
     
     public ConteudoTelaAdm() {
         
@@ -23,17 +24,20 @@ public class ConteudoTelaAdm {
     public ConteudoTelaAdm(String nome) {
         this.nome = nome;
     }
-
-    public ConteudoTelaAdm(String nome, int matricula, boolean admin) {
-        this.matricula = matricula;
+    public ConteudoTelaAdm(int codigo){
+        this.codigo = codigo;
+    }
+   
+    public ConteudoTelaAdm(String nome, int codigo, boolean admin) {
+        this.codigo = codigo;
         this.nome = nome;
         this.admin = admin;
     }
 
-    public ConteudoTelaAdm(String nome,int matricula, boolean admin, boolean Isencao) {
-        this.matricula = matricula;
+    public ConteudoTelaAdm(String nome,int codigo, boolean admin, boolean Isencao) {
+        this.codigo = codigo;
         this.nome = nome;
-        this.Isencao = Isencao;
+        this.isencao = isencao;
         this.admin = admin;
     }
 

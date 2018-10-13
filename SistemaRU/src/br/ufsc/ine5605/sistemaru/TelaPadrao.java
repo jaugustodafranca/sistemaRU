@@ -38,6 +38,11 @@ public abstract class TelaPadrao {
         return teclado.nextBoolean();
     }
      
-    public abstract void mostraConteudoTela(); 
+    public abstract void mostraConteudoTela();
+    
+    public void operacaoRealizada(){
+        System.out.println("");
+        System.out.println("-> OPERAÇÃO REALIZADA COM SUCESSO");
+    }
     
 }
