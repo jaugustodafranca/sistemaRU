@@ -16,9 +16,10 @@ public class SistemaRU {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         ControladorPrincipal a = new ControladorPrincipal ();
         ControladorAdm b = a.getControladorAdm();
-        ConteudoTelaAdm j = new ConteudoTelaAdm("admin", 123456, true);
+        ConteudoTelaAdm j = new ConteudoTelaAdm("admin",123456, true);
         b.cadastraUsuarioUFSC(j);
         a.getTelaPrincipal().mostraConteudoTela();
         

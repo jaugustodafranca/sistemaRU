@@ -52,7 +52,7 @@ public class ControladorPrincipal {
         return controladorAdm;
     }
     
-    public void validaLogin(int id){
+    public void validaLogin(int id) throws MatriculainvalidaException{
         ArrayList<Pessoa> pessoas = this.getControladorAdm().getPessoas();
         Pessoa result  = null;
         for(Pessoa pessoa : pessoas){
@@ -62,21 +62,23 @@ public class ControladorPrincipal {
             if(classe.equals("Visitante")){
                 if(((Visitante)pessoa).getId() == id){
                     result = pessoa;
-                    
+                    controladorUsuario.setPessoa(result);
+                    controladorUsuario.getTelaUsuario().mostraConteudoTela();
                 }
             }else{
                 if(((UsuarioUFSC) pessoa).getMatricula() == id){
-                    System.out.println(pessoa.getNome());
                     result = pessoa;
+                    controladorUsuario.setPessoa(result);
+                    if(((UsuarioUFSC) pessoa).isAdmin()){
+                        controladorUsuario.getTelaUsuario().mostraConteudoTelaAdm();
+                    }
                 }
             }
         }
-        if(result !=null){
-            controladorUsuario.setPessoa(result);
-            controladorUsuario.getTelaUsuario().mostraConteudoTela();
+        if(result == null){
+            throw new MatriculainvalidaException();
         }
         
     }
     
-
 }

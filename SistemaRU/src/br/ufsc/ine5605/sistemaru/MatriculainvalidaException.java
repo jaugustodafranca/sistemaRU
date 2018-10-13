@@ -9,6 +9,8 @@ package br.ufsc.ine5605.sistemaru;
  *
  * @author 12041789921
  */
-public class MatriculainvalidaException {
-    
+public class MatriculainvalidaException extends Exception{
+    public MatriculainvalidaException(){
+        super("Matricula Invalida, digite a matricula novamente");
+    }
 }

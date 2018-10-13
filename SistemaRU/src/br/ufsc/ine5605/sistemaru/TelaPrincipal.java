@@ -23,24 +23,33 @@ class TelaPrincipal extends TelaPadrao{
     
     @Override
     public void mostraConteudoTela() {
-        int id = 0;
+        int id;
+        boolean existe = false;
         do{
             System.out.println("######  SISTEMA DE CONTROLE DO RESTAURANTE UNIVERSITÁRIO  ######");
             System.out.println("DIGITE SEU NÚMERO DE MATRÍCULA");
-            //System.out.println("[0] FINALIZAR SISTEMA");
             id = leInteiro();
             
             switch(id){
                 case 0: 
                     break;
                 default:
-                    getControladorPrincipal().validaLogin(id);
+                    try{
+                        getControladorPrincipal().validaLogin(id);
+                        existe = true;
+                    }catch(Exception e){
+                        System.out.println(e);
+                    }
                     break;
             }
-        }while (id==0);
+        }while (id==0 || !existe);
         
         
         
+    }
+    public void mostraCadastroNaoEncontrado(){
+        
+    
     }
     
 }
