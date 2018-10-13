@@ -57,10 +57,17 @@ public class TelaUsuario extends TelaPadrao{
             opcao = leInteiro();
             
             switch(opcao){
+                
+                case 2: mostraTelaSaldo();
+                        break;
                 case 4: controladorUsuario.getControladorPrincipal().getControladorAdm().getTelaAdm().mostraConteudoTela();
                 
             }
          
-        }while (opcao==0);
+        }while (opcao!=0);
+    }
+
+    private void mostraTelaSaldo() {
+        System.out.println("SALDO DISPONIVEL: R$ "+controladorUsuario.consultarSaldo());
     }
 }

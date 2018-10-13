@@ -36,4 +36,8 @@ public class ControladorUsuario {
         return telaUsuario;
     }
     
+    public float consultarSaldo(){
+        return pessoa.getSaldo();
+    }
+    
 }
