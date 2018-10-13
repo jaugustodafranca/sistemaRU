@@ -11,6 +11,6 @@ package br.ufsc.ine5605.sistemaru;
  */
 class ConteudoTelaPrincipal {
     
-    private int id;
+    public int id;
     
 }
