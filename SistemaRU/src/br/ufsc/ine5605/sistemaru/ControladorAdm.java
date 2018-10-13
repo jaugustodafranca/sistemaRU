@@ -30,34 +30,28 @@ public class ControladorAdm {
     }
     public void cadastraUsuarioUFSC(ConteudoTelaAdm conteudoTelaAdm){
         UsuarioUFSC usuario = desempacotaUsuarioUFSC(conteudoTelaAdm);
-        for (Pessoa pessoaIn: pessoas){
-            if (pessoaIn.getMatricula() == usuario.getMatricula()){
-                return;
-            }
+        if (!idJaExiste(conteudoTelaAdm.codigo)){
+            pessoas.add(usuario);
+        }else{
+            telaAdm.mostraMatriculaExistente();
         }
-        pessoas.add(usuario);
-        
     }
     public void cadastraEstudante(ConteudoTelaAdm conteudoTelaAdm){
         Estudante estudante = desempacotaEstudante(conteudoTelaAdm);
-        for (Pessoa pessoaIn: pessoas){
-            if (pessoaIn.getMatricula() == estudante.getMatricula()){
-                return;
-            }
+        if (!idJaExiste(conteudoTelaAdm.codigo)){
+            pessoas.add(estudante);
+        }else{
+            telaAdm.mostraMatriculaExistente();
         }
-        pessoas.add(estudante);
-        
-    }
+    }    
             
     public void cadastraVisitante(ConteudoTelaAdm conteudoTelaAdm){
         Visitante visitante = desempacotaVisitante(conteudoTelaAdm);
-        for (Pessoa pessoaIn: pessoas){
-            if (pessoaIn.getId() == visitante.getId()){
-                return;
-            }
+        if (!idJaExiste(conteudoTelaAdm.codigo)){
+            pessoas.add(visitante);
+        }else{
+            telaAdm.mostraMatriculaExistente();
         }
-        pessoas.add(visitante);
-        
     }
     
    
@@ -95,17 +89,12 @@ public class ControladorAdm {
         return new UsuarioUFSC (conteudoTelaAdm.nome,conteudoTelaAdm.codigo, conteudoTelaAdm.admin);
     }
     private Visitante desempacotaVisitante(ConteudoTelaAdm conteudoTelaAdm){
-        int id = geraID();
+        int id =0;
         boolean idRepetido = false;
-        do{
-            for (Pessoa pessoaIn: pessoas){
-
-                if (pessoaIn.getMatricula() == id){
-                    idRepetido=true;
-                }
-                if (pessoaIn.getId() == id){
-                    idRepetido=true;
-                }
+        do{ 
+            id = geraID();
+            if(idJaExiste(id)){
+                idRepetido=true;
             }
         }while (idRepetido==true);
         return new Visitante (id, conteudoTelaAdm.nome);
@@ -124,6 +113,21 @@ public class ControladorAdm {
     }
 
     
-     
+    public boolean idJaExiste(int id){
+        for (Pessoa pessoa: pessoas){
+            String classeCompleta = pessoa.getClass().toString();
+            String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
+            if(classe.equals("Visitante")){
+                if(((Visitante)pessoa).getId() == id){
+                    return true;
+                }
+            }else{
+                if(((UsuarioUFSC) pessoa).getMatricula() == id){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }    
      
 }

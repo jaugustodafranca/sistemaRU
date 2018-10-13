@@ -138,5 +138,7 @@ public class TelaAdm extends TelaPadrao{
         }
         System.out.println("###################################");
     }
-    
+    public void mostraMatriculaExistente(){
+        System.out.println("-> USUÁRIO JÁ CADASTRADO COM ESSA MATRÍCULA OU ID");
+    }
 }
