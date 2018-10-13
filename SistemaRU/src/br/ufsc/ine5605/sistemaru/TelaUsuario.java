@@ -65,6 +65,7 @@ public class TelaUsuario extends TelaPadrao{
             }
          
         }while (opcao!=0);
+        controladorUsuario.getControladorPrincipal().getTelaPrincipal().mostraConteudoTela();
     }
 
     private void mostraTelaSaldo() {
