@@ -13,14 +13,14 @@ public class TelaAdm extends TelaPadrao{
      
     
     
-    //inicio faltava
+    
     private ControladorAdm controlador;
     
     public TelaAdm(ControladorAdm controlador){
         this.controlador = controlador;
     
     }
-    //fim
+    
     
     @Override
     public void mostraConteudoTela() {
@@ -45,15 +45,15 @@ public class TelaAdm extends TelaPadrao{
     }
     
     public void mostraTelaCadastroUsuarioUFSC(){
-       
+        ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
         System.out.println("######  CADASTRO USUARIO UFSC  ######");
         System.out.print("NOME: ");
-        String nome = leString();
+        conteudoTela.nome = leString();
         System.out.print("MATRICULA: ");
-        int matricula = leInteiro();
+        conteudoTela.matricula = leInteiro();
         System.out.print("É ADMINISTRADOR (true ou false: ");
-        boolean admin = leBoolean();
-        ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm(nome,matricula,admin);
+        conteudoTela.admin = leBoolean();
+        
         controlador.cadastraUsuarioUFSC(conteudoTela);
         
         
