@@ -12,20 +12,35 @@ package br.ufsc.ine5605.sistemaru;
 class TelaPrincipal extends TelaPadrao{
     
     private ControladorPrincipal controladorPrincipal;
+
+    public TelaPrincipal(ControladorPrincipal controladorPrincipal) {
+        this.controladorPrincipal = controladorPrincipal;
+    }
+
+    public ControladorPrincipal getControladorPrincipal() {
+        return controladorPrincipal;
+    }
     
     @Override
     public void mostraConteudoTela() {
-        int opcao;
+        int id = 0;
         do{
             System.out.println("######  SISTEMA DE CONTROLE DO RESTAURANTE UNIVERSITÁRIO  ######");
-            System.out.println();
             System.out.println("DIGITE SEU NÚMERO DE MATRÍCULA");
-            System.out.println();
-            System.out.println("[0] FINALIZAR SISTEMA");
+            //System.out.println("[0] FINALIZAR SISTEMA");
+            id = leInteiro();
             
-            opcao = leInteiro();
-         
-        }while (opcao==0);
+            switch(id){
+                case 0: 
+                    break;
+                default:
+                    getControladorPrincipal().validaLogin(id);
+                    break;
+            }
+        }while (id==0);
+        
+        
+        
     }
     
 }
