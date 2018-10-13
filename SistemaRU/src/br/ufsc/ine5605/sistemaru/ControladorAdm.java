@@ -14,14 +14,15 @@ import java.util.Random;
  */
 public class ControladorAdm {
     private ArrayList<Pessoa> pessoas;
-    private ControladorPrincipal ControladorPrincipal;
+    private ControladorPrincipal controladorPrincipal;
     private TelaAdm telaAdm;
     private ConteudoTelaAdm conteudoTelaAdm;
 
-    public ControladorAdm() {
+    public ControladorAdm(ControladorPrincipal controladorPrincipal) {
         this.pessoas = new ArrayList();
         this.telaAdm = new TelaAdm (this);
         this.conteudoTelaAdm = new ConteudoTelaAdm();
+        this.controladorPrincipal = controladorPrincipal;
         
     }
 
@@ -148,5 +149,9 @@ public class ControladorAdm {
         }
         return false;
     }    
+
+    public ControladorPrincipal getControladorPrincipal() {
+        return controladorPrincipal;
+    }
      
 }

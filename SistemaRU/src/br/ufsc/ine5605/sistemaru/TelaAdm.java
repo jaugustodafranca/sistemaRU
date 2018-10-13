@@ -50,7 +50,8 @@ public class TelaAdm extends TelaPadrao{
                 case 6: controlador.listarUsuariosCadastrados();
                         break;
             } 
-        }while (opcao==0);
+        }while (opcao!=0);
+        controlador.getControladorPrincipal().getControladorUsuarios().getTelaUsuario().mostraConteudoTelaAdm();
         
     }
     
