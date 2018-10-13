@@ -57,7 +57,4 @@ public abstract class Pessoa implements Crebitavel{
         }
         registrosRefeicoes.put(data, refeicoesDiaInclusa);
     }
-    public abstract int getMatricula();
-    public abstract int getId();
-
 }
