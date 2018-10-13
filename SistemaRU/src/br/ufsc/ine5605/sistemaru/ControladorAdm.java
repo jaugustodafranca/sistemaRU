@@ -28,14 +28,14 @@ public class ControladorAdm {
         return pessoas;
     }
     public UsuarioUFSC cadastraUsuarioUFSC(ConteudoTelaAdm conteudoTelaAdm){
-       UsuarioUFSC usuario = desempacotaUsuarioUFSC(conteudoTelaAdm);
-       for (Pessoa pessoaIn: pessoas){
+        UsuarioUFSC usuario = desempacotaUsuarioUFSC(conteudoTelaAdm);
+        for (Pessoa pessoaIn: pessoas){
             if (pessoaIn.getMatricula() == usuario.getMatricula()){
                 return null;
             }
         }
-              pessoas.add(usuario);
-       return usuario;
+        pessoas.add(usuario);
+        return usuario;
     }
     public Estudante cadastraEstudante(ConteudoTelaAdm conteudoTelaAdm){
         Estudante estudante = desempacotaEstudante(conteudoTelaAdm);

@@ -5,9 +5,6 @@
  */
 package br.ufsc.ine5605.sistemaru;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  *
@@ -21,11 +18,13 @@ public class SistemaRU {
     public static void main(String[] args) {
         ControladorPrincipal a = new ControladorPrincipal ();
         ControladorAdm b = a.getControladorAdm();
-        System.out.println(b.geraID());
-        System.out.println(b.geraID());
-        System.out.println(b.geraID());
-        System.out.println(b.geraID());
-        System.out.println(b.geraID());
+        ConteudoTelaAdm j = new ConteudoTelaAdm("admin", 123456, true);
+        b.cadastraUsuarioUFSC(j);
+        a.getTelaPrincipal().mostraConteudoTela();
+        
+        
+        /*TelaAdm c = b.getTelaAdm();
+        c.mostraConteudoTela();*/
     }
     
 }
