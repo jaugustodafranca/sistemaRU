@@ -13,7 +13,6 @@ import java.util.ArrayList;
  */
 public class ControladorPrincipal {
     private TelaPrincipal telaPrincipal;
-    private ConteudoTelaPrincipal conteudoTelaPrincipal;
     private ControladorRelatorioAdm controladorRelatorioAdm;
     private Restaurante restaurante;
     private ControladorUsuario controladorUsuario;
@@ -21,7 +20,6 @@ public class ControladorPrincipal {
 
     public ControladorPrincipal() {
         this.telaPrincipal = new TelaPrincipal(this);
-        this.conteudoTelaPrincipal = new ConteudoTelaPrincipal();
         this.controladorRelatorioAdm = new ControladorRelatorioAdm (this);
         this.restaurante = new Restaurante(this);
         this.controladorUsuario = new ControladorUsuario(this);
@@ -30,10 +28,6 @@ public class ControladorPrincipal {
 
     public TelaPrincipal getTelaPrincipal() {
         return telaPrincipal;
-    }
-
-    public ConteudoTelaPrincipal getConteudoTelaPrincipal() {
-        return conteudoTelaPrincipal;
     }
 
     public ControladorRelatorioAdm getControladorRelatorioAdm() {

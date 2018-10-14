@@ -118,16 +118,16 @@ public class TelaUsuario extends TelaPadrao{
         mostraTelaSaldo();
     }
 
-    void mostraRelatorioUsuario(int mes1, int mes2, int mes3) {
+    void mostraRelatorioUsuario(int nRefeicoesMes1, int nRefeicoesMes2, int nRefeicoesMes3) {
         System.out.println();
         System.out.println("#######################");
         System.out.println("#####  RELATÓRIO  #####");
         System.out.println("#######################");
         System.out.println();
         
-        System.out.println("REFEIÇÕES NO MES: "+mes1);
-        System.out.println("REFEIÇÕES NO ÚLTIMO MES: "+mes2);
-        System.out.println("REFEIÇÕES NO PENÚLTIMO MES: "+mes3);
+        System.out.println("REFEIÇÕES NO MES: "+nRefeicoesMes1);
+        System.out.println("REFEIÇÕES NO ÚLTIMO MES: "+nRefeicoesMes2);
+        System.out.println("REFEIÇÕES NO PENÚLTIMO MES: "+nRefeicoesMes3);
         System.out.println("");
         System.out.println("#######################");
     }

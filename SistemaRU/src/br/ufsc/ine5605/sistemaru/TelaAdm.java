@@ -90,7 +90,7 @@ public class TelaAdm extends TelaPadrao{
                         break;
                 case 7: {
                     try {
-                        monstraAdicionaSaldo();
+                        mostraAdicionarSaldo();
                     } catch (MatriculainvalidaException ex) {
                         System.out.println(ex);
                     }
@@ -193,11 +193,7 @@ public class TelaAdm extends TelaPadrao{
         System.out.println("###################################");
         System.out.println();
     }
-    public void mostraMatriculaExistente(){
-        System.out.println("");
-        System.out.println("-> USUÁRIO JÁ CADASTRADO COM ESSA MATRÍCULA OU ID");
-        System.out.println("");
-    }
+    
     
     
     public void mostraEditarPessoa() throws MatriculainvalidaException{
@@ -282,7 +278,7 @@ public class TelaAdm extends TelaPadrao{
         System.out.println("-> REEMBOLSO DE R$: "+ pessoa.getSaldo());
     }
     
-    public void monstraAdicionaSaldo() throws MatriculainvalidaException{
+    public void mostraAdicionarSaldo() throws MatriculainvalidaException{
         clear();
         ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
         System.out.println("###############################");

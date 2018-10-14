@@ -14,6 +14,7 @@ class CounteudoTelaRelatorioAdm {
     public String dataFinal;
 
     public CounteudoTelaRelatorioAdm() {
+        
     }
 
     
