@@ -51,7 +51,7 @@ public class TelaAdm extends TelaPadrao{
                         break;
             } 
         }while (opcao!=0);
-        controlador.getControladorPrincipal().getControladorUsuarios().getTelaUsuario().mostraConteudoTelaAdm();
+        //controlador.getControladorPrincipal().getControladorUsuarios().getTelaUsuario().mostraConteudoTelaAdm();
         
     }
     
