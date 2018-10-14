@@ -29,32 +29,32 @@ public class ControladorAdm {
     public ArrayList<Pessoa> getPessoas() {
         return pessoas;
     }
-    public void cadastraUsuarioUFSC(ConteudoTelaAdm conteudoTelaAdm){
+    public void cadastraUsuarioUFSC (ConteudoTelaAdm conteudoTelaAdm) throws MatriculainvalidaException{
         UsuarioUFSC usuario = desempacotaUsuarioUFSC(conteudoTelaAdm);
         if (!idJaExiste(conteudoTelaAdm.codigo)){
             pessoas.add(usuario);
             telaAdm.operacaoRealizada();
         }else{
-            telaAdm.mostraMatriculaExistente();
+            throw new MatriculainvalidaException();
         }
     }
-    public void cadastraEstudante(ConteudoTelaAdm conteudoTelaAdm){
+    public void cadastraEstudante (ConteudoTelaAdm conteudoTelaAdm) throws MatriculainvalidaException{
         Estudante estudante = desempacotaEstudante(conteudoTelaAdm);
         if (!idJaExiste(conteudoTelaAdm.codigo)){
             pessoas.add(estudante);
             telaAdm.operacaoRealizada();
         }else{
-            telaAdm.mostraMatriculaExistente();
+            throw new MatriculainvalidaException();
         }
     }    
             
-    public void cadastraVisitante(ConteudoTelaAdm conteudoTelaAdm){
+    public void cadastraVisitante(ConteudoTelaAdm conteudoTelaAdm) throws MatriculainvalidaException{
         Visitante visitante = desempacotaVisitante(conteudoTelaAdm);
         if (!idJaExiste(conteudoTelaAdm.codigo)){
             pessoas.add(visitante);
             telaAdm.operacaoRealizada();
         }else{
-            telaAdm.mostraMatriculaExistente();
+            throw new MatriculainvalidaException();
         }
     }
     

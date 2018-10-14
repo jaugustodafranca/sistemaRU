@@ -23,10 +23,13 @@ public class TelaAdm extends TelaPadrao{
     
     @Override
     public void mostraConteudoTela() {
+        
         int opcao;
         do{
+            System.out.println("");
             System.out.println("###################################");
             System.out.println("######  MENU ADMINISTRATIVO  ######");
+            System.out.println("###################################");
             System.out.println();
             System.out.println("[1] CADASTRAR USUÁRIO-UFSC");
             System.out.println("[2] CADASTRAR ESTUDANTE");
@@ -38,15 +41,33 @@ public class TelaAdm extends TelaPadrao{
             System.out.println("[8] GERAR RELATÓRIO DE ACESSO AO RU");
             System.out.println();
             System.out.println("[0] VOLTAR PARA O MENU DE USUÁRIO");
-            
+            System.out.println("");
             opcao = leInteiro();
             
             switch(opcao){
-                case 1: mostraTelaCadastroUsuarioUFSC();
+                case 1: {
+                try {
+                    mostraTelaCadastroUsuarioUFSC();
+                } catch (MatriculainvalidaException ex) {
+                    System.out.println(ex);
+                }
+            }
                         break;
-                case 2: mostraTelaCadastroEstudante();
+                case 2: {
+                try {
+                    mostraTelaCadastroEstudante();
+                } catch (MatriculainvalidaException ex) {
+                    System.out.println(ex);
+                }
+            }
                         break;
-                case 3: mostraTelaCadastroVisitante();
+                case 3: {
+                try {
+                    mostraTelaCadastroVisitante();
+                } catch (MatriculainvalidaException ex) {
+                    System.out.println(ex);
+                }
+            }
                         break;
                 case 4: {
                 try {
@@ -80,10 +101,14 @@ public class TelaAdm extends TelaPadrao{
         
     }
     
-    public void mostraTelaCadastroUsuarioUFSC(){
+    public void mostraTelaCadastroUsuarioUFSC() throws MatriculainvalidaException{
+        clear();
         ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
         System.out.println("");
+        System.out.println("#####################################");
         System.out.println("######  CADASTRO USUARIO UFSC  ######");
+        System.out.println("#####################################");
+        System.out.println("");
         System.out.print("NOME: ");
         conteudoTela.nome = leString();
         System.out.print("MATRICULA: ");
@@ -97,10 +122,14 @@ public class TelaAdm extends TelaPadrao{
         
     }
     
-    public void mostraTelaCadastroEstudante(){
+    public void mostraTelaCadastroEstudante() throws MatriculainvalidaException{
+        clear();
         ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
         System.out.println("");
+        System.out.println("##########################################");
         System.out.println("######  CADASTRO USUARIO ESTUDANTE  ######");
+        System.out.println("##########################################");
+        System.out.println("");
         System.out.print("NOME: ");
         conteudoTela.nome = leString();
         System.out.print("MATRICULA: ");
@@ -115,10 +144,14 @@ public class TelaAdm extends TelaPadrao{
         
     }
     
-    public void mostraTelaCadastroVisitante(){
+    public void mostraTelaCadastroVisitante() throws MatriculainvalidaException{
+        clear();
         ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
         System.out.println("");
+        System.out.println("##################################");
         System.out.println("######  CADASTRO VISITANTE  ######");
+        System.out.println("##################################");
+        System.out.println("");
         System.out.print("NOME: ");
         conteudoTela.nome = leString();
                 
@@ -130,25 +163,33 @@ public class TelaAdm extends TelaPadrao{
     
     public void mostraTelaExcluirUsuario() throws MatriculainvalidaException{
         ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
+        clear();
         System.out.println("");
+        System.out.println("###############################");
         System.out.println("######  EXCLUIR USUÁRIO  ######");
+        System.out.println("###############################");
+        System.out.println("");
         System.out.print("MATRÍCULA OU ID: ");
         conteudoTela.codigo = leInteiro();
         controlador.excluirUsiario(conteudoTela.codigo);
+        clear();
         mostraConteudoTela();
         
     }
     
      
     public void mostraListaCadastro(ArrayList<String> relatorioCadastro){
+        clear();
         System.out.println("###################################");
-        System.out.println("  LISTA DE USUÁRIOS CADASTRADOS");
+        System.out.println("#  LISTA DE USUÁRIOS CADASTRADOS  #");
+        System.out.println("###################################");
         System.out.println();
         for (String linhaDoRelatorio: relatorioCadastro){
             System.out.println(linhaDoRelatorio);
         }
         System.out.println();
         System.out.println("###################################");
+        System.out.println();
     }
     public void mostraMatriculaExistente(){
         System.out.println("");
@@ -158,19 +199,27 @@ public class TelaAdm extends TelaPadrao{
     
     
     public void mostraEditarPessoa() throws MatriculainvalidaException{
+        clear();
         ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
         System.out.println("");
-        System.out.println("######  EDITAR USUARIO  ######");
+        System.out.println("##############################");
+        System.out.println("#####   EDITAR USUARIO   #####");
+        System.out.println("##############################");
+        System.out.println("");
         System.out.println("DIGITE A MATRÍCULA OU ID: ");
         conteudoTela.codigo = leInteiro();
         
         controlador.editarUsuario(conteudoTela.codigo);
     }    
     
-    public void mostraTelaEditarUsuarioUFSC(Pessoa pessoa){
+    public void mostraTelaEditarUsuarioUFSC(Pessoa pessoa) throws MatriculainvalidaException{
+        clear();
         ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
         System.out.println("");
+        System.out.println("###################################");
         System.out.println("######  EDITAR USUARIO UFSC  ######");
+        System.out.println("###################################");
+        System.out.println("");
         System.out.println("NOME ATUAL: "+ ((UsuarioUFSC)pessoa).getNome());
         System.out.print("NOVO NOME: ");
         conteudoTela.nome = leString();
@@ -186,10 +235,14 @@ public class TelaAdm extends TelaPadrao{
         mostraConteudoTela();
     }
 
-    public void mostraTelaEditarVisitante(Pessoa pessoa) {
+    public void mostraTelaEditarVisitante(Pessoa pessoa) throws MatriculainvalidaException {
+        clear();
         ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
         System.out.println("");
+        System.out.println("###############################");
         System.out.println("######  EDITAR VISTANTE  ######");
+        System.out.println("###############################");
+        System.out.println("");
         System.out.println("NOME ATUAL: "+ ((Visitante)pessoa).getNome());
         System.out.print("NOVO NOME: ");
         conteudoTela.nome = leString();
@@ -202,10 +255,14 @@ public class TelaAdm extends TelaPadrao{
         mostraConteudoTela();
     }
 
-    public void mostraTelaEditarEstudante(Pessoa pessoa) {
+    public void mostraTelaEditarEstudante(Pessoa pessoa) throws MatriculainvalidaException {
+        clear();
         ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
         System.out.println("");
+        System.out.println("################################");
         System.out.println("######  EDITAR ESTUDANTE  ######");
+        System.out.println("################################");
+        System.out.println("");
         System.out.println("NOME ATUAL: "+ ((Estudante)pessoa).getNome());
         System.out.print("NOVO NOME: ");
         conteudoTela.nome = leString();
@@ -227,8 +284,12 @@ public class TelaAdm extends TelaPadrao{
     }
     
     public void monstraAdicionaSaldo() throws MatriculainvalidaException{
+        clear();
         ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
+        System.out.println("###############################");
         System.out.println("######  ADICIONAR SALDO  ######");
+        System.out.println("###############################");
+        System.out.println("");
         System.out.println("DIGITE A MATRÍCULA OU ID: ");
         conteudoTela.codigo = leInteiro();
         System.out.print("VALOR: R$ ");
