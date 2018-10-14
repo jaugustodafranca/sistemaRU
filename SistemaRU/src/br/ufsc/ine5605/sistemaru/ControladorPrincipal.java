@@ -71,6 +71,8 @@ public class ControladorPrincipal {
                     controladorUsuario.setPessoa(result);
                     if(((UsuarioUFSC) pessoa).isAdmin()){
                         controladorUsuario.getTelaUsuario().mostraConteudoTelaAdm();
+                    }else{
+                        controladorUsuario.getTelaUsuario().mostraConteudoTela();
                     }
                 }
             }

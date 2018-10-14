@@ -29,18 +29,34 @@ public class TelaUsuario extends TelaPadrao{
         do{
             System.out.println("######  MENU USUARIO  ######");
             System.out.println();
-            System.out.println("[1] ENTRAR NO RESTAURANTE");
-            System.out.println("[2] CONSULTAR SALDO");
-            System.out.println("[3] GERAR RELATÓRIO");
+            System.out.println("[1] ALMOÇAR");
+            System.out.println("[2] JANTAR");
+            System.out.println("[3] CONSULTAR SALDO");
+            System.out.println("[4] GERAR RELATÓRIO");
             System.out.println("[0] DESLOGAR");
             
             opcao = leInteiro();
             
+            switch(opcao){
+                case 1: 
+                        try{
+                            controladorUsuario.validaRefeicao(0);
+                        }catch(Exception e){System.out.println(e);}
+                        break;
+                case 2: 
+                        try{
+                            controladorUsuario.validaRefeicao(1);
+                        }catch(Exception e){System.out.println(e);}
+                        break;
+                        
+                case 3: mostraTelaSaldo();
+                        break;
+                
+            }
+            
          
-        }while (opcao==0);
-        switch(opcao){
-            case 1: break;
-        }
+        }while (opcao!=0);
+        
     }
     
     public void mostraConteudoTelaAdm() {
