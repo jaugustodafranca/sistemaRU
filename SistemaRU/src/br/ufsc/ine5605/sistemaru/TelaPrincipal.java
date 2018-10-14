@@ -43,14 +43,8 @@ class TelaPrincipal extends TelaPadrao{
                     }
                     break;
             }
-        }while (id==0 || !existe);
+        }while (id!=0);
         
-        
-        
-    }
-    public void mostraCadastroNaoEncontrado(){
-        
-    
     }
     
 }

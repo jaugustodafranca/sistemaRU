@@ -48,27 +48,42 @@ public class TelaUsuario extends TelaPadrao{
         do{
             System.out.println("######  MENU USUARIO  ######");
             System.out.println();
-            System.out.println("[1] ENTRAR NO RESTAURANTE");
-            System.out.println("[2] CONSULTAR SALDO");
-            System.out.println("[3] GERAR RELATÓRIO");
-            System.out.println("[4] ENTRAR TELA ADM");
+            System.out.println("[1] ALMOÇAR");
+            System.out.println("[2] JANTAR");
+            System.out.println("[3] CONSULTAR SALDO");
+            System.out.println("[4] GERAR RELATÓRIO");
+            System.out.println("[5] ENTRAR TELA ADM");
             System.out.println("[0] DESLOGAR");
             
             opcao = leInteiro();
             
             switch(opcao){
-                
-                case 2: mostraTelaSaldo();
+                case 1: 
+                        try{
+                            controladorUsuario.validaRefeicao(0);
+                        }catch(Exception e){System.out.println(e);}
                         break;
-                case 4: controladorUsuario.getControladorPrincipal().getControladorAdm().getTelaAdm().mostraConteudoTela();
+                case 2: 
+                        try{
+                            controladorUsuario.validaRefeicao(1);
+                        }catch(Exception e){System.out.println(e);}
+                        break;
+                        
+                case 3: mostraTelaSaldo();
+                        break;
+                case 5: controladorUsuario.getControladorPrincipal().getControladorAdm().getTelaAdm().mostraConteudoTela();
                 
             }
          
         }while (opcao!=0);
-        controladorUsuario.getControladorPrincipal().getTelaPrincipal().mostraConteudoTela();
     }
 
-    private void mostraTelaSaldo() {
-        System.out.println("SALDO DISPONIVEL: R$ "+controladorUsuario.consultarSaldo());
+    public void mostraTelaSaldo() {
+        System.out.println("SALDO ATUAL DISPONIVEL: R$ "+controladorUsuario.consultarSaldo());
+    }
+
+    public void mostraSucessoRefeicao() {
+        System.out.println("SUA REFEIÇÃO FOI REALIZADA COM SUCESSO");
+        mostraTelaSaldo();
     }
 }

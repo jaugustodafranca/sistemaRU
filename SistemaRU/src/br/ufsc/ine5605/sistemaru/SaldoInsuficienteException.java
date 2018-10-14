@@ -9,6 +9,6 @@ package br.ufsc.ine5605.sistemaru;
  *
  * @author 12041789921
  */
-public class SaldoInsuficienteException {
+public class SaldoInsuficienteException extends Exception{
     
 }
