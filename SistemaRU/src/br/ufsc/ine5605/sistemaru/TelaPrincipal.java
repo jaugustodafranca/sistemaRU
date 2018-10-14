@@ -23,11 +23,15 @@ class TelaPrincipal extends TelaPadrao{
     
     @Override
     public void mostraConteudoTela() {
+        clear();
         int id;
         boolean existe = false;
         do{
+            System.out.println("################################################################");
             System.out.println("######  SISTEMA DE CONTROLE DO RESTAURANTE UNIVERSITÁRIO  ######");
-            System.out.println("DIGITE SEU NÚMERO DE MATRÍCULA");
+            System.out.println("################################################################");
+            System.out.println("");
+            System.out.print("DIGITE SEU NÚMERO DE MATRÍCULA: ");
             
             id = leInteiro();
             

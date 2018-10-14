@@ -97,7 +97,6 @@ public class TelaAdm extends TelaPadrao{
                         break;
             } 
         }while (opcao!=0);
-        //controlador.getControladorPrincipal().getControladorUsuarios().getTelaUsuario().mostraConteudoTelaAdm();
         
     }
     
@@ -117,7 +116,6 @@ public class TelaAdm extends TelaPadrao{
         conteudoTela.admin = leBoolean();
         
         controlador.cadastraUsuarioUFSC(conteudoTela);
-        mostraConteudoTela();
         
         
     }
@@ -140,7 +138,6 @@ public class TelaAdm extends TelaPadrao{
         conteudoTela.isencao = leBoolean();
         
         controlador.cadastraEstudante(conteudoTela);
-        mostraConteudoTela();
         
     }
     
@@ -156,14 +153,13 @@ public class TelaAdm extends TelaPadrao{
         conteudoTela.nome = leString();
                 
         controlador.cadastraVisitante(conteudoTela);
-        mostraConteudoTela();
         
         
     }
     
     public void mostraTelaExcluirUsuario() throws MatriculainvalidaException{
-        ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
         clear();
+        ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
         System.out.println("");
         System.out.println("###############################");
         System.out.println("######  EXCLUIR USUÁRIO  ######");
@@ -172,8 +168,7 @@ public class TelaAdm extends TelaPadrao{
         System.out.print("MATRÍCULA OU ID: ");
         conteudoTela.codigo = leInteiro();
         controlador.excluirUsiario(conteudoTela.codigo);
-        clear();
-        mostraConteudoTela();
+        
         
     }
     
@@ -232,7 +227,6 @@ public class TelaAdm extends TelaPadrao{
         conteudoTela.admin = leBoolean();
         controlador.getPessoas().remove(pessoa);
         controlador.cadastraUsuarioUFSC(conteudoTela);
-        mostraConteudoTela();
     }
 
     public void mostraTelaEditarVisitante(Pessoa pessoa) throws MatriculainvalidaException {
@@ -252,7 +246,6 @@ public class TelaAdm extends TelaPadrao{
         controlador.getPessoas().remove(pessoa);
         controlador.cadastraVisitante(conteudoTela);
         
-        mostraConteudoTela();
     }
 
     public void mostraTelaEditarEstudante(Pessoa pessoa) throws MatriculainvalidaException {
@@ -276,7 +269,6 @@ public class TelaAdm extends TelaPadrao{
         controlador.getPessoas().remove(pessoa);
         controlador.cadastraEstudante(conteudoTela);
         
-        mostraConteudoTela();
     }
     
     public void mostraDevolucaoDinheiro(Pessoa pessoa){
