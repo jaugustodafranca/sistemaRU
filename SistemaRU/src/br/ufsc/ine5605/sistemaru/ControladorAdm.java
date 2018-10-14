@@ -73,6 +73,7 @@ public class ControladorAdm {
             }else{
                 if(((UsuarioUFSC) pessoa).getMatricula() == id){
                     pessoas.remove(pessoa);
+                    telaAdm.operacaoRealizada();
                 }
             }         
             
@@ -100,6 +101,31 @@ public class ControladorAdm {
         }else{
             System.out.println("-> NÃO HÁ USUÁRIOS CADASTRADO NO SISTEMA");
         }
+    }
+    
+    public void editarUsuario(int id){
+        for (Pessoa pessoa: pessoas){
+            String classeCompleta = pessoa.getClass().toString();
+            String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
+            switch (classe) {
+                case "Visitante":
+                    if(((Visitante)pessoa).getId() == id){
+                        telaAdm.mostraTelaEditarVisitante(pessoa);
+                    }   break;
+                case "UsuarioUFSC":
+                    if(((UsuarioUFSC) pessoa).getMatricula() == id){
+                        telaAdm.mostraTelaEditarUsuarioUFSC(pessoa);
+                        
+                    }   break;
+                default:
+                    if(((Estudante) pessoa).getMatricula() == id){
+                        telaAdm.mostraTelaEditarEstudante(pessoa);
+                    }   break;         
+            }
+            
+        }
+        
+        
     }
     private Estudante desempacotaEstudante(ConteudoTelaAdm conteudoTelaAdm){
         return new Estudante (conteudoTelaAdm.nome,conteudoTelaAdm.codigo, conteudoTelaAdm.admin, conteudoTelaAdm.isencao);
