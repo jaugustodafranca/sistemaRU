@@ -269,6 +269,8 @@ public class TelaAdm extends TelaPadrao{
         System.out.println(adm.toUpperCase());
         System.out.print("É ADMINISTRADOR (TRUE OU FALSE): ");
         conteudoTela.admin = leBoolean();
+        System.out.print("ESTUDANTE É INSENTO?(TRUE OU FALSE): ");
+        conteudoTela.isencao = leBoolean();
         controlador.getPessoas().remove(pessoa);
         controlador.cadastraEstudante(conteudoTela);
         
