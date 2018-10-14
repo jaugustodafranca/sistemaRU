@@ -22,7 +22,7 @@ public class ControladorPrincipal {
     public ControladorPrincipal() {
         this.telaPrincipal = new TelaPrincipal(this);
         this.conteudoTelaPrincipal = new ConteudoTelaPrincipal();
-        this.controladorRelatorioAdm = new ControladorRelatorioAdm ();
+        this.controladorRelatorioAdm = new ControladorRelatorioAdm (this);
         this.restaurante = new Restaurante(this);
         this.controladorUsuario = new ControladorUsuario(this);
         this.controladorAdm = new ControladorAdm(this);

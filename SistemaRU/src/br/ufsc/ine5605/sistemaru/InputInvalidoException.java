@@ -9,6 +9,9 @@ package br.ufsc.ine5605.sistemaru;
  *
  * @author 12041789921
  */
-public class InputInvalidoException {
+public class InputInvalidoException extends Exception {
+    public InputInvalidoException(){
+        super("Input inválido");
+    }
     
 }

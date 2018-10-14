@@ -45,9 +45,12 @@ public class Restaurante {
         int count = 0;
         for (Pessoa pessoaCadastrada : controladorPrincipal.getControladorAdm().getPessoas()){
             ArrayList <TipoRefeicao> refeicoesHoje = pessoaCadastrada.getRegistrosRefeicoes().get(this.diaAtual);
-            count+= refeicoesHoje.size();
+            if (refeicoesHoje!=null){
+                count+= refeicoesHoje.size();
+            }
+            
         }
-        acessosRU.put(diaAtual,count);
+        acessosRU.put(diaAtual,new Integer(count));
         this.diaAtual = new Date(this.diaAtual.getTime() + (1000*60*60*24));
         
     }

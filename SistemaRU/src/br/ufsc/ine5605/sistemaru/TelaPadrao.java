@@ -19,10 +19,12 @@ public abstract class TelaPadrao {
         this.teclado = new Scanner(System.in);
     }
     
-    public int leInteiro() {
+    public int leInteiro(){
+        //TODO TRATA EXCEÇOES 
         int i = teclado.nextInt();
         teclado.nextLine();
         return i;
+        
     }
     
     public float leFloat() {

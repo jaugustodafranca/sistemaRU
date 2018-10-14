@@ -40,6 +40,7 @@ public class TelaAdm extends TelaPadrao{
             System.out.println("[7] ADICIONAR SALDO");
             System.out.println("[8] GERAR RELATÓRIO DE ACESSO AO RU");
             System.out.println();
+            System.out.println("[9] PASSAR PARA O PRÓXIMO DIA");
             System.out.println("[0] VOLTAR PARA O MENU DE USUÁRIO");
             System.out.println("");
             opcao = leInteiro();
@@ -88,12 +89,18 @@ public class TelaAdm extends TelaPadrao{
                 case 6: controlador.listarUsuariosCadastrados();
                         break;
                 case 7: {
-                try {
-                    monstraAdicionaSaldo();
-                } catch (MatriculainvalidaException ex) {
-                    System.out.println(ex);
+                    try {
+                        monstraAdicionaSaldo();
+                    } catch (MatriculainvalidaException ex) {
+                        System.out.println(ex);
+                    }
                 }
-            }
+                        break;
+                        
+                case 8: controlador.gerarRelatorioRu();
+                        break;
+                        
+                case 9: controlador.passarProximoDia();
                         break;
             } 
         }while (opcao!=0);

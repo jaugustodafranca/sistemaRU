@@ -221,5 +221,14 @@ public class ControladorAdm {
             throw new MatriculainvalidaException();
         }   
     } 
-
+    
+    public void gerarRelatorioRu(){
+        controladorPrincipal.getControladorRelatorioAdm().getTelaRelatorioAdm().mostraConteudoTela();
+    }
+    
+    public void passarProximoDia(){
+        System.out.println("PROXIMO DIA");
+        controladorPrincipal.getRestaurante().proximoDia();
+        telaAdm.operacaoRealizada();
+    }
 }
