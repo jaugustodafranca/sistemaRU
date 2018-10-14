@@ -27,7 +27,11 @@ public class TelaUsuario extends TelaPadrao{
     public void mostraConteudoTela() {
         int opcao;
         do{
+            System.out.println("");
+            System.out.println("############################");
             System.out.println("######  MENU USUARIO  ######");
+            System.out.println("############################");
+
             System.out.println();
             System.out.println("[1] ALMOÇAR");
             System.out.println("[2] JANTAR");
@@ -51,6 +55,9 @@ public class TelaUsuario extends TelaPadrao{
                         
                 case 3: mostraTelaSaldo();
                         break;
+                        
+                case 4: controladorUsuario.relatorioRefeicao();
+                        break;
                 
             }
             
@@ -62,7 +69,11 @@ public class TelaUsuario extends TelaPadrao{
     public void mostraConteudoTelaAdm() {
         int opcao;
         do{
+            System.out.println("");
+            System.out.println("############################");
             System.out.println("######  MENU USUARIO  ######");
+            System.out.println("############################");
+
             System.out.println();
             System.out.println("[1] ALMOÇAR");
             System.out.println("[2] JANTAR");
@@ -87,6 +98,10 @@ public class TelaUsuario extends TelaPadrao{
                         
                 case 3: mostraTelaSaldo();
                         break;
+                        
+                case 4: controladorUsuario.relatorioRefeicao();
+                        break;
+                        
                 case 5: controladorUsuario.getControladorPrincipal().getControladorAdm().getTelaAdm().mostraConteudoTela();
                 
             }
@@ -101,5 +116,19 @@ public class TelaUsuario extends TelaPadrao{
     public void mostraSucessoRefeicao() {
         System.out.println("SUA REFEIÇÃO FOI REALIZADA COM SUCESSO");
         mostraTelaSaldo();
+    }
+
+    void mostraRelatorioUsuario(int mes1, int mes2, int mes3) {
+        System.out.println();
+        System.out.println("#######################");
+        System.out.println("#####  RELATÓRIO  #####");
+        System.out.println("#######################");
+        System.out.println();
+        
+        System.out.println("REFEIÇÕES NO MES: "+mes1);
+        System.out.println("REFEIÇÕES NO ÚLTIMO MES: "+mes2);
+        System.out.println("REFEIÇÕES NO PENÚLTIMO MES: "+mes3);
+        System.out.println("");
+        System.out.println("#######################");
     }
 }

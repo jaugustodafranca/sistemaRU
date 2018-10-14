@@ -25,9 +25,12 @@ public class Restaurante {
             
     public Restaurante(ControladorPrincipal controladorPrincipal){
         Date dataDate = new Date();
-        DateFormat dataSimple = new SimpleDateFormat("dd/MM/yyyy");
-        Date dataFormatada = new Date(dataSimple.format(dataDate));
-        this.diaAtual = dataFormatada;
+        SimpleDateFormat dateFormatMonthYear = new SimpleDateFormat("dd-MM-yyyy");        
+        String dateString = dateFormatMonthYear.format(dataDate);
+        try{
+            this.diaAtual = dateFormatMonthYear.parse(dateString); 
+        }catch(Exception e){System.out.println(e);}     
+                
         acessosRU = new HashMap();
         this.controladorPrincipal = controladorPrincipal;
     }
