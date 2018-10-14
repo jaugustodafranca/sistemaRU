@@ -48,7 +48,7 @@ public class TelaAdm extends TelaPadrao{
                 case 4: mostraTelaExcluirUsuario();
                         break;
                 case 5: mostraEditarPessoa();
-                        
+                        break;
                 case 6: controlador.listarUsuariosCadastrados();
                         break;
             } 
