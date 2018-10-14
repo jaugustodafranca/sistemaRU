@@ -34,7 +34,7 @@ public class ConteudoTelaAdm {
         this.admin = admin;
     }
 
-    public ConteudoTelaAdm(String nome,int codigo, boolean admin, boolean Isencao) {
+    public ConteudoTelaAdm(String nome,int codigo, boolean admin, boolean isencao) {
         this.codigo = codigo;
         this.nome = nome;
         this.isencao = isencao;

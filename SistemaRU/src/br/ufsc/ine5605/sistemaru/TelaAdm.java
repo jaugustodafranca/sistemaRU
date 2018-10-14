@@ -47,6 +47,8 @@ public class TelaAdm extends TelaPadrao{
                         break;
                 case 4: mostraTelaExcluirUsuario();
                         break;
+                case 5: mostraEditarPessoa();
+                        
                 case 6: controlador.listarUsuariosCadastrados();
                         break;
             } 
@@ -63,7 +65,7 @@ public class TelaAdm extends TelaPadrao{
         conteudoTela.nome = leString();
         System.out.print("MATRICULA: ");
         conteudoTela.codigo = leInteiro();
-        System.out.print("É ADMINISTRADOR (TRUE OU FALSE) ");
+        System.out.print("É ADMINISTRADOR (TRUE OU FALSE): ");
         conteudoTela.admin = leBoolean();
         
         controlador.cadastraUsuarioUFSC(conteudoTela);
@@ -114,10 +116,7 @@ public class TelaAdm extends TelaPadrao{
         
     }
     
-    public void mostraTelaEditarUsuario(){
-        
-    }
-    
+     
     public void mostraListaCadastro(ArrayList<String> relatorioCadastro){
         System.out.println("###################################");
         System.out.println("  LISTA DE USUÁRIOS CADASTRADOS");
@@ -133,4 +132,73 @@ public class TelaAdm extends TelaPadrao{
         System.out.println("-> USUÁRIO JÁ CADASTRADO COM ESSA MATRÍCULA OU ID");
         System.out.println("");
     }
+    
+    
+    public void mostraEditarPessoa(){
+        ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
+        System.out.println("");
+        System.out.println("######  EDITAR USUARIO  ######");
+        System.out.println("DIGITE A MATRÍCULA OU ID: ");
+        conteudoTela.codigo = leInteiro();
+        
+        controlador.editarUsuario(conteudoTela.codigo);
+    }    
+    
+    public void mostraTelaEditarUsuarioUFSC(Pessoa pessoa){
+        ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
+        System.out.println("");
+        System.out.println("######  EDITAR USUARIO UFSC  ######");
+        System.out.println("NOME ATUAL: "+ ((UsuarioUFSC)pessoa).getNome());
+        System.out.print("NOVO NOME: ");
+        conteudoTela.nome = leString();
+        System.out.println("MATRICULA ATUAL: "+ ((UsuarioUFSC)pessoa).getMatricula());
+        System.out.print("MATRICULA: ");
+        conteudoTela.codigo = leInteiro();
+        String adm = "ADMIN: "+ ((UsuarioUFSC)pessoa).isAdmin();
+        System.out.println(adm.toUpperCase());
+        System.out.print("É ADMINISTRADOR (TRUE OU FALSE): ");
+        conteudoTela.admin = leBoolean();
+        controlador.getPessoas().remove(pessoa);
+        controlador.cadastraUsuarioUFSC(conteudoTela);
+        
+        mostraConteudoTela();
+    }
+
+    public void mostraTelaEditarVisitante(Pessoa pessoa) {
+        ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
+        System.out.println("");
+        System.out.println("######  EDITAR VISTANTE  ######");
+        System.out.println("NOME ATUAL: "+ ((Visitante)pessoa).getNome());
+        System.out.print("NOVO NOME: ");
+        conteudoTela.nome = leString();
+        System.out.println("ID ATUAL: "+ ((Visitante)pessoa).getId());
+        System.out.print("ID: ");
+        conteudoTela.codigo = leInteiro();
+        controlador.getPessoas().remove(pessoa);
+        controlador.cadastraVisitante(conteudoTela);
+        
+        mostraConteudoTela();
+    }
+
+    public void mostraTelaEditarEstudante(Pessoa pessoa) {
+        ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
+        System.out.println("");
+        System.out.println("######  EDITAR ESTUDANTE  ######");
+        System.out.println("NOME ATUAL: "+ ((Estudante)pessoa).getNome());
+        System.out.print("NOVO NOME: ");
+        conteudoTela.nome = leString();
+        System.out.println("MATRICULA ATUAL: "+ ((Estudante)pessoa).getMatricula());
+        System.out.print("MATRICULA: ");
+        conteudoTela.codigo = leInteiro();
+        String adm = "ADMIN: "+ ((Estudante)pessoa).isAdmin();
+        System.out.println(adm.toUpperCase());
+        System.out.print("É ADMINISTRADOR (TRUE OU FALSE): ");
+        conteudoTela.admin = leBoolean();
+        controlador.getPessoas().remove(pessoa);
+        controlador.cadastraEstudante(conteudoTela);
+        
+        mostraConteudoTela();
+    }
+    
+    
 }
