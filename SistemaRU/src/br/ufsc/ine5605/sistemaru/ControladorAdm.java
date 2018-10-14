@@ -60,26 +60,42 @@ public class ControladorAdm {
     
    
     
-    public void excluirUsiario(int id){
-        for (Pessoa pessoa: pessoas){
-            String classeCompleta = pessoa.getClass().toString();
-            String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
-            if(classe.equals("Visitante")){
-                if(((Visitante)pessoa).getId() == id){
-                    pessoas.remove(pessoa);
-                    telaAdm.operacaoRealizada();
-                    return;
-                    
-                }
-            }else{
-                if(((UsuarioUFSC)pessoa).getMatricula() == id){
-                    pessoas.remove(pessoa);
-                    telaAdm.operacaoRealizada();
-                    return;
-                }
-            }         
-            
-        }
+    public void excluirUsiario(int id) throws MatriculainvalidaException{
+        if (idJaExiste(id)){
+            for (Pessoa pessoa: pessoas){
+                String classeCompleta = pessoa.getClass().toString();
+                String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
+                if(classe.equals("Visitante")){
+                    if(((Visitante)pessoa).getId() == id){
+                        if (pessoa.getSaldo()> 0){
+                            telaAdm.mostraDevolucaoDinheiro(pessoa);
+                            pessoas.remove(pessoa);
+                            telaAdm.operacaoRealizada();
+                            return;
+                        }else{
+                            pessoas.remove(pessoa);
+                            telaAdm.operacaoRealizada();
+                            return;
+                        }
+                    }
+                }else{
+                    if(((UsuarioUFSC)pessoa).getMatricula() == id){
+                         if (pessoa.getSaldo()> 0){
+                            telaAdm.mostraDevolucaoDinheiro(pessoa);
+                            pessoas.remove(pessoa);
+                            telaAdm.operacaoRealizada();
+                            return;
+                        }else{
+                            pessoas.remove(pessoa);
+                            telaAdm.operacaoRealizada();
+                            return;
+                        }
+                    }
+                }         
+            }
+        }else{
+            throw new MatriculainvalidaException();
+        }    
     }
     
     public void listarUsuariosCadastrados(){
@@ -105,26 +121,29 @@ public class ControladorAdm {
         }
     }
     
-    public void editarUsuario(int id){
-        for (Pessoa pessoa: pessoas){
-            String classeCompleta = pessoa.getClass().toString();
-            String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
-            switch (classe) {
-                case "Visitante":
-                    if(((Visitante)pessoa).getId() == id){
-                        telaAdm.mostraTelaEditarVisitante(pessoa);
-                    }   break;
-                case "UsuarioUFSC":
-                    if(((UsuarioUFSC) pessoa).getMatricula() == id){
-                        telaAdm.mostraTelaEditarUsuarioUFSC(pessoa);
-                        
-                    }   break;
-                default:
-                    if(((Estudante) pessoa).getMatricula() == id){
-                        telaAdm.mostraTelaEditarEstudante(pessoa);
-                    }   break;         
+    public void editarUsuario(int id) throws MatriculainvalidaException{
+        if (idJaExiste(id)){
+            for (Pessoa pessoa: pessoas){
+                String classeCompleta = pessoa.getClass().toString();
+                String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
+                switch (classe) {
+                    case "Visitante":
+                        if(((Visitante)pessoa).getId() == id){
+                            telaAdm.mostraTelaEditarVisitante(pessoa);
+                        }   break;
+                    case "UsuarioUFSC":
+                        if(((UsuarioUFSC) pessoa).getMatricula() == id){
+                            telaAdm.mostraTelaEditarUsuarioUFSC(pessoa);
+                        }   break;
+                    default:
+                        if(((Estudante) pessoa).getMatricula() == id){
+                            telaAdm.mostraTelaEditarEstudante(pessoa);
+                        }   break;         
+                }
             }
-        }
+        }else{
+            throw new MatriculainvalidaException();
+        }    
     }
     
     private Estudante desempacotaEstudante(ConteudoTelaAdm conteudoTelaAdm){
@@ -179,5 +198,28 @@ public class ControladorAdm {
     public ControladorPrincipal getControladorPrincipal() {
         return controladorPrincipal;
     }
-     
+    public void adicionarSaldo(ConteudoTelaAdm conteudoTela) throws MatriculainvalidaException{
+        if (idJaExiste(conteudoTela.codigo)){
+            for (Pessoa pessoa: pessoas){
+                String classeCompleta = pessoa.getClass().toString();
+                String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
+                if(classe.equals("Visitante")){
+                    if(((Visitante)pessoa).getId() == conteudoTela.codigo){
+                        pessoa.adicionarSaldo(conteudoTela.saldo);
+                        telaAdm.operacaoRealizada();
+                        return;
+                    }
+                }else{
+                    if(((UsuarioUFSC)pessoa).getMatricula() == conteudoTela.codigo){
+                        pessoa.adicionarSaldo(conteudoTela.saldo);
+                        telaAdm.operacaoRealizada();
+                        return;
+                    }
+                }         
+            }
+        } else{
+            throw new MatriculainvalidaException();
+        }   
+    } 
+
 }

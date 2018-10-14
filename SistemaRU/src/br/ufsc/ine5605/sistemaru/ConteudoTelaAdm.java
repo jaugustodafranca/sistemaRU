@@ -15,6 +15,7 @@ public class ConteudoTelaAdm {
     public boolean isencao;
     public boolean admin;
     public int codigo;
+    public float saldo;
     
     
     public ConteudoTelaAdm() {
@@ -41,6 +42,12 @@ public class ConteudoTelaAdm {
         this.admin = admin;
     }
 
+    public ConteudoTelaAdm(int codigo,float saldo) {
+        this.codigo = codigo; 
+        this.saldo = saldo;
+    }
+    
+    
    
 
     
