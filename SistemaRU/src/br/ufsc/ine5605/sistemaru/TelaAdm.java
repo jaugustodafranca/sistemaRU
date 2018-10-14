@@ -6,6 +6,8 @@
 package br.ufsc.ine5605.sistemaru;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,7 +34,8 @@ public class TelaAdm extends TelaPadrao{
             System.out.println("[4] EXCLUIR PESSOA CADASTRADA");
             System.out.println("[5] EDITAR PESSOA CADASTRADA");
             System.out.println("[6] LISTAR TODOS OS CADASTROS");
-            System.out.println("[7] GERAR RELATÓRIO DE ACESSO AO RU");
+            System.out.println("[7] ADICIONAR SALDO");
+            System.out.println("[8] GERAR RELATÓRIO DE ACESSO AO RU");
             System.out.println();
             System.out.println("[0] VOLTAR PARA O MENU DE USUÁRIO");
             
@@ -45,11 +48,31 @@ public class TelaAdm extends TelaPadrao{
                         break;
                 case 3: mostraTelaCadastroVisitante();
                         break;
-                case 4: mostraTelaExcluirUsuario();
+                case 4: {
+                try {
+                    mostraTelaExcluirUsuario();
+                } catch (MatriculainvalidaException ex) {
+                    System.out.println(ex);
+                }
+            }
                         break;
-                case 5: mostraEditarPessoa();
+                case 5: {
+                try {
+                    mostraEditarPessoa();
+                } catch (MatriculainvalidaException ex) {
+                    System.out.println(ex);
+                }
+            }
                         break;
                 case 6: controlador.listarUsuariosCadastrados();
+                        break;
+                case 7: {
+                try {
+                    monstraAdicionaSaldo();
+                } catch (MatriculainvalidaException ex) {
+                    System.out.println(ex);
+                }
+            }
                         break;
             } 
         }while (opcao!=0);
@@ -105,7 +128,7 @@ public class TelaAdm extends TelaPadrao{
         
     }
     
-    public void mostraTelaExcluirUsuario(){
+    public void mostraTelaExcluirUsuario() throws MatriculainvalidaException{
         ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
         System.out.println("");
         System.out.println("######  EXCLUIR USUÁRIO  ######");
@@ -134,7 +157,7 @@ public class TelaAdm extends TelaPadrao{
     }
     
     
-    public void mostraEditarPessoa(){
+    public void mostraEditarPessoa() throws MatriculainvalidaException{
         ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
         System.out.println("");
         System.out.println("######  EDITAR USUARIO  ######");
@@ -199,5 +222,20 @@ public class TelaAdm extends TelaPadrao{
         mostraConteudoTela();
     }
     
+    public void mostraDevolucaoDinheiro(Pessoa pessoa){
+        System.out.println("-> REEMBOLSO DE R$: "+ pessoa.getSaldo());
+    }
     
+    public void monstraAdicionaSaldo() throws MatriculainvalidaException{
+        ConteudoTelaAdm conteudoTela = new ConteudoTelaAdm();
+        System.out.println("######  ADICIONAR SALDO  ######");
+        System.out.println("DIGITE A MATRÍCULA OU ID: ");
+        conteudoTela.codigo = leInteiro();
+        System.out.print("VALOR: R$ ");
+        conteudoTela.saldo = leFloat();
+        
+        controlador.adicionarSaldo(conteudoTela);
+    }
+
+
 }
