@@ -128,6 +128,7 @@ public class TelaUsuario extends TelaPadrao{
         System.out.println("REFEIÇÕES NO MES: "+mes1);
         System.out.println("REFEIÇÕES NO ÚLTIMO MES: "+mes2);
         System.out.println("REFEIÇÕES NO PENÚLTIMO MES: "+mes3);
-
+        System.out.println("");
+        System.out.println("#######################");
     }
 }
