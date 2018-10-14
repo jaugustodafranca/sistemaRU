@@ -22,6 +22,7 @@ class TelaRelatorioAdm extends TelaPadrao{
     
     @Override
     public void mostraConteudoTela() {
+        clear();
         System.out.println("##################################");
         System.out.println("######  MENU RELATORIO ADM  ######");
         System.out.println("##################################");
@@ -33,6 +34,16 @@ class TelaRelatorioAdm extends TelaPadrao{
         controladorRelatorioAdm.getCounteudoTelaRelatorioAdm().dataFinal = leString();
         
         controladorRelatorioAdm.relatorioRefeicao();      
+    }
+    
+    public void mostraRelatorio(String dataInicial, String dataFinal, int count){
+        System.out.println("");
+        System.out.println("#############################");
+        System.out.println("######  RELATORIO ADM  ######");
+        System.out.println("#############################");
+        System.out.println("");
+        System.out.println("DE "+dataInicial+" ATÉ "+ dataFinal + "\nFORAM REGISTRADOS " + count + " ACESSOS AO RESTAURANTE.");
+    
     }
     
 }

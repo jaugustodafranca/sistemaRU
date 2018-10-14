@@ -50,7 +50,7 @@ public class Restaurante {
             }
             
         }
-        acessosRU.put(diaAtual,new Integer(count));
+        acessosRU.put(diaAtual,count);
         this.diaAtual = new Date(this.diaAtual.getTime() + (1000*60*60*24));
         
     }
