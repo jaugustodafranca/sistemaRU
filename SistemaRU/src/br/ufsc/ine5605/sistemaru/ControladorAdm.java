@@ -68,12 +68,14 @@ public class ControladorAdm {
                 if(((Visitante)pessoa).getId() == id){
                     pessoas.remove(pessoa);
                     telaAdm.operacaoRealizada();
+                    return;
                     
                 }
             }else{
-                if(((UsuarioUFSC) pessoa).getMatricula() == id){
+                if(((UsuarioUFSC)pessoa).getMatricula() == id){
                     pessoas.remove(pessoa);
                     telaAdm.operacaoRealizada();
+                    return;
                 }
             }         
             
@@ -122,11 +124,9 @@ public class ControladorAdm {
                         telaAdm.mostraTelaEditarEstudante(pessoa);
                     }   break;         
             }
-            
         }
-        
-        
     }
+    
     private Estudante desempacotaEstudante(ConteudoTelaAdm conteudoTelaAdm){
         return new Estudante (conteudoTelaAdm.nome,conteudoTelaAdm.codigo, conteudoTelaAdm.admin, conteudoTelaAdm.isencao);
     }

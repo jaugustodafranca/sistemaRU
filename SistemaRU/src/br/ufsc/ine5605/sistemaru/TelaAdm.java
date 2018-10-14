@@ -160,7 +160,6 @@ public class TelaAdm extends TelaPadrao{
         conteudoTela.admin = leBoolean();
         controlador.getPessoas().remove(pessoa);
         controlador.cadastraUsuarioUFSC(conteudoTela);
-        
         mostraConteudoTela();
     }
 
