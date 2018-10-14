@@ -23,10 +23,13 @@ public class SistemaRU {
         ConteudoTelaAdm x = new ConteudoTelaAdm("ze", 111, false, true);
         ConteudoTelaAdm y = new ConteudoTelaAdm("doni",222, true,false);
         ConteudoTelaAdm z = new ConteudoTelaAdm("solange");
-        b.cadastraUsuarioUFSC(j);
-        b.cadastraEstudante(x);
-        b.cadastraEstudante(y);
-        b.cadastraVisitante(z);
+        try{
+            b.cadastraUsuarioUFSC(j);
+            b.cadastraEstudante(x);
+            b.cadastraEstudante(y);
+            b.cadastraVisitante(z);
+        }catch (MatriculainvalidaException e){System.out.println(e);};
+        
         a.getTelaPrincipal().mostraConteudoTela();
         
         
