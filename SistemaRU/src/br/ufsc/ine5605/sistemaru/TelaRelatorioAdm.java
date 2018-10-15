@@ -29,9 +29,9 @@ class TelaRelatorioAdm extends TelaPadrao{
         System.out.println("");
         System.out.println("FORMATO DE ENTRADA DAS DATAS (DD/MM/AAAA)");
         System.out.print("DIGITE DA INICIAL: ");
-        controladorRelatorioAdm.getCounteudoTelaRelatorioAdm().dataInicial = leString();
+        controladorRelatorioAdm.getConteudoTelaRelatorioAdm().dataInicial = leString();
         System.out.print("DIGITE DA FINAL: ");
-        controladorRelatorioAdm.getCounteudoTelaRelatorioAdm().dataFinal = leString();
+        controladorRelatorioAdm.getConteudoTelaRelatorioAdm().dataFinal = leString();
         
         controladorRelatorioAdm.relatorioRefeicao();      
     }

@@ -16,12 +16,12 @@ import java.util.HashMap;
  */
 public class ControladorRelatorioAdm {
     private TelaRelatorioAdm telaRelatorioAdm; 
-    private ConteudoTelaRelatorioAdm counteudoTelaRelatorioAdm;
+    private ConteudoTelaRelatorioAdm conteudoTelaRelatorioAdm;
     private ControladorPrincipal controladorPrincipal;
 
     public ControladorRelatorioAdm(ControladorPrincipal controladorPrincipal) {
         this.telaRelatorioAdm = new TelaRelatorioAdm(this);
-        this.counteudoTelaRelatorioAdm = new ConteudoTelaRelatorioAdm();
+        this.conteudoTelaRelatorioAdm = new ConteudoTelaRelatorioAdm();
         this.controladorPrincipal = controladorPrincipal;
     }
 
@@ -29,8 +29,8 @@ public class ControladorRelatorioAdm {
         return telaRelatorioAdm;
     }
 
-    public ConteudoTelaRelatorioAdm getCounteudoTelaRelatorioAdm() {
-        return counteudoTelaRelatorioAdm;
+    public ConteudoTelaRelatorioAdm getConteudoTelaRelatorioAdm() {
+        return conteudoTelaRelatorioAdm;
     }
     
     public void relatorioRefeicao(){
@@ -38,8 +38,8 @@ public class ControladorRelatorioAdm {
         Date dataInicial = null;
         Date dataFinal = null;
         try{
-            dataInicial = stringToDate(counteudoTelaRelatorioAdm.dataInicial);
-            dataFinal = stringToDate(counteudoTelaRelatorioAdm.dataFinal);
+            dataInicial = stringToDate(conteudoTelaRelatorioAdm.dataInicial);
+            dataFinal = stringToDate(conteudoTelaRelatorioAdm.dataFinal);
         
         
             Date atual = dataInicial;
@@ -54,7 +54,7 @@ public class ControladorRelatorioAdm {
                 atual = new Date(atual.getTime() + (1000*60*60*24));
             }
 
-            telaRelatorioAdm.mostraRelatorio(counteudoTelaRelatorioAdm.dataInicial, counteudoTelaRelatorioAdm.dataFinal, contadorRefeicoes);
+            telaRelatorioAdm.mostraRelatorio(conteudoTelaRelatorioAdm.dataInicial, conteudoTelaRelatorioAdm.dataFinal, contadorRefeicoes);
         }catch(DataInvalidaException e){
             System.out.println(e);
         }
