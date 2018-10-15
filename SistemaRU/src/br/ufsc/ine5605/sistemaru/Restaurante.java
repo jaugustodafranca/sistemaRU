@@ -58,14 +58,14 @@ public class Restaurante {
     
     public void proximoMes() {
         
-        proximoDia();
-        
-        Date dia = getDiaAtual();
         Calendar cal = Calendar.getInstance();
-        cal.setTime(dia);
-        cal.add(Calendar.MONTH, 1);
-        cal.add(Calendar.DAY_OF_YEAR, -1);
-        this.diaAtual = cal.getTime();
+        cal.setTime(getDiaAtual());
+        int max = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+        
+        for(int i=0;i<max;i++){
+            proximoDia();
+        }
+        
         
     }
 
