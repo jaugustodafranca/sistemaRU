@@ -41,6 +41,7 @@ public class TelaAdm extends TelaPadrao{
             System.out.println("[8] GERAR RELATÓRIO DE ACESSO AO RU");
             System.out.println();
             System.out.println("[9] PASSAR PARA O PRÓXIMO DIA");
+            System.out.println("[10] PASSAR PARA O PRÓXIMO MÊS");
             System.out.println("[0] VOLTAR PARA O MENU DE USUÁRIO");
             System.out.println("");
             
@@ -108,6 +109,9 @@ public class TelaAdm extends TelaPadrao{
                         break;
                         
                 case 9: controlador.passarProximoDia();
+                        break;
+                        
+                case 10:controlador.passarProximoMes();
                         break;
             } 
         }while (opcao!=0);

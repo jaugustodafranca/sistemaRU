@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -52,6 +53,19 @@ public class Restaurante {
         }
         acessosRU.put(diaAtual,count);
         this.diaAtual = new Date(this.diaAtual.getTime() + (1000*60*60*24));
+        
+    }
+    
+    public void proximoMes() {
+        
+        proximoDia();
+        
+        Date dia = getDiaAtual();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dia);
+        cal.add(Calendar.MONTH, 1);
+        cal.add(Calendar.DAY_OF_YEAR, -1);
+        this.diaAtual = cal.getTime();
         
     }
 

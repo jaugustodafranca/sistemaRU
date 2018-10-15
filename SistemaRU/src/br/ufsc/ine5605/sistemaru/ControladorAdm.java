@@ -229,4 +229,10 @@ public class ControladorAdm {
         controladorPrincipal.getRestaurante().proximoDia();
         telaAdm.operacaoRealizada();
     }
+    
+    public void passarProximoMes(){
+        System.out.println("-> PROXIMO MÊS");
+        controladorPrincipal.getRestaurante().proximoMes();
+        telaAdm.operacaoRealizada();
+    }
 }
