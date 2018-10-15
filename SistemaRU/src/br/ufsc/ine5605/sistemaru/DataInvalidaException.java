@@ -9,6 +9,9 @@ package br.ufsc.ine5605.sistemaru;
  *
  * @author 12041789921
  */
-public class DataInvalidaException {
+public class DataInvalidaException extends Exception{
     
+    public DataInvalidaException(){
+        super("A DATA DIGITADA É INVALIDA");
+    }
 }

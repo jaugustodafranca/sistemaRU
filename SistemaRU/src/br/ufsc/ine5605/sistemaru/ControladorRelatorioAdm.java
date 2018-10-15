@@ -34,30 +34,38 @@ public class ControladorRelatorioAdm {
     }
     
     public void relatorioRefeicao(){
-        Date dataInicial = stringToDate(counteudoTelaRelatorioAdm.dataInicial);
-        Date dataFinal = stringToDate(counteudoTelaRelatorioAdm.dataFinal);
-        Date atual = dataInicial;
-        int contadorRefeicoes = 0;
-        HashMap<Date,Integer> acessosRU = controladorPrincipal.getRestaurante().getAcessosRU();
+        
+        Date dataInicial = null;
+        Date dataFinal = null;
+        try{
+            dataInicial = stringToDate(counteudoTelaRelatorioAdm.dataInicial);
+            dataFinal = stringToDate(counteudoTelaRelatorioAdm.dataFinal);
         
         
-        while(atual.before(dataFinal)){
-            if(acessosRU.get(atual) != null){
-                contadorRefeicoes += acessosRU.get(atual);
+            Date atual = dataInicial;
+            int contadorRefeicoes = 0;
+            HashMap<Date,Integer> acessosRU = controladorPrincipal.getRestaurante().getAcessosRU();
+
+
+            while(atual.before(dataFinal)){
+                if(acessosRU.get(atual) != null){
+                    contadorRefeicoes += acessosRU.get(atual);
+                }
+                atual = new Date(atual.getTime() + (1000*60*60*24));
             }
-            atual = new Date(atual.getTime() + (1000*60*60*24));
+
+            telaRelatorioAdm.mostraRelatorio(counteudoTelaRelatorioAdm.dataInicial, counteudoTelaRelatorioAdm.dataFinal, contadorRefeicoes);
+        }catch(DataInvalidaException e){
+            System.out.println(e);
         }
-        
-        telaRelatorioAdm.mostraRelatorio(counteudoTelaRelatorioAdm.dataInicial, counteudoTelaRelatorioAdm.dataFinal, contadorRefeicoes);
     }
     
-    public Date stringToDate(String data){
+    public Date stringToDate(String data) throws DataInvalidaException{
         try{
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             return dateFormat.parse(data);
         } catch(Exception e) {
-            System.out.println(e);
-            return null;
+            throw new DataInvalidaException();
         }
         
         
