@@ -19,18 +19,25 @@ public abstract class TelaPadrao {
         this.teclado = new Scanner(System.in);
     }
     
-    public int leInteiro(){
-        //TODO TRATA EXCEÇOES 
-        int i = teclado.nextInt();
-        teclado.nextLine();
-        return i;
-        
+    public int leInteiro() throws InputInvalidoException{
+        String i = teclado.nextLine();
+        try{
+            int x = Integer.parseInt(i);
+            return x;
+        }catch(NumberFormatException e){
+            throw new InputInvalidoException();
+        }
     }
     
     public float leFloat() {
-        float i = teclado.nextFloat();
-        teclado.nextLine();
-        return i;
+        String i = teclado.nextLine();
+        try{
+            float x = Float.valueOf(i);
+            return x;
+        }catch(NumberFormatException e){
+            System.out.println("ENTRADA INVÁLIDA, DIGITE APENAS NÚMEROS");
+        }
+        return 0;
     }
     
     public String leString() {

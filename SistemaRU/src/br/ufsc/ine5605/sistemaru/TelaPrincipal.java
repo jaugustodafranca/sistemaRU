@@ -24,8 +24,8 @@ class TelaPrincipal extends TelaPadrao{
     @Override
     public void mostraConteudoTela() {
         clear();
-        int id;
-        boolean existe = false;
+        int id = -1;
+
         do{
             
             System.out.println("################################################################");
@@ -34,7 +34,13 @@ class TelaPrincipal extends TelaPadrao{
             System.out.println("");
             System.out.print("DIGITE SEU NÚMERO DE MATRÍCULA: ");
             
-            id = leInteiro();
+            
+            try{
+                id = leInteiro();
+            }catch(InputInvalidoException e){
+                System.out.println(e);
+                continue;
+            }
             
             switch(id){
                 case 0: 
@@ -42,7 +48,6 @@ class TelaPrincipal extends TelaPadrao{
                 default:
                     try{
                         getControladorPrincipal().validaLogin(id);
-                        existe = true;
                     }catch(Exception e){
                         System.out.println(e);
                     }

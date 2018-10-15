@@ -25,7 +25,7 @@ public class TelaUsuario extends TelaPadrao{
     
     @Override
     public void mostraConteudoTela() {
-        int opcao;
+        int opcao = -1;
         do{
             System.out.println("");
             System.out.println("############################");
@@ -39,7 +39,12 @@ public class TelaUsuario extends TelaPadrao{
             System.out.println("[4] GERAR RELATÓRIO");
             System.out.println("[0] DESLOGAR");
             
-            opcao = leInteiro();
+            try{
+                opcao = leInteiro();
+            }catch(InputInvalidoException e){
+                System.out.println(e);
+                continue;
+            }
             
             switch(opcao){
                 case 1: 
@@ -67,7 +72,7 @@ public class TelaUsuario extends TelaPadrao{
     }
     
     public void mostraConteudoTelaAdm() {
-        int opcao;
+        int opcao = -1;
         do{
             System.out.println("");
             System.out.println("############################");
@@ -82,7 +87,12 @@ public class TelaUsuario extends TelaPadrao{
             System.out.println("[5] ENTRAR TELA ADM");
             System.out.println("[0] DESLOGAR");
             
-            opcao = leInteiro();
+            try{
+                opcao = leInteiro();
+            }catch(InputInvalidoException e){
+                System.out.println(e);
+                continue;
+            }
             
             switch(opcao){
                 case 1: 
