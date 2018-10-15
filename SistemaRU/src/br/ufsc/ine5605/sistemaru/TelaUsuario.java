@@ -36,7 +36,7 @@ public class TelaUsuario extends TelaPadrao{
             System.out.println("[1] ALMOÇAR");
             System.out.println("[2] JANTAR");
             System.out.println("[3] CONSULTAR SALDO");
-            System.out.println("[4] GERAR RELATÓRIO");
+            System.out.println("[4] GERAR RELATÓRIO ");
             System.out.println("[0] DESLOGAR");
             
             try{
