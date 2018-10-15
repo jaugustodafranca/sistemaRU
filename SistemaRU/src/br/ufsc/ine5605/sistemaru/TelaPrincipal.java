@@ -32,6 +32,8 @@ class TelaPrincipal extends TelaPadrao{
             System.out.println("######  SISTEMA DE CONTROLE DO RESTAURANTE UNIVERSITÁRIO  ######");
             System.out.println("################################################################");
             System.out.println("");
+            System.out.println("[0] PARA FINALIZAR O SISTEMA");
+            System.out.println("");
             System.out.print("DIGITE SEU NÚMERO DE MATRÍCULA: ");
             
             
