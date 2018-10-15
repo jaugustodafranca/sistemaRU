@@ -16,12 +16,12 @@ import java.util.HashMap;
  */
 public class ControladorRelatorioAdm {
     private TelaRelatorioAdm telaRelatorioAdm; 
-    private CounteudoTelaRelatorioAdm counteudoTelaRelatorioAdm;
+    private ConteudoTelaRelatorioAdm counteudoTelaRelatorioAdm;
     private ControladorPrincipal controladorPrincipal;
 
     public ControladorRelatorioAdm(ControladorPrincipal controladorPrincipal) {
         this.telaRelatorioAdm = new TelaRelatorioAdm(this);
-        this.counteudoTelaRelatorioAdm = new CounteudoTelaRelatorioAdm();
+        this.counteudoTelaRelatorioAdm = new ConteudoTelaRelatorioAdm();
         this.controladorPrincipal = controladorPrincipal;
     }
 
@@ -29,7 +29,7 @@ public class ControladorRelatorioAdm {
         return telaRelatorioAdm;
     }
 
-    public CounteudoTelaRelatorioAdm getCounteudoTelaRelatorioAdm() {
+    public ConteudoTelaRelatorioAdm getCounteudoTelaRelatorioAdm() {
         return counteudoTelaRelatorioAdm;
     }
     

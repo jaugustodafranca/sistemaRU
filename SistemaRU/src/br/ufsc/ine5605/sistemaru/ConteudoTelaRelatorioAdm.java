@@ -9,16 +9,16 @@ package br.ufsc.ine5605.sistemaru;
  *
  * @author Usuario
  */
-class CounteudoTelaRelatorioAdm {
+class ConteudoTelaRelatorioAdm {
     public String dataInicial;
     public String dataFinal;
 
-    public CounteudoTelaRelatorioAdm() {
+    public ConteudoTelaRelatorioAdm() {
         
     }
 
     
-    public CounteudoTelaRelatorioAdm(String dataInicial, String dataFinal) {
+    public ConteudoTelaRelatorioAdm(String dataInicial, String dataFinal) {
         this.dataInicial = dataInicial;
         this.dataFinal = dataFinal;
     }
