@@ -6,6 +6,7 @@
 package br.ufsc.ine5605.sistemaru;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -77,4 +78,9 @@ public class ControladorPrincipal {
         
     }
     
+    
+    public Date diaAtual (){
+        Date diaAtual = restaurante.getDiaAtual();
+        return diaAtual;
+    }
 }

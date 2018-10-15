@@ -31,6 +31,8 @@ public class TelaAdm extends TelaPadrao{
             System.out.println("######  MENU ADMINISTRATIVO  ######");
             System.out.println("###################################");
             System.out.println();
+            System.out.println("DIA ATUAL: " + controlador.diaAtual());
+            System.out.println();
             System.out.println("[1] CADASTRAR USUÁRIO-UFSC");
             System.out.println("[2] CADASTRAR ESTUDANTE");
             System.out.println("[3] CADASTRAR VISITANTE");

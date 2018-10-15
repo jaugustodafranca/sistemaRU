@@ -142,4 +142,11 @@ public class ControladorUsuario {
     
     }
     
+    public String diaAtual (){
+        Date diaAtual = controladorPrincipal.diaAtual();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");  
+        String hoje = formato.format(diaAtual);
+        return hoje;
+    }
+    
 }

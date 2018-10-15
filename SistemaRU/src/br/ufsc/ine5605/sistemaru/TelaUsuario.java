@@ -31,7 +31,8 @@ public class TelaUsuario extends TelaPadrao{
             System.out.println("############################");
             System.out.println("######  MENU USUARIO  ######");
             System.out.println("############################");
-
+            System.out.println();
+            System.out.println("DIA ATUAL: " + controladorUsuario.diaAtual());
             System.out.println();
             System.out.println("[1] ALMOÇAR");
             System.out.println("[2] JANTAR");
@@ -78,7 +79,8 @@ public class TelaUsuario extends TelaPadrao{
             System.out.println("############################");
             System.out.println("######  MENU USUARIO  ######");
             System.out.println("############################");
-
+            System.out.println();
+            System.out.println("DIA ATUAL: " + controladorUsuario.diaAtual());
             System.out.println();
             System.out.println("[1] ALMOÇAR");
             System.out.println("[2] JANTAR");

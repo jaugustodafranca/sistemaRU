@@ -5,7 +5,9 @@
  */
 package br.ufsc.ine5605.sistemaru;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 /**
@@ -235,4 +237,12 @@ public class ControladorAdm {
         controladorPrincipal.getRestaurante().proximoMes();
         telaAdm.operacaoRealizada();
     }
+    
+    public String diaAtual (){
+        Date diaAtual = controladorPrincipal.diaAtual();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");  
+        String hoje = formato.format(diaAtual);
+        return hoje;
+    }
+            
 }
