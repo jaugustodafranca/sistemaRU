@@ -84,7 +84,7 @@ public class TelaUsuario extends TelaPadrao{
             System.out.println("[2] JANTAR");
             System.out.println("[3] CONSULTAR SALDO");
             System.out.println("[4] GERAR RELATÓRIO");
-            System.out.println("[5] ENTRAR TELA ADM");
+            System.out.println("[5] ENTRAR NO MENU DE ADMINISTRADOR");
             System.out.println("[0] DESLOGAR");
             
             try{

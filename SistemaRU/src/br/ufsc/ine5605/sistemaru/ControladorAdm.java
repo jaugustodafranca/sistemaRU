@@ -164,9 +164,7 @@ public class ControladorAdm {
         }while (idRepetido==true);
         return new Visitante (id, conteudoTelaAdm.nome);
     }
-    private ConteudoTelaAdm empacota(Pessoa pessoa){
-        return new ConteudoTelaAdm(pessoa.getNome());
-    }
+    
     
     public int geraID (){       
         Random random = new Random();
@@ -227,7 +225,7 @@ public class ControladorAdm {
     }
     
     public void passarProximoDia(){
-        System.out.println("PROXIMO DIA");
+        System.out.println("-> PROXIMO DIA");
         controladorPrincipal.getRestaurante().proximoDia();
         telaAdm.operacaoRealizada();
     }

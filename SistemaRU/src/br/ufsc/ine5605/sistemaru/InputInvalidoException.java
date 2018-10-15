@@ -11,7 +11,7 @@ package br.ufsc.ine5605.sistemaru;
  */
 public class InputInvalidoException extends Exception {
     public InputInvalidoException(){
-        super("INPUT INVÁLIDO, DIGITE APENAS NÚMEROS");
+        super("INPUT INVÁLIDO, DIGITE APENAS NÚMEROS!");
     }
     
 }
