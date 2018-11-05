@@ -15,26 +15,35 @@ import java.util.Random;
  * @author jfranca
  */
 public class ControladorAdm {
-    private ArrayList<Pessoa> pessoas;
+    
+    
+    private MapeadorPessoa mapeadorPessoa;
+    
+    //private ArrayList<Pessoa> pessoas;
+    
+    
     private ControladorPrincipal controladorPrincipal;
     private TelaAdm telaAdm;
     private ConteudoTelaAdm conteudoTelaAdm;
 
     public ControladorAdm(ControladorPrincipal controladorPrincipal) {
-        this.pessoas = new ArrayList();
+        //this.pessoas = new ArrayList();
+        this.mapeadorPessoa = new MapeadorPessoa();
         this.telaAdm = new TelaAdm (this);
         this.conteudoTelaAdm = new ConteudoTelaAdm();
         this.controladorPrincipal = controladorPrincipal;
         
+        
     }
 
     public ArrayList<Pessoa> getPessoas() {
-        return pessoas;
+        return mapeadorPessoa.getList();
     }
     public void cadastraUsuarioUFSC (ConteudoTelaAdm conteudoTelaAdm) throws MatriculainvalidaException{
         UsuarioUFSC usuario = desempacotaUsuarioUFSC(conteudoTelaAdm);
         if (!idJaExiste(conteudoTelaAdm.codigo)){
-            pessoas.add(usuario);
+            //pessoas.add(usuario);
+            mapeadorPessoa.put(usuario);
             telaAdm.operacaoRealizada();
         }else{
             throw new MatriculainvalidaException();
@@ -43,7 +52,8 @@ public class ControladorAdm {
     public void cadastraEstudante (ConteudoTelaAdm conteudoTelaAdm) throws MatriculainvalidaException{
         Estudante estudante = desempacotaEstudante(conteudoTelaAdm);
         if (!idJaExiste(conteudoTelaAdm.codigo)){
-            pessoas.add(estudante);
+            //pessoas.add(estudante);
+            mapeadorPessoa.put(estudante);
             telaAdm.operacaoRealizada();
         }else{
             throw new MatriculainvalidaException();
@@ -53,7 +63,8 @@ public class ControladorAdm {
     public void cadastraVisitante(ConteudoTelaAdm conteudoTelaAdm) throws MatriculainvalidaException{
         Visitante visitante = desempacotaVisitante(conteudoTelaAdm);
         if (!idJaExiste(conteudoTelaAdm.codigo)){
-            pessoas.add(visitante);
+            //pessoas.add(visitante);
+            mapeadorPessoa.put(visitante);
             telaAdm.operacaoRealizada();
         }else{
             throw new MatriculainvalidaException();
@@ -64,18 +75,21 @@ public class ControladorAdm {
     
     public void excluirUsiario(int id) throws MatriculainvalidaException{
         if (idJaExiste(id)){
-            for (Pessoa pessoa: pessoas){
-                String classeCompleta = pessoa.getClass().toString();
-                String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
-                if(classe.equals("Visitante")){
+            for (Pessoa pessoa: mapeadorPessoa.getList()){
+                //String classeCompleta = pessoa.getClass().toString();
+                //String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
+                //if(classe.equals("Visitante")){
+                if(pessoa instanceof Visitante){
                     if(((Visitante)pessoa).getId() == id){
                         if (pessoa.getSaldo()> 0){
                             telaAdm.mostraDevolucaoDinheiro(pessoa);
-                            pessoas.remove(pessoa);
+                            //pessoas.remove(pessoa);
+                            mapeadorPessoa.remove(pessoa);
                             telaAdm.operacaoRealizada();
                             return;
                         }else{
-                            pessoas.remove(pessoa);
+                            //pessoas.remove(pessoa);
+                            mapeadorPessoa.remove(pessoa);
                             telaAdm.operacaoRealizada();
                             return;
                         }
@@ -84,11 +98,13 @@ public class ControladorAdm {
                     if(((UsuarioUFSC)pessoa).getMatricula() == id){
                          if (pessoa.getSaldo()> 0){
                             telaAdm.mostraDevolucaoDinheiro(pessoa);
-                            pessoas.remove(pessoa);
+                            //pessoas.remove(pessoa);
+                            mapeadorPessoa.remove(pessoa);
                             telaAdm.operacaoRealizada();
                             return;
                         }else{
-                            pessoas.remove(pessoa);
+                            //pessoas.remove(pessoa);
+                            mapeadorPessoa.remove(pessoa);
                             telaAdm.operacaoRealizada();
                             return;
                         }
@@ -105,14 +121,15 @@ public class ControladorAdm {
             
             int cont = 1;
             ArrayList<String> relatorioCadastro = new ArrayList();
-            for (Pessoa pessoa : pessoas){
+            for (Pessoa pessoa : mapeadorPessoa.getList()){
                 String classeCompleta = pessoa.getClass().toString();
                 String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
-                if(classe.equals("Visitante")){
-                    String linha = ("# "+cont+" - NOME: "+ pessoa.getNome() + " - ID: "+ ((Visitante)pessoa).getId() + " - TIPO CADASTRO: "+ classe.toUpperCase());
+                //if(classe.equals("Visitante")){
+                if(pessoa instanceof Visitante){
+                    String linha = ("# "+cont+" - NOME: "+ pessoa.getNome() + " - ID: "+ ((Visitante)pessoa).getId() + " - TIPO CADASTRO: "+ pessoa.getClass().getName().toUpperCase());
                     relatorioCadastro.add(linha);
                 }else{
-                    String linha = ("# "+cont+" - NOME: "+ pessoa.getNome() + " - MATRÍCULA: "+ ((UsuarioUFSC)pessoa).getMatricula()+ " - TIPO CADASTRO: "+ classe.toUpperCase());
+                    String linha = ("# "+cont+" - NOME: "+ pessoa.getNome() + " - MATRÍCULA: "+ ((UsuarioUFSC)pessoa).getMatricula()+ " - TIPO CADASTRO: "+ pessoa.getClass().getName().toUpperCase());
                     relatorioCadastro.add(linha);
                 }
                 cont++;
@@ -125,7 +142,7 @@ public class ControladorAdm {
     
     public void editarUsuario(int id) throws MatriculainvalidaException{
         if (idJaExiste(id)){
-            for (Pessoa pessoa: pessoas){
+            for (Pessoa pessoa: mapeadorPessoa.getList()){
                 String classeCompleta = pessoa.getClass().toString();
                 String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
                 switch (classe) {
@@ -168,9 +185,13 @@ public class ControladorAdm {
     }
     
     
-    public int geraID (){       
-        Random random = new Random();
-        return random.nextInt((999999 - 100000) + 1) + 100000;
+    public int geraID (){
+        int id = 0;
+        while(idJaExiste(id) || id == 0){
+            Random random = new Random();
+            id = random.nextInt((999999 - 100000) + 1) + 100000;
+        }
+        return id;
     }
 
     public TelaAdm getTelaAdm() {
@@ -179,16 +200,18 @@ public class ControladorAdm {
 
     
     public boolean idJaExiste(int id){
-        for (Pessoa pessoa: pessoas){
-            String classeCompleta = pessoa.getClass().toString();
-            String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
-            if(classe.equals("Visitante")){
-                if(((Visitante)pessoa).getId() == id){
-                    return true;
-                }
-            }else{
-                if(((UsuarioUFSC) pessoa).getMatricula() == id){
-                    return true;
+        if( mapeadorPessoa.getList() != null){
+            for (Pessoa pessoa: mapeadorPessoa.getList()){
+                String classeCompleta = pessoa.getClass().toString();
+                String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
+                if(classe.equals("Visitante")){
+                    if(((Visitante)pessoa).getId() == id){
+                        return true;
+                    }
+                }else{
+                    if(((UsuarioUFSC) pessoa).getMatricula() == id){
+                        return true;
+                    }
                 }
             }
         }
@@ -200,7 +223,7 @@ public class ControladorAdm {
     }
     public void adicionarSaldo(ConteudoTelaAdm conteudoTela) throws MatriculainvalidaException{
         if (idJaExiste(conteudoTela.codigo)){
-            for (Pessoa pessoa: pessoas){
+            for (Pessoa pessoa: mapeadorPessoa.getList()){
                 String classeCompleta = pessoa.getClass().toString();
                 String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
                 if(classe.equals("Visitante")){

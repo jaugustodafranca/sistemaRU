@@ -5,6 +5,7 @@
  */
 package br.ufsc.ine5605.sistemaru;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,10 +14,11 @@ import java.util.HashMap;
  *
  * @author 12041789921
  */
-public abstract class Pessoa implements Crebitavel{
+public abstract class Pessoa implements Crebitavel, Serializable{
+    
+    public static final long serialVersionUID = 1L; 
     String nome;
     float saldo;
-
     private HashMap<Date, ArrayList<TipoRefeicao>>registrosRefeicoes;
 
     public Pessoa(String nome) {
