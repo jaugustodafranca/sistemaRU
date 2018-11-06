@@ -17,6 +17,7 @@ public abstract class TelaPadrao extends JFrame{
     private Scanner teclado;
 
     public TelaPadrao() {
+        super("SISTEMA DE CONTROLE DO RESTAURANTE UNIVERSITÁRIO");
         this.teclado = new Scanner(System.in);
     }
     

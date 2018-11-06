@@ -50,14 +50,14 @@ public class ControladorPrincipal {
         return controladorAdm;
     }
     
-    public void validaLogin(int id) throws MatriculainvalidaException{
+    public void validaLogin(ConteudoTelaPrincipal conteudo) throws MatriculainvalidaException{
+        
+        int id = conteudo.id;
         ArrayList<Pessoa> pessoas = this.getControladorAdm().getPessoas();
         Pessoa result  = null;
         for(Pessoa pessoa : pessoas){
-            String classeCompleta = pessoa.getClass().toString();
-            String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
             
-            if(classe.equals("Visitante")){
+            if(pessoa instanceof Visitante){
                 if(((Visitante)pessoa).getId() == id){
                     result = pessoa;
                     controladorUsuario.setPessoa(result);

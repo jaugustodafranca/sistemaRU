@@ -5,6 +5,22 @@
  */
 package br.ufsc.ine5605.sistemaru;
 
+
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.text.NumberFormatter;
+import java.text.NumberFormat;
+import java.text.ParseException;
+
 /**
  *
  * @author Usuario
@@ -12,9 +28,14 @@ package br.ufsc.ine5605.sistemaru;
 class TelaPrincipal extends TelaPadrao{
     
     private ControladorPrincipal controladorPrincipal;
+    private JLabel labelTitulo;
+    private JLabel labelLogin;
+    private JFormattedTextField textFieldLogin;
+    private JButton buttonEntrar;
 
     public TelaPrincipal(ControladorPrincipal controladorPrincipal) {
         this.controladorPrincipal = controladorPrincipal;
+        
     }
 
     public ControladorPrincipal getControladorPrincipal() {
@@ -26,6 +47,81 @@ class TelaPrincipal extends TelaPadrao{
         clear();
         int id = -1;
 
+        
+        
+        Container container = getContentPane();
+        container.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        
+        labelTitulo = new JLabel();
+        labelTitulo.setText("SISTEMA DE CONTROLE DO RESTAURANTE UNIVERSITÁRIO");
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 4;
+        gbc.gridheight = 1;
+        
+        container.add(labelTitulo, gbc);
+        
+        labelLogin = new JLabel();
+        labelLogin.setText("Matricula");
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+        container.add(labelLogin, gbc);
+        
+        
+        NumberFormat format = NumberFormat.getInstance();
+        NumberFormatter formatter = new NumberFormatter(format) {
+        public Object stringToValue(String string)
+            throws ParseException {
+            if (string == null || string.length() == 0) {
+                return null;
+            }
+            return super.stringToValue(string);
+        }
+        };
+        formatter.setValueClass(Integer.class);
+        formatter.setMinimum(0);
+        formatter.setMaximum(Integer.MAX_VALUE);
+        formatter.setAllowsInvalid(false);
+        
+        // If you want the value to be committed on each keystroke instead of focus lost
+        formatter.setCommitsOnValidEdit(true);
+        textFieldLogin = new JFormattedTextField(formatter);
+        textFieldLogin.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+    
+        //textAreaLogin = new JTextArea();
+        gbc.gridx = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        container.add(textFieldLogin, gbc);
+        
+        buttonEntrar = new JButton();
+        buttonEntrar.setText("Entrar");
+        buttonEntrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConteudoTelaPrincipal conteudoTelaPrincipal = new ConteudoTelaPrincipal((int)textFieldLogin.getValue());
+                try{
+                    controladorPrincipal.validaLogin(conteudoTelaPrincipal);
+                }catch(MatriculainvalidaException ex){
+                    System.out.println(ex);
+                }
+            }
+        });
+        buttonEntrar.setPreferredSize(new Dimension(80, 80));
+        gbc.gridx = 4;
+        gbc.gridy = 3;
+        gbc.fill = GridBagConstraints.NONE;
+        container.add(buttonEntrar, gbc);
+        
+        
+        
+        setSize(new Dimension(600, 400));
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        
         do{
             
             System.out.println("################################################################");
@@ -49,13 +145,16 @@ class TelaPrincipal extends TelaPadrao{
                     break;
                 default:
                     try{
-                        getControladorPrincipal().validaLogin(id);
+                        getControladorPrincipal().validaLogin(new ConteudoTelaPrincipal(id));
                     }catch(Exception e){
                         System.out.println(e);
                     }
                     break;
             }
         }while (id!=0);
+        
+        
+        
         
     }
     
