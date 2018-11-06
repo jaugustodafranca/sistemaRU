@@ -17,7 +17,7 @@ public class SistemaRU {
      */
     public static void main(String[] args) {
         
-        ControladorPrincipal a = new ControladorPrincipal ();
+        ControladorPrincipal a = ControladorPrincipal.getInstance();
         ControladorAdm b = a.getControladorAdm();
         ConteudoTelaAdm j = new ConteudoTelaAdm("admin",123456, true);
         ConteudoTelaAdm x = new ConteudoTelaAdm("ze", 111, false, true);

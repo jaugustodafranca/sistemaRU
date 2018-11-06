@@ -6,12 +6,13 @@
 package br.ufsc.ine5605.sistemaru;
 
 import java.util.Scanner;
+import javax.swing.JFrame;
 
 /**
  *
  * @author 12041789921
  */
-public abstract class TelaPadrao {
+public abstract class TelaPadrao extends JFrame{
     
     private Scanner teclado;
 

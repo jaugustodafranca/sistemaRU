@@ -13,13 +13,16 @@ import java.util.Date;
  * @author jfranca
  */
 public class ControladorPrincipal {
+    
+    private static ControladorPrincipal controladorPrincipal;
+    
     private TelaPrincipal telaPrincipal;
     private ControladorRelatorioAdm controladorRelatorioAdm;
     private Restaurante restaurante;
     private ControladorUsuario controladorUsuario;
     private ControladorAdm controladorAdm;
 
-    public ControladorPrincipal() {
+    private ControladorPrincipal() {
         this.telaPrincipal = new TelaPrincipal(this);
         this.controladorRelatorioAdm = new ControladorRelatorioAdm (this);
         this.restaurante = new Restaurante(this);
@@ -82,5 +85,12 @@ public class ControladorPrincipal {
     public Date diaAtual (){
         Date diaAtual = restaurante.getDiaAtual();
         return diaAtual;
+    }
+    
+    public static ControladorPrincipal getInstance(){
+        if(controladorPrincipal == null)
+            controladorPrincipal = new ControladorPrincipal();
+    
+        return controladorPrincipal;
     }
 }
