@@ -7,6 +7,7 @@ package br.ufsc.ine5605.sistemaru;
 
 import java.util.Scanner;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  *
@@ -15,10 +16,18 @@ import javax.swing.JFrame;
 public abstract class TelaPadrao extends JFrame{
     
     private Scanner teclado;
+    private JLabel labelDiaHoje;
+
+    
 
     public TelaPadrao() {
         super("SISTEMA DE CONTROLE DO RESTAURANTE UNIVERSITÁRIO");
         this.teclado = new Scanner(System.in);
+    }
+    
+    public JLabel getLabelDiaHoje() {
+        labelDiaHoje = new JLabel(ControladorPrincipal.getInstance().dateToString(ControladorPrincipal.getInstance().diaAtual()));
+        return labelDiaHoje;
     }
     
     public int leInteiro() throws InputInvalidoException{

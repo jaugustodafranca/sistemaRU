@@ -16,7 +16,6 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextArea;
 import javax.swing.text.NumberFormatter;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -48,7 +47,7 @@ class TelaPrincipal extends TelaPadrao{
         int id = -1;
 
         
-        
+        /*
         Container container = getContentPane();
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -71,15 +70,16 @@ class TelaPrincipal extends TelaPadrao{
         container.add(labelLogin, gbc);
         
         
+        
         NumberFormat format = NumberFormat.getInstance();
         NumberFormatter formatter = new NumberFormatter(format) {
-        public Object stringToValue(String string)
-            throws ParseException {
-            if (string == null || string.length() == 0) {
-                return null;
+            public Object stringToValue(String string)
+                throws ParseException {
+                if (string == null || string.length() == 0) {
+                    return null;
+                }
+                return super.stringToValue(string);
             }
-            return super.stringToValue(string);
-        }
         };
         formatter.setValueClass(Integer.class);
         formatter.setMinimum(0);
@@ -109,19 +109,20 @@ class TelaPrincipal extends TelaPadrao{
                 }
             }
         });
-        buttonEntrar.setPreferredSize(new Dimension(80, 80));
+        buttonEntrar.setPreferredSize(new Dimension(80, 40));
         gbc.gridx = 4;
         gbc.gridy = 3;
         gbc.fill = GridBagConstraints.NONE;
         container.add(buttonEntrar, gbc);
         
-        
+        gbc.gridy = 4;
+        container.add(super.getLabelDiaHoje(), gbc);
         
         setSize(new Dimension(600, 400));
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        
+        */
         do{
             
             System.out.println("################################################################");

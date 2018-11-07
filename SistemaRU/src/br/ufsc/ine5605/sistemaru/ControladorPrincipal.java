@@ -5,6 +5,8 @@
  */
 package br.ufsc.ine5605.sistemaru;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -85,6 +87,12 @@ public class ControladorPrincipal {
     public Date diaAtual (){
         Date diaAtual = restaurante.getDiaAtual();
         return diaAtual;
+    }
+    
+    public String dateToString(Date d){
+        Format f = new SimpleDateFormat("dd/MM/yyyy");
+        return f.format(d);
+    
     }
     
     public static ControladorPrincipal getInstance(){

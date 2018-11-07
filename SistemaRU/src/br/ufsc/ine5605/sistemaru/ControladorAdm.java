@@ -73,43 +73,48 @@ public class ControladorAdm {
     
    
     
-    public void excluirUsiario(int id) throws MatriculainvalidaException{
+    public void excluirUsiario(int id) throws MatriculainvalidaException, Exception{
         if (idJaExiste(id)){
-            for (Pessoa pessoa: mapeadorPessoa.getList()){
-                //String classeCompleta = pessoa.getClass().toString();
-                //String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
-                //if(classe.equals("Visitante")){
-                if(pessoa instanceof Visitante){
-                    if(((Visitante)pessoa).getId() == id){
-                        if (pessoa.getSaldo()> 0){
-                            telaAdm.mostraDevolucaoDinheiro(pessoa);
-                            //pessoas.remove(pessoa);
-                            mapeadorPessoa.remove(pessoa);
-                            telaAdm.operacaoRealizada();
-                            return;
-                        }else{
-                            //pessoas.remove(pessoa);
-                            mapeadorPessoa.remove(pessoa);
-                            telaAdm.operacaoRealizada();
-                            return;
+            Pessoa logado = controladorPrincipal.getControladorUsuarios().getPessoa();
+            if(logado instanceof UsuarioUFSC && ((UsuarioUFSC) logado).getMatricula() != id){
+                for (Pessoa pessoa: mapeadorPessoa.getList()){
+                    //String classeCompleta = pessoa.getClass().toString();
+                    //String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
+                    //if(classe.equals("Visitante")){
+                    if(pessoa instanceof Visitante){
+                        if(((Visitante)pessoa).getId() == id){
+                            if (pessoa.getSaldo()> 0){
+                                telaAdm.mostraDevolucaoDinheiro(pessoa);
+                                //pessoas.remove(pessoa);
+                                mapeadorPessoa.remove(pessoa);
+                                telaAdm.operacaoRealizada();
+                                return;
+                            }else{
+                                //pessoas.remove(pessoa);
+                                mapeadorPessoa.remove(pessoa);
+                                telaAdm.operacaoRealizada();
+                                return;
+                            }
                         }
-                    }
-                }else{
-                    if(((UsuarioUFSC)pessoa).getMatricula() == id){
-                         if (pessoa.getSaldo()> 0){
-                            telaAdm.mostraDevolucaoDinheiro(pessoa);
-                            //pessoas.remove(pessoa);
-                            mapeadorPessoa.remove(pessoa);
-                            telaAdm.operacaoRealizada();
-                            return;
-                        }else{
-                            //pessoas.remove(pessoa);
-                            mapeadorPessoa.remove(pessoa);
-                            telaAdm.operacaoRealizada();
-                            return;
+                    }else{
+                        if(((UsuarioUFSC)pessoa).getMatricula() == id){
+                             if (pessoa.getSaldo()> 0){
+                                telaAdm.mostraDevolucaoDinheiro(pessoa);
+                                //pessoas.remove(pessoa);
+                                mapeadorPessoa.remove(pessoa);
+                                telaAdm.operacaoRealizada();
+                                return;
+                            }else{
+                                //pessoas.remove(pessoa);
+                                mapeadorPessoa.remove(pessoa);
+                                telaAdm.operacaoRealizada();
+                                return;
+                            }
                         }
-                    }
-                }         
+                    }         
+                }
+            }else{
+                throw new Exception("Não é possivel excluir o usuário logado!");
             }
         }else{
             throw new MatriculainvalidaException();
@@ -180,7 +185,7 @@ public class ControladorAdm {
             if(idJaExiste(id)){
                 idRepetido=true;
             }
-        }while (idRepetido==true);
+        }while (idRepetido);
         return new Visitante (id, conteudoTelaAdm.nome);
     }
     
@@ -202,9 +207,7 @@ public class ControladorAdm {
     public boolean idJaExiste(int id){
         if( mapeadorPessoa.getList() != null){
             for (Pessoa pessoa: mapeadorPessoa.getList()){
-                String classeCompleta = pessoa.getClass().toString();
-                String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
-                if(classe.equals("Visitante")){
+                if(pessoa instanceof Visitante){
                     if(((Visitante)pessoa).getId() == id){
                         return true;
                     }
@@ -224,9 +227,7 @@ public class ControladorAdm {
     public void adicionarSaldo(ConteudoTelaAdm conteudoTela) throws MatriculainvalidaException{
         if (idJaExiste(conteudoTela.codigo)){
             for (Pessoa pessoa: mapeadorPessoa.getList()){
-                String classeCompleta = pessoa.getClass().toString();
-                String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
-                if(classe.equals("Visitante")){
+                if(pessoa instanceof Visitante){
                     if(((Visitante)pessoa).getId() == conteudoTela.codigo){
                         pessoa.adicionarSaldo(conteudoTela.saldo);
                         telaAdm.operacaoRealizada();

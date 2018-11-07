@@ -201,13 +201,17 @@ public class TelaAdm extends TelaPadrao{
         
         try{
             conteudoTela.codigo = leInteiro();
+        
+            controlador.excluirUsiario(conteudoTela.codigo);
+        
+        
         }catch(InputInvalidoException e){
             System.out.println(e);
             return;
+        }catch(Exception e){
+            System.out.println(e);
         }
         
-        
-        controlador.excluirUsiario(conteudoTela.codigo);
         
         
     }
