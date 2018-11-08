@@ -5,6 +5,7 @@
  */
 package br.ufsc.ine5605.sistemaru;
 
+import com.sun.glass.ui.Cursor;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -70,7 +71,7 @@ public class ControladorPrincipal {
                     result = pessoa;
                     controladorUsuario.setPessoa(result);
                     if(((UsuarioUFSC) pessoa).isAdmin()){
-                        controladorUsuario.getTelaUsuario().mostraConteudoTelaAdm();
+                        controladorUsuario.getTelaUsuario().mostraConteudoTela();
                     }else{
                         controladorUsuario.getTelaUsuario().mostraConteudoTela();
                     }
@@ -93,6 +94,14 @@ public class ControladorPrincipal {
         Format f = new SimpleDateFormat("dd/MM/yyyy");
         return f.format(d);
     
+    }
+    
+    public void mostraTela(){
+        telaPrincipal.setVisible(true);
+    }
+    public void escondeTela(){
+        telaPrincipal.limpaLogin();
+        telaPrincipal.setVisible(false);
     }
     
     public static ControladorPrincipal getInstance(){

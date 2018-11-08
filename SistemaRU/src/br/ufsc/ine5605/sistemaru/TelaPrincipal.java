@@ -47,7 +47,7 @@ class TelaPrincipal extends TelaPadrao{
         int id = -1;
 
         
-        /*
+        
         Container container = getContentPane();
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -104,6 +104,7 @@ class TelaPrincipal extends TelaPadrao{
                 ConteudoTelaPrincipal conteudoTelaPrincipal = new ConteudoTelaPrincipal((int)textFieldLogin.getValue());
                 try{
                     controladorPrincipal.validaLogin(conteudoTelaPrincipal);
+                    controladorPrincipal.escondeTela();
                 }catch(MatriculainvalidaException ex){
                     System.out.println(ex);
                 }
@@ -122,7 +123,8 @@ class TelaPrincipal extends TelaPadrao{
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        */
+        
+        /*
         do{
             
             System.out.println("################################################################");
@@ -153,10 +155,15 @@ class TelaPrincipal extends TelaPadrao{
                     break;
             }
         }while (id!=0);
+        */
         
         
         
-        
+    }
+    
+    public void limpaLogin(){
+        textFieldLogin.setText("");
+    
     }
     
 }

@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -62,9 +63,9 @@ public class ControladorUsuario {
         String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
         float preco = 0;
         
-        if(classe.equals("Visitante")){
+        if(pessoa instanceof Visitante){
             preco = 6.1f;
-        }else if(classe.equals("UsuarioUFSC")){
+        }else if(pessoa instanceof UsuarioUFSC){
             preco = 2.9f;
         }else{
             if(!((Estudante)pessoa).isIsencao()){
@@ -80,6 +81,14 @@ public class ControladorUsuario {
         }else{
             throw new SaldoInsuficienteException();
         }
+    }
+    
+    public void mostraTela(){
+        telaUsuario.setVisible(true);
+    }
+    public void escondeTela(){
+        telaUsuario.getContentPane().removeAll();
+        telaUsuario.setVisible(false);
     }
     
     public void relatorioRefeicao(){
