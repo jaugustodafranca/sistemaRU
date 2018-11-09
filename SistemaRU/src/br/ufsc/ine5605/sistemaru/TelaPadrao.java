@@ -6,6 +6,7 @@
 package br.ufsc.ine5605.sistemaru;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.GridBagLayout;
 import java.util.Scanner;
 import javax.swing.JFrame;
@@ -29,12 +30,13 @@ public abstract class TelaPadrao extends JFrame{
         super("SISTEMA DE CONTROLE DO RESTAURANTE UNIVERSITÁRIO");
         this.teclado = new Scanner(System.in);
         labelDiaHoje = new JLabel(data);
-        getContentPane().setLayout(new BorderLayout());
+        super.getContentPane().setLayout(new BorderLayout());
         
-        panel = new JPanel(new GridBagLayout());
+        panel = new JPanel();
         
-        getContentPane().add(labelDiaHoje, BorderLayout.SOUTH);
-        getContentPane().add(panel, BorderLayout.CENTER);
+        super.getContentPane().add(labelDiaHoje, BorderLayout.SOUTH);
+        super.getContentPane().add(panel, BorderLayout.CENTER);
+        setSize(600,400);
         //setContentPane(panel);
         
     }
@@ -86,6 +88,14 @@ public abstract class TelaPadrao extends JFrame{
         System.out.println("");
     }
     
+    public void mostraTela(){
+        labelDiaHoje.setText(data);
+        setVisible(true);
+    }
+    public void escondeTela(){
+        setVisible(false);
+    }
+    
     public void clear(){
         for (int i=0; i<=40;i++){
             System.out.println("");
@@ -98,5 +108,10 @@ public abstract class TelaPadrao extends JFrame{
     
     public static String getData(){
         return data;
+    }
+    
+    @Override
+    public Container getContentPane(){
+        return panel;
     }
 }

@@ -99,18 +99,10 @@ public class ControladorPrincipal {
     
     }
     
-    public void mostraTela(){
-        telaPrincipal.setVisible(true);
-    }
-    public void escondeTela(){
-        telaPrincipal.limpaLogin();
-        telaPrincipal.setVisible(false);
-    }
+    
     
     public static ControladorPrincipal getInstance(){
-        if(controladorPrincipal == null)
-            controladorPrincipal = new ControladorPrincipal();
-    
-        return controladorPrincipal;
+        return (controladorPrincipal == null)? controladorPrincipal = new ControladorPrincipal() : controladorPrincipal;
+
     }
 }

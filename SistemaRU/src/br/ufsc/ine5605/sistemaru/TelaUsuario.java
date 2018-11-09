@@ -216,6 +216,8 @@ public class TelaUsuario extends TelaPadrao{
         System.out.println("");
         System.out.println("#######################");
     }
+
+    
     
     
     
@@ -258,7 +260,7 @@ public class TelaUsuario extends TelaPadrao{
                 
             }else if(botao.equals(buttonSair)){
                 controladorUsuario.escondeTela();
-                controladorUsuario.getControladorPrincipal().mostraTela();
+                controladorUsuario.getControladorPrincipal().getTelaPrincipal().mostraTela();
                 
             }
 

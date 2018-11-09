@@ -44,12 +44,9 @@ class TelaPrincipal extends TelaPadrao{
     
     @Override
     public void mostraConteudoTela() {
-        clear();
-        int id = -1;
-
-        
-        
-        Container container = super.getPanel();
+              
+        //Container container = super.getPanel();
+        Container container = getContentPane();
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         
@@ -92,7 +89,6 @@ class TelaPrincipal extends TelaPadrao{
         textFieldLogin = new JFormattedTextField(formatter);
         textFieldLogin.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
     
-        //textAreaLogin = new JTextArea();
         gbc.gridx = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         container.add(textFieldLogin, gbc);
@@ -107,7 +103,7 @@ class TelaPrincipal extends TelaPadrao{
                     ConteudoTelaPrincipal conteudoTelaPrincipal = new ConteudoTelaPrincipal((int)textFieldLogin.getValue());
                     try{
                         controladorPrincipal.validaLogin(conteudoTelaPrincipal);
-                        controladorPrincipal.escondeTela();
+                        escondeTela();
                     }catch(MatriculainvalidaException ex){
                         System.out.println(ex);
                     }
@@ -128,44 +124,16 @@ class TelaPrincipal extends TelaPadrao{
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        
-        /*
-        do{
-            
-            System.out.println("################################################################");
-            System.out.println("######  SISTEMA DE CONTROLE DO RESTAURANTE UNIVERSITÁRIO  ######");
-            System.out.println("################################################################");
-            System.out.println("");
-            System.out.println("[0] PARA FINALIZAR O SISTEMA");
-            System.out.println("");
-            System.out.print("DIGITE SEU NÚMERO DE MATRÍCULA: ");
-            
-            
-            try{
-                id = leInteiro();
-            }catch(InputInvalidoException e){
-                System.out.println(e);
-                continue;
-            }
-            
-            switch(id){
-                case 0: 
-                    break;
-                default:
-                    try{
-                        getControladorPrincipal().validaLogin(new ConteudoTelaPrincipal(id));
-                    }catch(Exception e){
-                        System.out.println(e);
-                    }
-                    break;
-            }
-        }while (id!=0);
-        */
+       
         
         
-        
-    }
+    }    
     
+    @Override
+    public void escondeTela(){
+        limpaLogin();
+        setVisible(false);
+    }
     public void limpaLogin(){
         textFieldLogin.setText("");
     
