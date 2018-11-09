@@ -49,7 +49,7 @@ class TelaPrincipal extends TelaPadrao{
 
         
         
-        Container container = getContentPane();
+        Container container = super.getPanel();
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         
@@ -122,8 +122,7 @@ class TelaPrincipal extends TelaPadrao{
         gbc.fill = GridBagConstraints.NONE;
         container.add(buttonEntrar, gbc);
         
-        gbc.gridy = 4;
-        container.add(super.getLabelDiaHoje(), gbc);
+      
         
         setSize(new Dimension(600, 400));
         setVisible(true);

@@ -88,6 +88,7 @@ public class MapeadorPessoa {
     
     public void remove(Pessoa pessoa){
         cachePessoas.remove(getIdentificadorPessoa(pessoa));
+        persist();
     
     }
     

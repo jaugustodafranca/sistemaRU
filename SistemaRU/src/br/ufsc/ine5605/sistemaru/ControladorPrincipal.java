@@ -26,9 +26,12 @@ public class ControladorPrincipal {
     private ControladorAdm controladorAdm;
 
     private ControladorPrincipal() {
+        this.restaurante = new Restaurante(this);
+        
+        telaPrincipal.setData(dateToString(diaAtual()));
         this.telaPrincipal = new TelaPrincipal(this);
         this.controladorRelatorioAdm = new ControladorRelatorioAdm (this);
-        this.restaurante = new Restaurante(this);
+        
         this.controladorUsuario = new ControladorUsuario(this);
         this.controladorAdm = new ControladorAdm(this);
     }

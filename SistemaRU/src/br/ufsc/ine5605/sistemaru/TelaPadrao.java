@@ -5,9 +5,12 @@
  */
 package br.ufsc.ine5605.sistemaru;
 
+import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
 import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -17,16 +20,33 @@ public abstract class TelaPadrao extends JFrame{
     
     private Scanner teclado;
     private JLabel labelDiaHoje;
+    private static String data;
+    private JPanel panel;
 
     
 
     public TelaPadrao() {
         super("SISTEMA DE CONTROLE DO RESTAURANTE UNIVERSITÁRIO");
         this.teclado = new Scanner(System.in);
+        labelDiaHoje = new JLabel(data);
+        getContentPane().setLayout(new BorderLayout());
+        
+        panel = new JPanel(new GridBagLayout());
+        
+        getContentPane().add(labelDiaHoje, BorderLayout.SOUTH);
+        getContentPane().add(panel, BorderLayout.CENTER);
+        //setContentPane(panel);
+        
     }
     
+    public JPanel getPanel() {
+        return panel;
+    }
+    
+    
+    
     public JLabel getLabelDiaHoje() {
-        labelDiaHoje = new JLabel(ControladorPrincipal.getInstance().dateToString(ControladorPrincipal.getInstance().diaAtual()));
+        labelDiaHoje = new JLabel(data);
         return labelDiaHoje;
     }
     
@@ -70,5 +90,13 @@ public abstract class TelaPadrao extends JFrame{
         for (int i=0; i<=40;i++){
             System.out.println("");
         }
+    }
+    
+    public static void setData(String dataRecebida){
+        data = dataRecebida;
+    }
+    
+    public static String getData(){
+        return data;
     }
 }
