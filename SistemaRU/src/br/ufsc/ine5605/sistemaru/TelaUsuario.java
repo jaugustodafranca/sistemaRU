@@ -55,27 +55,27 @@ public class TelaUsuario extends TelaPadrao{
         gbc.gridy = 0;
         buttonAlmoco = new JButton("Almoçar");
         buttonAlmoco.addActionListener(gerenciadorBotoes);
-        buttonAlmoco.setPreferredSize(new Dimension(100, 50));
+        buttonAlmoco.setPreferredSize(new Dimension(150, 100));
         container.add(buttonAlmoco, gbc);
         
         
         gbc.gridx = 1;
         buttonJantar = new JButton("Jantar");
         buttonJantar.addActionListener(gerenciadorBotoes);
-        buttonJantar.setPreferredSize(new Dimension(100, 50));
+        buttonJantar.setPreferredSize(new Dimension(150, 100));
         container.add(buttonJantar, gbc);
         
         gbc.gridx = 0;
         gbc.gridy = 1;
         buttonSaldo = new JButton("Saldo");
         buttonSaldo.addActionListener(gerenciadorBotoes);
-        buttonSaldo.setPreferredSize(new Dimension(100, 50));
+        buttonSaldo.setPreferredSize(new Dimension(150, 100));
         container.add(buttonSaldo, gbc);
         
         gbc.gridx = 1;
         buttonRelatorio = new JButton("Relatório");
         buttonRelatorio.addActionListener(gerenciadorBotoes);
-        buttonRelatorio.setPreferredSize(new Dimension(100, 50));
+        buttonRelatorio.setPreferredSize(new Dimension(150, 100));
         container.add(buttonRelatorio, gbc);
         
         if(controladorUsuario.getPessoa() instanceof UsuarioUFSC && ((UsuarioUFSC)controladorUsuario.getPessoa()).isAdmin()){
@@ -83,7 +83,7 @@ public class TelaUsuario extends TelaPadrao{
             gbc.gridy = 2;
             buttonAdm = new JButton("Menu Adm");
             buttonAdm.addActionListener(gerenciadorBotoes);
-            buttonAdm.setPreferredSize(new Dimension(100, 50));
+            buttonAdm.setPreferredSize(new Dimension(150, 100));
             container.add(buttonAdm, gbc);
         }
         
@@ -91,7 +91,7 @@ public class TelaUsuario extends TelaPadrao{
         gbc.gridx = 1;
         buttonSair = new JButton("Deslogar");
         buttonSair.addActionListener(gerenciadorBotoes);
-        buttonSair.setPreferredSize(new Dimension(100, 50));
+        buttonSair.setPreferredSize(new Dimension(150, 100));
         container.add(buttonSair, gbc);
         
         

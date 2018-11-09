@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.text.NumberFormatter;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -101,12 +102,17 @@ class TelaPrincipal extends TelaPadrao{
         buttonEntrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ConteudoTelaPrincipal conteudoTelaPrincipal = new ConteudoTelaPrincipal((int)textFieldLogin.getValue());
-                try{
-                    controladorPrincipal.validaLogin(conteudoTelaPrincipal);
-                    controladorPrincipal.escondeTela();
-                }catch(MatriculainvalidaException ex){
-                    System.out.println(ex);
+                
+                if(!textFieldLogin.getText().equals("")){
+                    ConteudoTelaPrincipal conteudoTelaPrincipal = new ConteudoTelaPrincipal((int)textFieldLogin.getValue());
+                    try{
+                        controladorPrincipal.validaLogin(conteudoTelaPrincipal);
+                        controladorPrincipal.escondeTela();
+                    }catch(MatriculainvalidaException ex){
+                        System.out.println(ex);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Preencha o campo com sua matricula");
                 }
             }
         });
