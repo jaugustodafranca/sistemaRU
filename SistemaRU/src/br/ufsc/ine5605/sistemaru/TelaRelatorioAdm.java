@@ -10,14 +10,13 @@ package br.ufsc.ine5605.sistemaru;
  * @author Usuario
  */
 class TelaRelatorioAdm extends TelaPadrao{
-    private ControladorRelatorioAdm controladorRelatorioAdm;
+
    
-  
-    
+ 
     
 
-    public TelaRelatorioAdm(ControladorRelatorioAdm controladorRelatorioAdm) {
-        this.controladorRelatorioAdm = controladorRelatorioAdm;
+    public TelaRelatorioAdm() {
+
     }
     
     @Override
@@ -29,11 +28,11 @@ class TelaRelatorioAdm extends TelaPadrao{
         System.out.println("");
         System.out.println("FORMATO DE ENTRADA DAS DATAS (DD/MM/AAAA)");
         System.out.print("DIGITE DA INICIAL: ");
-        controladorRelatorioAdm.getConteudoTelaRelatorioAdm().dataInicial = leString();
+        ControladorRelatorioAdm.getInstance().getConteudoTelaRelatorioAdm().dataInicial = leString();
         System.out.print("DIGITE DA FINAL: ");
-        controladorRelatorioAdm.getConteudoTelaRelatorioAdm().dataFinal = leString();
+        ControladorRelatorioAdm.getInstance().getConteudoTelaRelatorioAdm().dataFinal = leString();
         
-        controladorRelatorioAdm.relatorioRefeicao();      
+        ControladorRelatorioAdm.getInstance().relatorioRefeicao();      
     }
     
     public void mostraRelatorio(String dataInicial, String dataFinal, int count){

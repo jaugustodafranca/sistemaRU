@@ -15,14 +15,16 @@ import java.util.HashMap;
  * @author 12041789921
  */
 public class ControladorRelatorioAdm {
+    
+    private static ControladorRelatorioAdm controladorRelatorioAdm;
+    
     private TelaRelatorioAdm telaRelatorioAdm; 
     private ConteudoTelaRelatorioAdm conteudoTelaRelatorioAdm;
-    private ControladorPrincipal controladorPrincipal;
+    
 
-    public ControladorRelatorioAdm(ControladorPrincipal controladorPrincipal) {
-        this.telaRelatorioAdm = new TelaRelatorioAdm(this);
+    private ControladorRelatorioAdm() {
+        this.telaRelatorioAdm = new TelaRelatorioAdm();
         this.conteudoTelaRelatorioAdm = new ConteudoTelaRelatorioAdm();
-        this.controladorPrincipal = controladorPrincipal;
     }
 
     public TelaRelatorioAdm getTelaRelatorioAdm() {
@@ -44,7 +46,7 @@ public class ControladorRelatorioAdm {
         
             Date atual = dataInicial;
             int contadorRefeicoes = 0;
-            HashMap<Date,Integer> acessosRU = controladorPrincipal.getRestaurante().getAcessosRU();
+            HashMap<Date,Integer> acessosRU = ControladorPrincipal.getInstance().getRestaurante().getAcessosRU();
 
 
             while(atual.before(dataFinal)){
@@ -69,5 +71,10 @@ public class ControladorRelatorioAdm {
         }
         
         
+    }
+    
+    public static ControladorRelatorioAdm getInstance(){
+        return (controladorRelatorioAdm == null)? controladorRelatorioAdm = new ControladorRelatorioAdm() : controladorRelatorioAdm;
+
     }
 }

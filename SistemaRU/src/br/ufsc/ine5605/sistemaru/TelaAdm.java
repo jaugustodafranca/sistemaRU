@@ -14,10 +14,9 @@ import java.util.logging.Logger;
  * @author jfranca
  */
 public class TelaAdm extends TelaPadrao{
-    private ControladorAdm controlador;
     
-    public TelaAdm(ControladorAdm controlador){
-        this.controlador = controlador;
+    
+    public TelaAdm(){
     }
     
     
@@ -31,7 +30,7 @@ public class TelaAdm extends TelaPadrao{
             System.out.println("######  MENU ADMINISTRATIVO  ######");
             System.out.println("###################################");
             System.out.println();
-            System.out.println("DIA ATUAL: " + controlador.diaAtual());
+            System.out.println("DIA ATUAL: " + ControladorAdm.getInstance().diaAtual());
             System.out.println();
             System.out.println("[1] CADASTRAR USUÁRIO-UFSC");
             System.out.println("[2] CADASTRAR ESTUDANTE");
@@ -96,7 +95,7 @@ public class TelaAdm extends TelaPadrao{
                 }
             }
                         break;
-                case 6: controlador.listarUsuariosCadastrados();
+                case 6: ControladorAdm.getInstance().listarUsuariosCadastrados();
                         break;
                 case 7: {
                     try {
@@ -107,13 +106,13 @@ public class TelaAdm extends TelaPadrao{
                 }
                         break;
                         
-                case 8: controlador.gerarRelatorioRu();
+                case 8: ControladorAdm.getInstance().gerarRelatorioRu();
                         break;
                         
-                case 9: controlador.passarProximoDia();
+                case 9: ControladorAdm.getInstance().passarProximoDia();
                         break;
                         
-                case 10:controlador.passarProximoMes();
+                case 10:ControladorAdm.getInstance().passarProximoMes();
                         break;
             } 
         }while (opcao!=0);
@@ -141,7 +140,7 @@ public class TelaAdm extends TelaPadrao{
         System.out.print("É ADMINISTRADOR (TRUE OU FALSE): ");
         conteudoTela.admin = leBoolean();
         
-        controlador.cadastraUsuarioUFSC(conteudoTela);
+        ControladorAdm.getInstance().cadastraUsuarioUFSC(conteudoTela);
         
         
     }
@@ -169,7 +168,7 @@ public class TelaAdm extends TelaPadrao{
         System.out.print("ESTUDANTE É INSENTO?(TRUE OU FALSE): ");
         conteudoTela.isencao = leBoolean();
         
-        controlador.cadastraEstudante(conteudoTela);
+        ControladorAdm.getInstance().cadastraEstudante(conteudoTela);
         
     }
     
@@ -184,7 +183,7 @@ public class TelaAdm extends TelaPadrao{
         System.out.print("NOME: ");
         conteudoTela.nome = leString();
                 
-        controlador.cadastraVisitante(conteudoTela);
+        ControladorAdm.getInstance().cadastraVisitante(conteudoTela);
         
         
     }
@@ -202,7 +201,7 @@ public class TelaAdm extends TelaPadrao{
         try{
             conteudoTela.codigo = leInteiro();
         
-            controlador.excluirUsiario(conteudoTela.codigo);
+            ControladorAdm.getInstance().excluirUsiario(conteudoTela.codigo);
         
         
         }catch(InputInvalidoException e){
@@ -251,7 +250,7 @@ public class TelaAdm extends TelaPadrao{
         }
         
         
-        controlador.editarUsuario(conteudoTela.codigo);
+        ControladorAdm.getInstance().editarUsuario(conteudoTela.codigo);
     }    
     
     public void mostraTelaEditarUsuarioUFSC(Pessoa pessoa) throws MatriculainvalidaException{
@@ -280,8 +279,8 @@ public class TelaAdm extends TelaPadrao{
         System.out.println(adm.toUpperCase());
         System.out.print("É ADMINISTRADOR (TRUE OU FALSE): ");
         conteudoTela.admin = leBoolean();
-        controlador.getPessoas().remove(pessoa);
-        controlador.cadastraUsuarioUFSC(conteudoTela);
+        ControladorAdm.getInstance().getPessoas().remove(pessoa);
+        ControladorAdm.getInstance().cadastraUsuarioUFSC(conteudoTela);
     }
 
     public void mostraTelaEditarVisitante(Pessoa pessoa) throws MatriculainvalidaException {
@@ -303,8 +302,8 @@ public class TelaAdm extends TelaPadrao{
             System.out.println(e);
             return;
         }
-        controlador.getPessoas().remove(pessoa);
-        controlador.cadastraVisitante(conteudoTela);
+        ControladorAdm.getInstance().getPessoas().remove(pessoa);
+        ControladorAdm.getInstance().cadastraVisitante(conteudoTela);
         
     }
 
@@ -336,8 +335,8 @@ public class TelaAdm extends TelaPadrao{
         conteudoTela.admin = leBoolean();
         System.out.print("ESTUDANTE É INSENTO?(TRUE OU FALSE): ");
         conteudoTela.isencao = leBoolean();
-        controlador.getPessoas().remove(pessoa);
-        controlador.cadastraEstudante(conteudoTela);
+        ControladorAdm.getInstance().getPessoas().remove(pessoa);
+        ControladorAdm.getInstance().cadastraEstudante(conteudoTela);
         
     }
     
@@ -365,7 +364,7 @@ public class TelaAdm extends TelaPadrao{
         System.out.print("VALOR: R$ ");
         conteudoTela.saldo = leFloat();
         
-        controlador.adicionarSaldo(conteudoTela);
+        ControladorAdm.getInstance().adicionarSaldo(conteudoTela);
     }
 
 

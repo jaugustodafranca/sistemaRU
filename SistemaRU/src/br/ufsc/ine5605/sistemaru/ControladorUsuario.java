@@ -20,18 +20,15 @@ import javax.swing.JOptionPane;
  */
 public class ControladorUsuario {
     
-    private ControladorPrincipal controladorPrincipal;
     private TelaUsuario telaUsuario;
     private Pessoa pessoa;
+    
+    private static ControladorUsuario controladorUsuario;
 
-    public ControladorUsuario(ControladorPrincipal controladorPirncipal) {
-        this.controladorPrincipal = controladorPirncipal;
-        this.telaUsuario = new TelaUsuario(this);
+    private ControladorUsuario() {
+        this.telaUsuario = new TelaUsuario();
     }
     
-    public ControladorPrincipal getControladorPrincipal() {
-        return controladorPrincipal;
-    }
 
     public Pessoa getPessoa() {
         return pessoa;
@@ -75,7 +72,7 @@ public class ControladorUsuario {
         
         if(consultarSaldo() >= preco){
             pessoa.descontaSaldo(preco);
-            Date hoje = controladorPrincipal.getRestaurante().getDiaAtual();
+            Date hoje = ControladorPrincipal.getInstance().getRestaurante().getDiaAtual();
             pessoa.adicionaRefeicao(hoje, tipo);
             telaUsuario.mostraSucessoRefeicao();
         }else{
@@ -98,7 +95,7 @@ public class ControladorUsuario {
         
         HashMap<Date, ArrayList<TipoRefeicao>> refeicoes = pessoa.getRegistrosRefeicoes();
         
-        Date hoje = controladorPrincipal.getRestaurante().getDiaAtual();
+        Date hoje = ControladorPrincipal.getInstance().getRestaurante().getDiaAtual();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         SimpleDateFormat dateFormatMonthYear = new SimpleDateFormat("MM-yyyy");
         String mesAnoAtual = dateFormatMonthYear.format(hoje);
@@ -152,10 +149,14 @@ public class ControladorUsuario {
     }
     
     public String diaAtual (){
-        Date diaAtual = controladorPrincipal.diaAtual();
+        Date diaAtual = ControladorPrincipal.getInstance().diaAtual();
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");  
         String hoje = formato.format(diaAtual);
         return hoje;
     }
     
+    public static ControladorUsuario getInstance(){
+        return (controladorUsuario == null)? controladorUsuario = new ControladorUsuario() : controladorUsuario;
+
+    }
 }

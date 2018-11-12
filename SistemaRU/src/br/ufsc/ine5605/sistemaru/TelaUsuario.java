@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  * @author 12041789921
  */
 public class TelaUsuario extends TelaPadrao{
-    private ControladorUsuario controladorUsuario;
+
 
     private JButton buttonAlmoco;
     private JButton buttonJantar;
@@ -31,14 +31,11 @@ public class TelaUsuario extends TelaPadrao{
     private GerenciadorBotoes gerenciadorBotoes;
     
     
-    public TelaUsuario(ControladorUsuario controladorUsuario) {
-        this.controladorUsuario = controladorUsuario;
+    public TelaUsuario() {
+
         this.gerenciadorBotoes = new GerenciadorBotoes();
     }
 
-    public ControladorUsuario getControladorUsuario() {
-        return controladorUsuario;
-    }
     
     
     
@@ -78,7 +75,7 @@ public class TelaUsuario extends TelaPadrao{
         buttonRelatorio.setPreferredSize(new Dimension(150, 100));
         container.add(buttonRelatorio, gbc);
         
-        if(controladorUsuario.getPessoa() instanceof UsuarioUFSC && ((UsuarioUFSC)controladorUsuario.getPessoa()).isAdmin()){
+        if(ControladorUsuario.getInstance().getPessoa() instanceof UsuarioUFSC && ((UsuarioUFSC)ControladorUsuario.getInstance().getPessoa()).isAdmin()){
             gbc.gridx = 0;
             gbc.gridy = 2;
             buttonAdm = new JButton("Menu Adm");
@@ -106,7 +103,7 @@ public class TelaUsuario extends TelaPadrao{
             System.out.println("######  MENU USUARIO  ######");
             System.out.println("############################");
             System.out.println();
-            System.out.println("DIA ATUAL: " + controladorUsuario.diaAtual());
+            System.out.println("DIA ATUAL: " + ControladorUsuario.getInstance().diaAtual());
             System.out.println();
             System.out.println("[1] ALMOÇAR");
             System.out.println("[2] JANTAR");
@@ -124,19 +121,19 @@ public class TelaUsuario extends TelaPadrao{
             switch(opcao){
                 case 1: 
                         try{
-                            controladorUsuario.validaRefeicao(0);
+                            ControladorUsuario.getInstance().validaRefeicao(0);
                         }catch(Exception e){System.out.println(e);}
                         break;
                 case 2: 
                         try{
-                            controladorUsuario.validaRefeicao(1);
+                            ControladorUsuario.getInstance().validaRefeicao(1);
                         }catch(Exception e){System.out.println(e);}
                         break;
                         
                 case 3: mostraTelaSaldo();
                         break;
                         
-                case 4: controladorUsuario.relatorioRefeicao();
+                case 4: ControladorUsuario.getInstance().relatorioRefeicao();
                         break;
                 
             }
@@ -154,7 +151,7 @@ public class TelaUsuario extends TelaPadrao{
             System.out.println("######  MENU USUARIO  ######");
             System.out.println("############################");
             System.out.println();
-            System.out.println("DIA ATUAL: " + controladorUsuario.diaAtual());
+            System.out.println("DIA ATUAL: " + ControladorUsuario.getInstance().diaAtual());
             System.out.println();
             System.out.println("[1] ALMOÇAR");
             System.out.println("[2] JANTAR");
@@ -173,22 +170,22 @@ public class TelaUsuario extends TelaPadrao{
             switch(opcao){
                 case 1: 
                         try{
-                            controladorUsuario.validaRefeicao(0);
+                            ControladorUsuario.getInstance().validaRefeicao(0);
                         }catch(Exception e){System.out.println(e);}
                         break;
                 case 2: 
                         try{
-                            controladorUsuario.validaRefeicao(1);
+                            ControladorUsuario.getInstance().validaRefeicao(1);
                         }catch(Exception e){System.out.println(e);}
                         break;
                         
                 case 3: mostraTelaSaldo();
                         break;
                         
-                case 4: controladorUsuario.relatorioRefeicao();
+                case 4: ControladorUsuario.getInstance().relatorioRefeicao();
                         break;
                         
-                case 5: controladorUsuario.getControladorPrincipal().getControladorAdm().getTelaAdm().mostraConteudoTela();
+                case 5: ControladorUsuario.getInstance().getControladorPrincipal().getControladorAdm().getTelaAdm().mostraConteudoTela();
                 
             }
          
@@ -196,7 +193,7 @@ public class TelaUsuario extends TelaPadrao{
     }*/
 
     public String mostraTelaSaldo() {
-        return "SALDO ATUAL DISPONIVEL: R$ "+controladorUsuario.consultarSaldo();
+        return "SALDO ATUAL DISPONIVEL: R$ "+ControladorUsuario.getInstance().consultarSaldo();
     }
 
     public String mostraSucessoRefeicao() {
@@ -229,7 +226,7 @@ public class TelaUsuario extends TelaPadrao{
             System.out.println("clicou: "+botao.getText());
             if(botao.equals(buttonAlmoco)){
                 try{
-                    controladorUsuario.validaRefeicao(0);
+                    ControladorUsuario.getInstance().validaRefeicao(0);
                     JOptionPane.showMessageDialog(null, mostraTelaSaldo());
                     
                     
@@ -240,7 +237,7 @@ public class TelaUsuario extends TelaPadrao{
             
             }else if(botao.equals(buttonJantar)){
                 try{
-                    controladorUsuario.validaRefeicao(1);
+                    ControladorUsuario.getInstance().validaRefeicao(1);
                     JOptionPane.showMessageDialog(null, mostraTelaSaldo());
                     
                 }catch(Exception e){
@@ -252,15 +249,15 @@ public class TelaUsuario extends TelaPadrao{
                     JOptionPane.showMessageDialog(null, mostraTelaSaldo());
                 
             }else if(botao.equals(buttonRelatorio)){
-                controladorUsuario.relatorioRefeicao();
+                ControladorUsuario.getInstance().relatorioRefeicao();
                 //JOptionPane.showMessageDialog(null, mostraTelaSaldo());
                 
             }else if(botao.equals(buttonAdm)){
-                controladorUsuario.getControladorPrincipal().getControladorAdm().getTelaAdm().mostraConteudoTela();
+                ControladorPrincipal.getInstance().getControladorAdm().getTelaAdm().mostraConteudoTela();
                 
             }else if(botao.equals(buttonSair)){
-                controladorUsuario.escondeTela();
-                controladorUsuario.getControladorPrincipal().getTelaPrincipal().mostraTela();
+                ControladorUsuario.getInstance().escondeTela();
+                ControladorPrincipal.getInstance().getTelaPrincipal().mostraTela();
                 
             }
 

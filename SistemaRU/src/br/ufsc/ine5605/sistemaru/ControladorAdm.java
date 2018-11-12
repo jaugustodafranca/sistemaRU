@@ -16,22 +16,23 @@ import java.util.Random;
  */
 public class ControladorAdm {
     
+    private static ControladorAdm controladorAdm;
+    
     
     private MapeadorPessoa mapeadorPessoa;
     
     //private ArrayList<Pessoa> pessoas;
     
     
-    private ControladorPrincipal controladorPrincipal;
     private TelaAdm telaAdm;
     private ConteudoTelaAdm conteudoTelaAdm;
 
-    public ControladorAdm(ControladorPrincipal controladorPrincipal) {
+    public ControladorAdm() {
         //this.pessoas = new ArrayList();
         this.mapeadorPessoa = new MapeadorPessoa();
-        this.telaAdm = new TelaAdm (this);
+        this.telaAdm = new TelaAdm ();
         this.conteudoTelaAdm = new ConteudoTelaAdm();
-        this.controladorPrincipal = controladorPrincipal;
+
         
         
     }
@@ -75,7 +76,7 @@ public class ControladorAdm {
     
     public void excluirUsiario(int id) throws MatriculainvalidaException, Exception{
         if (idJaExiste(id)){
-            Pessoa logado = controladorPrincipal.getControladorUsuarios().getPessoa();
+            Pessoa logado = ControladorPrincipal.getInstance().getControladorUsuarios().getPessoa();
             if(logado instanceof UsuarioUFSC && ((UsuarioUFSC) logado).getMatricula() != id){
                 for (Pessoa pessoa: mapeadorPessoa.getList()){
                     //String classeCompleta = pessoa.getClass().toString();
@@ -222,7 +223,7 @@ public class ControladorAdm {
     }    
 
     public ControladorPrincipal getControladorPrincipal() {
-        return controladorPrincipal;
+        return ControladorPrincipal.getInstance();
     }
     public void adicionarSaldo(ConteudoTelaAdm conteudoTela) throws MatriculainvalidaException{
         if (idJaExiste(conteudoTela.codigo)){
@@ -247,27 +248,32 @@ public class ControladorAdm {
     } 
     
     public void gerarRelatorioRu(){
-        controladorPrincipal.getControladorRelatorioAdm().getTelaRelatorioAdm().mostraConteudoTela();
+        ControladorPrincipal.getInstance().getControladorRelatorioAdm().getTelaRelatorioAdm().mostraConteudoTela();
     }
     
     public void passarProximoDia(){
         System.out.println("-> PROXIMO DIA");
-        controladorPrincipal.getRestaurante().proximoDia();
+        ControladorPrincipal.getInstance().getRestaurante().proximoDia();
         TelaPadrao.setData(ControladorPrincipal.getInstance().dateToString(ControladorPrincipal.getInstance().diaAtual()));
         telaAdm.operacaoRealizada();
     }
     
     public void passarProximoMes(){
         System.out.println("-> PROXIMO MÊS");
-        controladorPrincipal.getRestaurante().proximoMes();
+        ControladorPrincipal.getInstance().getRestaurante().proximoMes();
         telaAdm.operacaoRealizada();
     }
     
     public String diaAtual (){
-        Date diaAtual = controladorPrincipal.diaAtual();
+        Date diaAtual = ControladorPrincipal.getInstance().diaAtual();
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");  
         String hoje = formato.format(diaAtual);
         return hoje;
+    }
+    
+    public static ControladorAdm getInstance(){
+        return (controladorAdm == null)? controladorAdm = new ControladorAdm() : controladorAdm;
+
     }
             
 }

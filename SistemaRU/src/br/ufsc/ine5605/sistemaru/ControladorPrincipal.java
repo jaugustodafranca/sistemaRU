@@ -26,14 +26,14 @@ public class ControladorPrincipal {
     private ControladorAdm controladorAdm;
 
     private ControladorPrincipal() {
-        this.restaurante = new Restaurante(this);
+        this.restaurante = Restaurante.getInstance();
         
         telaPrincipal.setData(dateToString(diaAtual()));
-        this.telaPrincipal = new TelaPrincipal(this);
-        this.controladorRelatorioAdm = new ControladorRelatorioAdm (this);
+        this.telaPrincipal = new TelaPrincipal();
+        this.controladorRelatorioAdm = ControladorRelatorioAdm.getInstance();
         
-        this.controladorUsuario = new ControladorUsuario(this);
-        this.controladorAdm = new ControladorAdm(this);
+        this.controladorUsuario = ControladorUsuario.getInstance();
+        this.controladorAdm = new ControladorAdm();
     }
 
     public TelaPrincipal getTelaPrincipal() {

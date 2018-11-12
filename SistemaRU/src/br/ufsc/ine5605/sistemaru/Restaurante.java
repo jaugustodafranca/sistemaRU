@@ -18,13 +18,15 @@ import java.util.HashMap;
  * @author Usuario
  */
 public class Restaurante {
+    
+    private static Restaurante restaurante;
+    
     private Date diaAtual;
     private HashMap<Date, Integer> acessosRU;
-    private ControladorPrincipal controladorPrincipal; 
     
             
             
-    public Restaurante(ControladorPrincipal controladorPrincipal){
+    private Restaurante(){
         Date dataDate = new Date();
         SimpleDateFormat dateFormatMonthYear = new SimpleDateFormat("dd-MM-yyyy");        
         String dateString = dateFormatMonthYear.format(dataDate);
@@ -33,7 +35,7 @@ public class Restaurante {
         }catch(Exception e){System.out.println(e);}     
                 
         acessosRU = new HashMap();
-        this.controladorPrincipal = controladorPrincipal;
+        
     }
 
     public Date getDiaAtual() {
@@ -44,7 +46,7 @@ public class Restaurante {
         
         // conta o numero de pessoas que comeu no dia e guarda no hash
         int count = 0;
-        for (Pessoa pessoaCadastrada : controladorPrincipal.getControladorAdm().getPessoas()){
+        for (Pessoa pessoaCadastrada : ControladorPrincipal.getInstance().getControladorAdm().getPessoas()){
             ArrayList <TipoRefeicao> refeicoesHoje = pessoaCadastrada.getRegistrosRefeicoes().get(this.diaAtual);
             if (refeicoesHoje!=null){
                 count+= refeicoesHoje.size();
@@ -72,5 +74,10 @@ public class Restaurante {
     public HashMap<Date, Integer> getAcessosRU() {
         return acessosRU;
     }   
+    
+    public static Restaurante getInstance(){
+        return (restaurante == null)? restaurante = new Restaurante() : restaurante;
+
+    }
     
 }

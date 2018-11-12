@@ -27,20 +27,15 @@ import javax.swing.JOptionPane;
  */
 class TelaPrincipal extends TelaPadrao{
     
-    private ControladorPrincipal controladorPrincipal;
     private JLabel labelTitulo;
     private JLabel labelLogin;
     private JFormattedTextField textFieldLogin;
     private JButton buttonEntrar;
 
-    public TelaPrincipal(ControladorPrincipal controladorPrincipal) {
-        this.controladorPrincipal = controladorPrincipal;
+    public TelaPrincipal() {
         
     }
 
-    public ControladorPrincipal getControladorPrincipal() {
-        return controladorPrincipal;
-    }
     
     @Override
     public void mostraConteudoTela() {
@@ -102,7 +97,7 @@ class TelaPrincipal extends TelaPadrao{
                 if(!textFieldLogin.getText().equals("")){
                     ConteudoTelaPrincipal conteudoTelaPrincipal = new ConteudoTelaPrincipal((int)textFieldLogin.getValue());
                     try{
-                        controladorPrincipal.validaLogin(conteudoTelaPrincipal);
+                        ControladorPrincipal.getInstance().validaLogin(conteudoTelaPrincipal);
                         escondeTela();
                     }catch(MatriculainvalidaException ex){
                         System.out.println(ex);
