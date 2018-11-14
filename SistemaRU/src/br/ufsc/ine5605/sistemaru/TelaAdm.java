@@ -5,9 +5,21 @@
  */
 package br.ufsc.ine5605.sistemaru;
 
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,11 +27,160 @@ import java.util.logging.Logger;
  */
 public class TelaAdm extends TelaPadrao{
     
-    
+    private JButton buttonCadastrar;
+    private JButton buttonExcluir;
+    private JButton buttonEditar;
+    private JButton buttonListar;
+    private JButton buttonAdicionarSaldo;
+    private JButton buttonRelatorioRu;
+    private JButton buttonPassarDia;
+    private JButton buttonPassarMes;
+    private JButton buttonvoltar;
+    private JTable tablePessoas;
+    private JScrollPane spBaseTable;
+    private GerenciadorBotoes gerenciadorBotoes;
+
     public TelaAdm(){
+        this.gerenciadorBotoes = new GerenciadorBotoes();
     }
     
     
+    
+    @Override
+    public void mostraConteudoTela(){
+        
+        Container container = getContentPane();
+        container.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        
+        //BOTAO CADASTRAR
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        buttonCadastrar = new JButton("Cadastrar");
+        buttonCadastrar.addActionListener(gerenciadorBotoes);
+        buttonCadastrar.setPreferredSize(new Dimension(100, 50));
+        container.add(buttonCadastrar, gbc);
+        
+        //BOTAO EXCLUIR 
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        buttonExcluir = new JButton("Excluir");
+        buttonExcluir.addActionListener(gerenciadorBotoes);
+        buttonExcluir.setPreferredSize(new Dimension(100, 50));
+        container.add(buttonExcluir, gbc);
+        
+        //BOTAO EDITAR 
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        buttonEditar = new JButton("Editar");
+        buttonEditar.addActionListener(gerenciadorBotoes);
+        buttonEditar.setPreferredSize(new Dimension(100, 50));
+        container.add(buttonEditar, gbc);
+        
+        //BOTAO LISTAR 
+        gbc.gridx = 3;
+        gbc.gridy = 0;
+        buttonListar = new JButton("Listar");
+        buttonListar.addActionListener(gerenciadorBotoes);
+        buttonListar.setPreferredSize(new Dimension(100, 50));
+        container.add(buttonListar, gbc);
+        
+        //BOTAO ADICIONAR SALDO 
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 2;
+        buttonAdicionarSaldo = new JButton("Adicionar Saldo");
+        buttonAdicionarSaldo.addActionListener(gerenciadorBotoes);
+        buttonAdicionarSaldo.setPreferredSize(new Dimension(200, 50));
+        container.add(buttonAdicionarSaldo, gbc);
+        
+        //BOTAO RELATORIO RU 
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        gbc.gridwidth = 2;
+        buttonRelatorioRu = new JButton("Relatório RU");
+        buttonRelatorioRu.addActionListener(gerenciadorBotoes);
+        buttonRelatorioRu.setPreferredSize(new Dimension(200, 50));
+        container.add(buttonRelatorioRu, gbc);
+        
+        //BOTAO PASSAR DIA 
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        buttonPassarDia = new JButton("Passar Dia");
+        buttonPassarDia.addActionListener(gerenciadorBotoes);
+        buttonPassarDia.setPreferredSize(new Dimension(200, 50));
+        container.add(buttonPassarDia, gbc);
+        
+        //BOTAO PASSAR MÊS  
+        gbc.gridx = 2;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        buttonPassarMes = new JButton("Passar Mês");
+        buttonPassarMes.addActionListener(gerenciadorBotoes);
+        buttonPassarMes.setPreferredSize(new Dimension(200, 50));
+        container.add(buttonPassarMes, gbc);
+        
+        //BOTAO VOLTAR 
+        
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 4;
+        buttonvoltar = new JButton("Voltar");
+        buttonvoltar.addActionListener(gerenciadorBotoes);
+        buttonvoltar.setPreferredSize(new Dimension(400, 50));
+        container.add(buttonvoltar, gbc);
+        
+        
+        
+        
+        setSize(new Dimension(600, 400));
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    private class GerenciadorBotoes implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
+    
+    private void TelaCadastro(){
+        
+        Container container = getContentPane();
+        container.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        
+        tablePessoas = new JTable();
+        tablePessoas.setPreferredScrollableViewportSize(new Dimension(500, 300));
+        tablePessoas.setFillsViewportHeight(true);
+        gbc.fill = GridBagConstraints.CENTER;
+        spBaseTable = new JScrollPane(tablePessoas);
+        container.add(spBaseTable,gbc);
+        
+              
+        
+        setSize(new Dimension(600, 400));
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+    }
+    private void updateData(){
+        DefaultTableModel modelTbItens = new DefaultTableModel();
+        modelTbItens.addColumn("Nome");
+        modelTbItens.addColumn("Tipo de Cadastro");
+        modelTbItens.addColumn("ID/Matrícula");
+        
+        for (Pessoa pessoa: ControladorAdm.getInstance().getControladorPrincipal().MapeadorPessoas.{
+            
+        }
+        
+    }
+    
+    
+}    
+    /*
     @Override
     public void mostraConteudoTela() {
         
@@ -368,4 +529,4 @@ public class TelaAdm extends TelaPadrao{
     }
 
 
-}
+}*/

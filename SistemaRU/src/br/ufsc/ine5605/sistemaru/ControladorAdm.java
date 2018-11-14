@@ -85,7 +85,7 @@ public class ControladorAdm {
                     if(pessoa instanceof Visitante){
                         if(((Visitante)pessoa).getId() == id){
                             if (pessoa.getSaldo()> 0){
-                                telaAdm.mostraDevolucaoDinheiro(pessoa);
+//                                telaAdm.mostraDevolucaoDinheiro(pessoa);
                                 //pessoas.remove(pessoa);
                                 mapeadorPessoa.remove(pessoa);
                                 telaAdm.operacaoRealizada();
@@ -100,7 +100,7 @@ public class ControladorAdm {
                     }else{
                         if(((UsuarioUFSC)pessoa).getMatricula() == id){
                              if (pessoa.getSaldo()> 0){
-                                telaAdm.mostraDevolucaoDinheiro(pessoa);
+//                                telaAdm.mostraDevolucaoDinheiro(pessoa);
                                 //pessoas.remove(pessoa);
                                 mapeadorPessoa.remove(pessoa);
                                 telaAdm.operacaoRealizada();
@@ -140,7 +140,7 @@ public class ControladorAdm {
                 }
                 cont++;
             }
-            telaAdm.mostraListaCadastro(relatorioCadastro);
+//            telaAdm.mostraListaCadastro(relatorioCadastro);
         }else{
             System.out.println("-> NÃO HÁ USUÁRIOS CADASTRADO NO SISTEMA");
         }
@@ -154,15 +154,15 @@ public class ControladorAdm {
                 switch (classe) {
                     case "Visitante":
                         if(((Visitante)pessoa).getId() == id){
-                            telaAdm.mostraTelaEditarVisitante(pessoa);
+//                            telaAdm.mostraTelaEditarVisitante(pessoa);
                         }   break;
                     case "UsuarioUFSC":
                         if(((UsuarioUFSC) pessoa).getMatricula() == id){
-                            telaAdm.mostraTelaEditarUsuarioUFSC(pessoa);
+//                            telaAdm.mostraTelaEditarUsuarioUFSC(pessoa);
                         }   break;
                     default:
                         if(((Estudante) pessoa).getMatricula() == id){
-                            telaAdm.mostraTelaEditarEstudante(pessoa);
+//                            telaAdm.mostraTelaEditarEstudante(pessoa);
                         }   break;         
                 }
             }
@@ -275,5 +275,12 @@ public class ControladorAdm {
         return (controladorAdm == null)? controladorAdm = new ControladorAdm() : controladorAdm;
 
     }
-            
+    public void mostraTela(){
+        telaAdm.setVisible(true);
+        
+    }
+    public void escondeTela(){
+        telaAdm.getContentPane().removeAll();
+        telaAdm.setVisible(false);
+    }        
 }
