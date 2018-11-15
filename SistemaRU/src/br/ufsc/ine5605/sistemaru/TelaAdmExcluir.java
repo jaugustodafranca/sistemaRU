@@ -5,6 +5,7 @@
  */
 package br.ufsc.ine5605.sistemaru;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -34,7 +35,7 @@ public class TelaAdmExcluir extends TelaPadrao {
     private GerenciadorBotoes gerenciadorBotoes;
     
     public TelaAdmExcluir(){
-
+        this.gerenciadorBotoes = new GerenciadorBotoes();
     }
     
     @Override
@@ -83,19 +84,13 @@ public class TelaAdmExcluir extends TelaPadrao {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         container.add(textFieldMatricula, gbc);
         
-        buttonExcluir = new JButton();
-        buttonExcluir.setText("Excluir");
-        buttonExcluir.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                // excluir a matricula se existir e devolve o saldo!
-            }
-        });
-        buttonExcluir.setPreferredSize(new Dimension(80, 40));
-        gbc.gridx = 4;
+        //BOTÃO EXCLUIR
+        gbc.gridx = 2;
         gbc.gridy = 3;
-        gbc.fill = GridBagConstraints.NONE;
+        buttonExcluir = new JButton("Excluir");
+        buttonExcluir.addActionListener(gerenciadorBotoes);
+        buttonExcluir.setPreferredSize(new Dimension(80, 50));
+        buttonExcluir.setBackground(Color.red);
         container.add(buttonExcluir, gbc);
         
         
@@ -103,15 +98,14 @@ public class TelaAdmExcluir extends TelaPadrao {
         //BOTAO VOLTAR 
         gbc.gridx = 0;
         gbc.gridy = 3;
-        gbc.gridwidth = 4;
         buttonVoltar = new JButton("Voltar");
         buttonVoltar.addActionListener(gerenciadorBotoes);
-        buttonVoltar.setPreferredSize(new Dimension(500, 50));
+        buttonVoltar.setPreferredSize(new Dimension(100, 50));
         container.add(buttonVoltar, gbc);
         
         
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         
     }
@@ -124,8 +118,9 @@ public class TelaAdmExcluir extends TelaPadrao {
             System.out.println("clicou: "+botao.getText());
             if(botao.equals(buttonVoltar)){
                 try{
-                    ControladorAdm.getInstance().getTelaAdm().mostraConteudoTela();
                     escondeTela();
+                    ControladorAdm.getInstance().getTelaAdm().mostraConteudoTela();
+                    
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);
