@@ -143,8 +143,8 @@ public class TelaAdm extends TelaPadrao{
             System.out.println("clicou: "+botao.getText());
             if(botao.equals(buttonCadastrar)){
                 try{
+                    ControladorAdm.getInstance().escondeTela();
                     ControladorAdm.getInstance().getTelaAdmCadastro().mostraConteudoTela();
-                    escondeTela();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);
@@ -152,7 +152,7 @@ public class TelaAdm extends TelaPadrao{
             
             }else if(botao.equals(buttonExcluir)){
                 try{
-                    escondeTela();
+                    ControladorAdm.getInstance().escondeTela();
                     ControladorAdm.getInstance().getTelaAdmExcluir().mostraConteudoTela();
                     
                 }catch(Exception e){
@@ -161,7 +161,7 @@ public class TelaAdm extends TelaPadrao{
                 }
             }else if(botao.equals(buttonEditar)){
                 try{
-                    escondeTela();
+                    ControladorAdm.getInstance().escondeTela();
                     ControladorAdm.getInstance().getTelaAdmEditar().mostraConteudoTela();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
@@ -169,7 +169,7 @@ public class TelaAdm extends TelaPadrao{
                 }
             }else if(botao.equals(buttonListar)){
                 try{
-                    escondeTela();
+                    ControladorAdm.getInstance().escondeTela();
                     ControladorAdm.getInstance().getTelaAdmListar().mostraConteudoTela();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
@@ -177,7 +177,7 @@ public class TelaAdm extends TelaPadrao{
                 }
             }else if(botao.equals(buttonVoltar)){
                 try{
-                    escondeTela();
+                    ControladorAdm.getInstance().escondeTela();
                     ControladorUsuario.getInstance().getTelaUsuario().mostraConteudoTela();
                     
                 }catch(Exception e){
@@ -188,9 +188,7 @@ public class TelaAdm extends TelaPadrao{
             
 
         }
-        public void escondeTela(){
-            setVisible(false);
-        }
+        
     }
 }       
     /*

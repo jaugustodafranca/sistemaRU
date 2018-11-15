@@ -58,8 +58,8 @@ public class TelaAdmCadastro extends TelaPadrao{
             System.out.println("clicou: "+botao.getText());
             if(botao.equals(buttonVoltar)){
                 try{
+                    ControladorAdm.getInstance().escondeTela();
                     ControladorAdm.getInstance().getTelaAdm().mostraConteudoTela();
-                    escondeTela();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);
