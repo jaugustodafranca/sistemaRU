@@ -92,7 +92,6 @@ public class TelaUsuario extends TelaPadrao{
         container.add(buttonSair, gbc);
         
         
-        setSize(600,400);
         setVisible(true);
         
         /*
@@ -253,6 +252,7 @@ public class TelaUsuario extends TelaPadrao{
                 //JOptionPane.showMessageDialog(null, mostraTelaSaldo());
                 
             }else if(botao.equals(buttonAdm)){
+                escondeTela();
                 ControladorPrincipal.getInstance().getControladorAdm().getTelaAdm().mostraConteudoTela();
                 
             }else if(botao.equals(buttonSair)){
@@ -263,5 +263,8 @@ public class TelaUsuario extends TelaPadrao{
 
             
         }
-    } 
+    }
+    public void escondeTela(){
+            setVisible(false);
+        }
 }

@@ -25,16 +25,21 @@ public class ControladorAdm {
     
     
     private TelaAdm telaAdm;
+    private TelaAdmCadastro telaAdmCadastro;
+    private TelaAdmExcluir telaAdmExcluir;
+    private TelaAdmEditar telaAdmEditar;
+    private TelaAdmListar telaAdmListar;
     private ConteudoTelaAdm conteudoTelaAdm;
 
     public ControladorAdm() {
         //this.pessoas = new ArrayList();
         this.mapeadorPessoa = new MapeadorPessoa();
-        this.telaAdm = new TelaAdm ();
+        this.telaAdm = new TelaAdm();
+        this.telaAdmCadastro = new TelaAdmCadastro();
+        this.telaAdmExcluir = new TelaAdmExcluir();
+        this.telaAdmEditar = new TelaAdmEditar();
+        this.telaAdmListar = new TelaAdmListar();
         this.conteudoTelaAdm = new ConteudoTelaAdm();
-
-        
-        
     }
 
     public ArrayList<Pessoa> getPessoas() {
@@ -202,6 +207,20 @@ public class ControladorAdm {
 
     public TelaAdm getTelaAdm() {
         return this.telaAdm;
+    }
+    
+    public TelaAdmCadastro getTelaAdmCadastro() {
+        return this.telaAdmCadastro;
+    }
+    
+    public TelaAdmExcluir getTelaAdmExcluir() {
+        return this.telaAdmExcluir;
+    }
+    public TelaAdmEditar getTelaAdmEditar() {
+        return this.telaAdmEditar;
+    }
+    public TelaAdmListar getTelaAdmListar() {
+        return this.telaAdmListar;
     }
 
     

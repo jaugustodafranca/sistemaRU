@@ -36,8 +36,6 @@ public class TelaAdm extends TelaPadrao{
     private JButton buttonPassarDia;
     private JButton buttonPassarMes;
     private JButton buttonvoltar;
-    private JTable tablePessoas;
-    private JScrollPane spBaseTable;
     private GerenciadorBotoes gerenciadorBotoes;
 
     public TelaAdm(){
@@ -58,7 +56,7 @@ public class TelaAdm extends TelaPadrao{
         gbc.gridy = 0;
         buttonCadastrar = new JButton("Cadastrar");
         buttonCadastrar.addActionListener(gerenciadorBotoes);
-        buttonCadastrar.setPreferredSize(new Dimension(100, 50));
+        buttonCadastrar.setPreferredSize(new Dimension(125, 50));
         container.add(buttonCadastrar, gbc);
         
         //BOTAO EXCLUIR 
@@ -66,7 +64,7 @@ public class TelaAdm extends TelaPadrao{
         gbc.gridy = 0;
         buttonExcluir = new JButton("Excluir");
         buttonExcluir.addActionListener(gerenciadorBotoes);
-        buttonExcluir.setPreferredSize(new Dimension(100, 50));
+        buttonExcluir.setPreferredSize(new Dimension(125, 50));
         container.add(buttonExcluir, gbc);
         
         //BOTAO EDITAR 
@@ -74,7 +72,7 @@ public class TelaAdm extends TelaPadrao{
         gbc.gridy = 0;
         buttonEditar = new JButton("Editar");
         buttonEditar.addActionListener(gerenciadorBotoes);
-        buttonEditar.setPreferredSize(new Dimension(100, 50));
+        buttonEditar.setPreferredSize(new Dimension(125, 50));
         container.add(buttonEditar, gbc);
         
         //BOTAO LISTAR 
@@ -82,7 +80,7 @@ public class TelaAdm extends TelaPadrao{
         gbc.gridy = 0;
         buttonListar = new JButton("Listar");
         buttonListar.addActionListener(gerenciadorBotoes);
-        buttonListar.setPreferredSize(new Dimension(100, 50));
+        buttonListar.setPreferredSize(new Dimension(125, 50));
         container.add(buttonListar, gbc);
         
         //BOTAO ADICIONAR SALDO 
@@ -91,7 +89,7 @@ public class TelaAdm extends TelaPadrao{
         gbc.gridwidth = 2;
         buttonAdicionarSaldo = new JButton("Adicionar Saldo");
         buttonAdicionarSaldo.addActionListener(gerenciadorBotoes);
-        buttonAdicionarSaldo.setPreferredSize(new Dimension(200, 50));
+        buttonAdicionarSaldo.setPreferredSize(new Dimension(250, 50));
         container.add(buttonAdicionarSaldo, gbc);
         
         //BOTAO RELATORIO RU 
@@ -100,7 +98,7 @@ public class TelaAdm extends TelaPadrao{
         gbc.gridwidth = 2;
         buttonRelatorioRu = new JButton("Relatório RU");
         buttonRelatorioRu.addActionListener(gerenciadorBotoes);
-        buttonRelatorioRu.setPreferredSize(new Dimension(200, 50));
+        buttonRelatorioRu.setPreferredSize(new Dimension(250, 50));
         container.add(buttonRelatorioRu, gbc);
         
         //BOTAO PASSAR DIA 
@@ -109,7 +107,7 @@ public class TelaAdm extends TelaPadrao{
         gbc.gridwidth = 2;
         buttonPassarDia = new JButton("Passar Dia");
         buttonPassarDia.addActionListener(gerenciadorBotoes);
-        buttonPassarDia.setPreferredSize(new Dimension(200, 50));
+        buttonPassarDia.setPreferredSize(new Dimension(250, 50));
         container.add(buttonPassarDia, gbc);
         
         //BOTAO PASSAR MÊS  
@@ -118,7 +116,7 @@ public class TelaAdm extends TelaPadrao{
         gbc.gridwidth = 2;
         buttonPassarMes = new JButton("Passar Mês");
         buttonPassarMes.addActionListener(gerenciadorBotoes);
-        buttonPassarMes.setPreferredSize(new Dimension(200, 50));
+        buttonPassarMes.setPreferredSize(new Dimension(250, 50));
         container.add(buttonPassarMes, gbc);
         
         //BOTAO VOLTAR 
@@ -128,58 +126,73 @@ public class TelaAdm extends TelaPadrao{
         gbc.gridwidth = 4;
         buttonvoltar = new JButton("Voltar");
         buttonvoltar.addActionListener(gerenciadorBotoes);
-        buttonvoltar.setPreferredSize(new Dimension(400, 50));
+        buttonvoltar.setPreferredSize(new Dimension(500, 50));
         container.add(buttonvoltar, gbc);
         
         
         
         
-        setSize(new Dimension(600, 400));
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     private class GerenciadorBotoes implements ActionListener{
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-    }
-    
-    private void TelaCadastro(){
-        
-        Container container = getContentPane();
-        container.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        
-        tablePessoas = new JTable();
-        tablePessoas.setPreferredScrollableViewportSize(new Dimension(500, 300));
-        tablePessoas.setFillsViewportHeight(true);
-        gbc.fill = GridBagConstraints.CENTER;
-        spBaseTable = new JScrollPane(tablePessoas);
-        container.add(spBaseTable,gbc);
-        
-              
-        
-        setSize(new Dimension(600, 400));
-        setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-    }
-    private void updateData(){
-        DefaultTableModel modelTbItens = new DefaultTableModel();
-        modelTbItens.addColumn("Nome");
-        modelTbItens.addColumn("Tipo de Cadastro");
-        modelTbItens.addColumn("ID/Matrícula");
-        
-        for (Pessoa pessoa: ControladorAdm.getInstance().getControladorPrincipal().MapeadorPessoas.{
+        public void actionPerformed(ActionEvent ae) {
+            JButton botao = (JButton) ae.getSource();
+            System.out.println("clicou: "+botao.getText());
+            if(botao.equals(buttonCadastrar)){
+                try{
+                    ControladorAdm.getInstance().getTelaAdmCadastro().mostraConteudoTela();
+                    escondeTela();
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                    System.out.println(e);
+                }
             
+            }else if(botao.equals(buttonExcluir)){
+                try{
+                    escondeTela();
+                    ControladorAdm.getInstance().getTelaAdmExcluir().mostraConteudoTela();
+                    
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                    System.out.println(e);
+                }
+            }else if(botao.equals(buttonEditar)){
+                try{
+                    escondeTela();
+                    ControladorAdm.getInstance().getTelaAdmEditar().mostraConteudoTela();
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                    System.out.println(e);
+                }
+            }else if(botao.equals(buttonListar)){
+                try{
+                    escondeTela();
+                    ControladorAdm.getInstance().getTelaAdmListar().mostraConteudoTela();
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                    System.out.println(e);
+                }
+            }else if(botao.equals(buttonvoltar)){
+                try{
+                    escondeTela();
+                    ControladorUsuario.getInstance().getTelaUsuario().mostraConteudoTela();
+                    
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                    System.out.println(e);
+                }
+            }    
+            
+
         }
-        
+        public void escondeTela(){
+            setVisible(false);
+        }
     }
-    
-    
-}    
+}       
     /*
     @Override
     public void mostraConteudoTela() {
