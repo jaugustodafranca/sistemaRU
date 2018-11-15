@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.text.NumberFormatter;
 
 /**
@@ -29,6 +30,8 @@ public class TelaAdmExcluir extends TelaPadrao {
     private JLabel labelmatricula;
     private JFormattedTextField textFieldMatricula;
     private JButton buttonExcluir;
+    private JButton buttonVoltar;
+    private GerenciadorBotoes gerenciadorBotoes;
     
     public TelaAdmExcluir(){
 
@@ -97,14 +100,40 @@ public class TelaAdmExcluir extends TelaPadrao {
         
         
         
+        //BOTAO VOLTAR 
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 4;
+        buttonVoltar = new JButton("Voltar");
+        buttonVoltar.addActionListener(gerenciadorBotoes);
+        buttonVoltar.setPreferredSize(new Dimension(500, 50));
+        container.add(buttonVoltar, gbc);
         
-        setSize(new Dimension(600, 400));
+        
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         
     }
     
-  
+    private class GerenciadorBotoes implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            JButton botao = (JButton) ae.getSource();
+            System.out.println("clicou: "+botao.getText());
+            if(botao.equals(buttonVoltar)){
+                try{
+                    ControladorAdm.getInstance().getTelaAdm().mostraConteudoTela();
+                    escondeTela();
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                    System.out.println(e);
+                }
+            
+            }
+        }
+        
+    }
     
 }

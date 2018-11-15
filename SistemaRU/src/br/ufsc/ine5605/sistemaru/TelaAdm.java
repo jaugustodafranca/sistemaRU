@@ -35,7 +35,7 @@ public class TelaAdm extends TelaPadrao{
     private JButton buttonRelatorioRu;
     private JButton buttonPassarDia;
     private JButton buttonPassarMes;
-    private JButton buttonvoltar;
+    private JButton buttonVoltar;
     private GerenciadorBotoes gerenciadorBotoes;
 
     public TelaAdm(){
@@ -124,10 +124,10 @@ public class TelaAdm extends TelaPadrao{
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.gridwidth = 4;
-        buttonvoltar = new JButton("Voltar");
-        buttonvoltar.addActionListener(gerenciadorBotoes);
-        buttonvoltar.setPreferredSize(new Dimension(500, 50));
-        container.add(buttonvoltar, gbc);
+        buttonVoltar = new JButton("Voltar");
+        buttonVoltar.addActionListener(gerenciadorBotoes);
+        buttonVoltar.setPreferredSize(new Dimension(500, 50));
+        container.add(buttonVoltar, gbc);
         
         
         
@@ -175,7 +175,7 @@ public class TelaAdm extends TelaPadrao{
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);
                 }
-            }else if(botao.equals(buttonvoltar)){
+            }else if(botao.equals(buttonVoltar)){
                 try{
                     escondeTela();
                     ControladorUsuario.getInstance().getTelaUsuario().mostraConteudoTela();

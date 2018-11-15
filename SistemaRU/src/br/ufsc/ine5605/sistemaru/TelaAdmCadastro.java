@@ -11,7 +11,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,6 +22,7 @@ import javax.swing.JFrame;
 public class TelaAdmCadastro extends TelaPadrao{
 
     private GerenciadorBotoes gerenciadorBotoes;
+    private JButton buttonVoltar;
     
     public TelaAdmCadastro(){
         this.gerenciadorBotoes = new GerenciadorBotoes();
@@ -31,6 +34,15 @@ public class TelaAdmCadastro extends TelaPadrao{
         GridBagConstraints gbc = new GridBagConstraints();
         
         
+        //BOTAO VOLTAR 
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 4;
+        buttonVoltar = new JButton("Voltar");
+        buttonVoltar.addActionListener(gerenciadorBotoes);
+        buttonVoltar.setPreferredSize(new Dimension(500, 50));
+        container.add(buttonVoltar, gbc);
+        
         setSize(new Dimension(600, 400));
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,8 +53,19 @@ public class TelaAdmCadastro extends TelaPadrao{
     private class GerenciadorBotoes implements ActionListener{
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public void actionPerformed(ActionEvent ae) {
+            JButton botao = (JButton) ae.getSource();
+            System.out.println("clicou: "+botao.getText());
+            if(botao.equals(buttonVoltar)){
+                try{
+                    ControladorAdm.getInstance().getTelaAdm().mostraConteudoTela();
+                    escondeTela();
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                    System.out.println(e);
+                }
+            
+            }
         }
     }
     
