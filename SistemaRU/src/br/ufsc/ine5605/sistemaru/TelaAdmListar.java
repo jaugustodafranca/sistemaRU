@@ -73,7 +73,7 @@ public class TelaAdmListar extends TelaPadrao {
         
         buttonCadastrar = new JButton("Cadastrar");
         buttonCadastrar.addActionListener(gerenciadorBotoes);
-        buttonCadastrar.setPreferredSize(new Dimension(150, 50));
+        buttonCadastrar.setPreferredSize(new Dimension(183, 50));
         container.add(buttonCadastrar, gbc);
         
         //BOTAO EXCLUIR 
@@ -81,7 +81,7 @@ public class TelaAdmListar extends TelaPadrao {
         gbc.gridy = 1;
         buttonExcluir = new JButton("Excluir");
         buttonExcluir.addActionListener(gerenciadorBotoes);
-        buttonExcluir.setPreferredSize(new Dimension(150, 50));
+        buttonExcluir.setPreferredSize(new Dimension(183, 50));
         container.add(buttonExcluir, gbc);
         
         //BOTAO EDITAR 
@@ -89,7 +89,7 @@ public class TelaAdmListar extends TelaPadrao {
         gbc.gridy = 1;
         buttonEditar = new JButton("Editar");
         buttonEditar.addActionListener(gerenciadorBotoes);
-        buttonEditar.setPreferredSize(new Dimension(150, 50));
+        buttonEditar.setPreferredSize(new Dimension(183, 50));
         container.add(buttonEditar, gbc);
      
     
