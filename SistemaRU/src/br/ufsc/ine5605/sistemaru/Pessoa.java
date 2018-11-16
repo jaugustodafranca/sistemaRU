@@ -17,8 +17,8 @@ import java.util.HashMap;
 public abstract class Pessoa implements Crebitavel, Serializable{
     
     public static final long serialVersionUID = 1L; 
-    String nome;
-    float saldo;
+    private String nome;
+    private float saldo;
     private HashMap<Date, ArrayList<TipoRefeicao>>registrosRefeicoes;
 
     public Pessoa(String nome) {

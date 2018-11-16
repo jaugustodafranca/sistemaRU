@@ -37,6 +37,10 @@ public class TelaAdmListar extends TelaPadrao {
         this.gerenciadorBotoes = new GerenciadorBotoes();
     }
     
+    public JTable getTabela() {
+        return tabela;
+    }
+    
     @Override
     public void mostraConteudoTela() {
     
@@ -118,6 +122,7 @@ public class TelaAdmListar extends TelaPadrao {
             JButton botao = (JButton) ae.getSource();
             TelaPadrao telaListar = ControladorAdm.getInstance().getTelaAdmListar();
             System.out.println("clicou: "+botao.getText());
+            int linhaSelecionada = ControladorAdm.getInstance().getTelaAdmListar().getTabela().getSelectedRow();
             if(botao.equals(buttonVoltar)){
                 try{
                     ControladorAdm.getInstance().escondeTela(telaListar);
@@ -146,7 +151,7 @@ public class TelaAdmListar extends TelaPadrao {
             }else if(botao.equals(buttonEditar)){
                 try{
                     ControladorAdm.getInstance().escondeTela(telaListar);
-                    ControladorAdm.getInstance().chamaTelaAdmEditar();
+                    ControladorAdm.getInstance().chamaTelaAdmEditar(linhaSelecionada);
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);

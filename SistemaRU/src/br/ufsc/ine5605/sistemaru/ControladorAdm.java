@@ -325,8 +325,9 @@ public class ControladorAdm {
     public void chamaTelaAdmCadastro(){
         telaAdmCadastro.mostraConteudoTela();
     }
-    public void chamaTelaAdmEditar(){
-        telaAdmEditar.mostraConteudoTela();
+    public void chamaTelaAdmEditar(int linha){
+        Pessoa pessoa = mapeadorPessoa.getList().get(linha);
+        telaAdmEditar.mostraConteudoTela(pessoa);
     }
     public void chamaTelaAdmExcluir(){
         telaAdmExcluir.mostraConteudoTela();
