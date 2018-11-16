@@ -51,6 +51,9 @@ public class TelaAdmListar extends TelaPadrao {
         painelFundo = new JPanel();
         
         tabela = new JTable(pessoas,colunas);
+        tabela.setPreferredScrollableViewportSize(tabela.getPreferredSize());
+        tabela.setFillsViewportHeight(true);
+
         barraRolagem = new JScrollPane(tabela);
         painelFundo.add(barraRolagem); 
         //container.add(painelFundo);
