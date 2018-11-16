@@ -59,7 +59,7 @@ public class TelaAdmListar extends TelaPadrao {
         gbc.gridwidth = 3;
         painelFundo = new JPanel();
         tabela = new JTable(pessoas,colunas);
-        tabela.setPreferredScrollableViewportSize(new Dimension(500, 100));
+        tabela.setPreferredScrollableViewportSize(new Dimension(600, 100));
         tabela.setFillsViewportHeight(true);
         barraRolagem = new JScrollPane(tabela);
         painelFundo.add(barraRolagem); 
@@ -73,7 +73,7 @@ public class TelaAdmListar extends TelaPadrao {
         
         buttonCadastrar = new JButton("Cadastrar");
         buttonCadastrar.addActionListener(gerenciadorBotoes);
-        buttonCadastrar.setPreferredSize(new Dimension(183, 50));
+        buttonCadastrar.setPreferredSize(new Dimension(200, 50));
         container.add(buttonCadastrar, gbc);
         
         //BOTAO EXCLUIR 
@@ -81,7 +81,7 @@ public class TelaAdmListar extends TelaPadrao {
         gbc.gridy = 1;
         buttonExcluir = new JButton("Excluir");
         buttonExcluir.addActionListener(gerenciadorBotoes);
-        buttonExcluir.setPreferredSize(new Dimension(183, 50));
+        buttonExcluir.setPreferredSize(new Dimension(200, 50));
         container.add(buttonExcluir, gbc);
         
         //BOTAO EDITAR 
@@ -89,7 +89,7 @@ public class TelaAdmListar extends TelaPadrao {
         gbc.gridy = 1;
         buttonEditar = new JButton("Editar");
         buttonEditar.addActionListener(gerenciadorBotoes);
-        buttonEditar.setPreferredSize(new Dimension(183, 50));
+        buttonEditar.setPreferredSize(new Dimension(200, 50));
         container.add(buttonEditar, gbc);
      
     
@@ -99,7 +99,7 @@ public class TelaAdmListar extends TelaPadrao {
         gbc.gridwidth = 3;
         buttonVoltar = new JButton("Voltar");
         buttonVoltar.addActionListener(gerenciadorBotoes);
-        buttonVoltar.setPreferredSize(new Dimension(500, 50));
+        buttonVoltar.setPreferredSize(new Dimension(600, 50));
         container.add(buttonVoltar, gbc);
         
         

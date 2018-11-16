@@ -319,7 +319,7 @@ public class ControladorAdm {
                 dados[i][2] = ((UsuarioUFSC)pessoa).getMatricula();
             }
         }
-        System.out.println(dados[0][0]);
+        
         telaAdmListar.mostraConteudoTela(dados);
     }
     public void chamaTelaAdmCadastro(){
