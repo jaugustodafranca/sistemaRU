@@ -62,7 +62,6 @@ public class TelaAdmExcluir extends TelaPadrao {
         gbc.gridheight = 1;
         container.add(labelmatricula, gbc);
         
-        // O QUE FAZ ISSO ?
         NumberFormat format = NumberFormat.getInstance();
         NumberFormatter formatter = new NumberFormatter(format) {
             public Object stringToValue(String string)
@@ -80,7 +79,6 @@ public class TelaAdmExcluir extends TelaPadrao {
         formatter.setCommitsOnValidEdit(true);
         textFieldMatricula = new JFormattedTextField(formatter);
         textFieldMatricula.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
-        // ATÉ AQUI
         gbc.gridx = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         container.add(textFieldMatricula, gbc);

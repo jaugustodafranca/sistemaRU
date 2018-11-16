@@ -11,9 +11,15 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.text.NumberFormatter;
 
 /**
  *
@@ -21,8 +27,13 @@ import javax.swing.JOptionPane;
  */
 public class TelaAdmCadastro extends TelaPadrao{
 
+    private JLabel labelNome;
+    private JLabel labelTitulo;
+    private JFormattedTextField textFieldNome;
+    private JButton buttonCadastrar;
     private GerenciadorBotoes gerenciadorBotoes;
     private JButton buttonVoltar;
+    private JComboBox box;
     
     public TelaAdmCadastro(){
         this.gerenciadorBotoes = new GerenciadorBotoes();
@@ -33,6 +44,41 @@ public class TelaAdmCadastro extends TelaPadrao{
         Container container = getContentPane();
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
+        /*
+        //CAMPO NOME
+        labelNome = new JLabel();
+        labelNome.setText("Nome: ");
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+        container.add(labelNome, gbc);
+        
+        
+        textFieldNome = new JFormattedTextField();
+        gbc.gridx = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        container.add(textFieldNome, gbc);*/
+        
+        //CAMPO MATRICULA
+        labelTitulo = new JLabel();
+        labelTitulo.setText("Selecione o tipo de usuário:        ");
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+       
+        container.add(labelTitulo, gbc);
+        
+        String [] tiposDeCadastros = {"USUÁRIO UFSC", "ESTUDANTE", "VISITANTE"};
+        box = new JComboBox(tiposDeCadastros);
+        JLabel lbltext = new JLabel();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        container.add(box,gbc);
+        
+        box.setSelectedIndex(1);
+        box.addActionListener(gerenciadorBotoes);
+        
+        
         
         
         //BOTAO VOLTAR 
@@ -50,23 +96,60 @@ public class TelaAdmCadastro extends TelaPadrao{
         
         
     }
+    public void AdicionaCamposUsuario(){
+        Container container = getContentPane();
+        container.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        labelNome = new JLabel();
+        labelNome.setText("Nome: ");
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+        container.add(labelNome, gbc);
+        
+        textFieldNome = new JFormattedTextField();
+        textFieldNome.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+        gbc.gridx = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        container.add(textFieldNome, gbc);
+        
+    }
+    public void AdicionaCamposEstudante(){
+        
+    }
+    public void AdicionaCamposVisitante(){
+        
+    }
     
     private class GerenciadorBotoes implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
+            TelaPadrao telaCadastro = ControladorAdm.getInstance().getTelaAdmListar();
+            JComboBox botaoBox = (JComboBox) ae.getSource();
+            String tipo = (String)botaoBox.getSelectedItem();
+            System.out.println("clicou: "+botaoBox.getName());
+            switch (tipo){
+                case "USUÁRIO UFSC": AdicionaCamposUsuario();
+                    break;
+            }
+            
+            
             JButton botao = (JButton) ae.getSource();
-            TelaPadrao telaCadastro = ControladorAdm.getInstance().getTelaAdmCadastro();
+            
             System.out.println("clicou: "+botao.getText());
             if(botao.equals(buttonVoltar)){
                 try{
                     ControladorAdm.getInstance().escondeTela(telaCadastro);
+                    ControladorAdm.getInstance().chamaTelaAdmListar();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);
                 }
             
             }
+            
         }
     }
     
