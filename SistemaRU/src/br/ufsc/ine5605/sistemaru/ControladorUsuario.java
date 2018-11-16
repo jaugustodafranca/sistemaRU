@@ -168,4 +168,7 @@ public class ControladorUsuario {
         return (controladorUsuario == null)? controladorUsuario = new ControladorUsuario() : controladorUsuario;
 
     }
+    public void chamaTelaUsuario(){
+        telaUsuario.mostraConteudoTela();
+    }
 }

@@ -122,7 +122,8 @@ public class TelaAdm extends TelaPadrao{
             System.out.println("clicou: "+botao.getText());
             if(botao.equals(buttonListar)){
                 try{
-                    ControladorAdm.getInstance().escondeTela(telAdm);
+                    getContentPane().removeAll();
+                    escondeTela();
                     ControladorAdm.getInstance().chamaTelaAdmListar();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
@@ -130,8 +131,10 @@ public class TelaAdm extends TelaPadrao{
                 }
             }else if(botao.equals(buttonVoltar)){
                 try{
-                    ControladorUsuario.getInstance().getTelaUsuario().mostraConteudoTela();
+                    getContentPane().removeAll();
                     escondeTela();
+                    ControladorUsuario.getInstance().chamaTelaUsuario();
+                    
                     
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());

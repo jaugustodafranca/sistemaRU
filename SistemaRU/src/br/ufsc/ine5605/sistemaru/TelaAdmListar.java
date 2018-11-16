@@ -125,14 +125,17 @@ public class TelaAdmListar extends TelaPadrao {
             int linhaSelecionada = ControladorAdm.getInstance().getTelaAdmListar().getTabela().getSelectedRow();
             if(botao.equals(buttonVoltar)){
                 try{
-                    ControladorAdm.getInstance().escondeTela(telaListar);
+                    getContentPane().removeAll();
+                    escondeTela();
+                    ControladorAdm.getInstance().mostraTela();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);
                 }
             }else if(botao.equals(buttonCadastrar)){
                 try{
-                    ControladorAdm.getInstance().escondeTela(telaListar);
+                    getContentPane().removeAll();
+                    escondeTela();
                     ControladorAdm.getInstance().chamaTelaAdmCadastro();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
@@ -141,7 +144,8 @@ public class TelaAdmListar extends TelaPadrao {
             
             }else if(botao.equals(buttonExcluir)){
                 try{
-                    ControladorAdm.getInstance().escondeTela(telaListar);
+                    getContentPane().removeAll();
+                    escondeTela();
                     ControladorAdm.getInstance().chamaTelaAdmExcluir();
                     
                 }catch(Exception e){
@@ -150,7 +154,8 @@ public class TelaAdmListar extends TelaPadrao {
                 }
             }else if(botao.equals(buttonEditar)){
                 try{
-                    ControladorAdm.getInstance().escondeTela(telaListar);
+                    getContentPane().removeAll();
+                    escondeTela();
                     ControladorAdm.getInstance().chamaTelaAdmEditar(linhaSelecionada);
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());

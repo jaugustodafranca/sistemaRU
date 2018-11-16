@@ -302,6 +302,7 @@ public class ControladorAdm {
 
     }
     public void mostraTela(){
+        telaAdm.mostraConteudoTela();
         telaAdm.setVisible(true);
         
     }
