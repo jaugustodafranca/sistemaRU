@@ -55,10 +55,11 @@ public class TelaAdmCadastro extends TelaPadrao{
         @Override
         public void actionPerformed(ActionEvent ae) {
             JButton botao = (JButton) ae.getSource();
+            TelaPadrao telaCadastro = ControladorAdm.getInstance().getTelaAdmCadastro();
             System.out.println("clicou: "+botao.getText());
             if(botao.equals(buttonVoltar)){
                 try{
-                    ControladorAdm.getInstance().escondeTela();
+                    ControladorAdm.getInstance().escondeTela(telaCadastro);
                     ControladorAdm.getInstance().getTelaAdm().mostraConteudoTela();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());

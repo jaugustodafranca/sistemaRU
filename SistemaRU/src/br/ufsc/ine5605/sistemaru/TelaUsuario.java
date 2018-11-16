@@ -12,6 +12,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -92,7 +93,9 @@ public class TelaUsuario extends TelaPadrao{
         container.add(buttonSair, gbc);
         
         
+        setSize(new Dimension(600, 400));
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         /*
         int opcao = -1;

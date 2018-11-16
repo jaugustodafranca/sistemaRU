@@ -298,8 +298,12 @@ public class ControladorAdm {
         telaAdm.setVisible(true);
         
     }
-    public void escondeTela(){
-        telaAdm.getContentPane().removeAll();
-        telaAdm.setVisible(false);
-    }        
+    public void escondeTela(TelaPadrao tela){
+        tela.getContentPane().removeAll();
+        tela.setVisible(false);
+    }
+    
+    public MapeadorPessoa getMapeadorPessoa(){
+        return this.mapeadorPessoa;
+    }
 }

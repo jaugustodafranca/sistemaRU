@@ -42,6 +42,7 @@ public class TelaAdmListar extends TelaPadrao {
         container.add(buttonVoltar, gbc);
         
         
+        setSize(new Dimension(600, 400));
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -53,11 +54,12 @@ public class TelaAdmListar extends TelaPadrao {
         @Override
         public void actionPerformed(ActionEvent ae) {
             JButton botao = (JButton) ae.getSource();
+            TelaPadrao telaListar = ControladorAdm.getInstance().getTelaAdmListar();
             System.out.println("clicou: "+botao.getText());
             if(botao.equals(buttonVoltar)){
                 try{
+                    ControladorAdm.getInstance().escondeTela(telaListar);
                     ControladorAdm.getInstance().getTelaAdm().mostraConteudoTela();
-                    escondeTela();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);
