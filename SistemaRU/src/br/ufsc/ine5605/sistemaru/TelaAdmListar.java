@@ -75,24 +75,23 @@ public class TelaAdmListar extends TelaPadrao {
         buttonCadastrar.addActionListener(gerenciadorBotoes);
         buttonCadastrar.setPreferredSize(new Dimension(200, 50));
         container.add(buttonCadastrar, gbc);
-        
-        //BOTAO EXCLUIR 
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        buttonExcluir = new JButton("Excluir");
-        buttonExcluir.addActionListener(gerenciadorBotoes);
-        buttonExcluir.setPreferredSize(new Dimension(200, 50));
-        container.add(buttonExcluir, gbc);
-        
+                     
         //BOTAO EDITAR 
-        gbc.gridx = 2;
+        gbc.gridx = 1;
         gbc.gridy = 1;
         buttonEditar = new JButton("Editar");
         buttonEditar.addActionListener(gerenciadorBotoes);
         buttonEditar.setPreferredSize(new Dimension(200, 50));
         container.add(buttonEditar, gbc);
      
-    
+        //BOTAO EXCLUIR 
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        buttonExcluir = new JButton("Excluir");
+        buttonExcluir.addActionListener(gerenciadorBotoes);
+        buttonExcluir.setPreferredSize(new Dimension(200, 50));
+        container.add(buttonExcluir, gbc);
+        
         //BOTAO VOLTAR 
         gbc.gridx = 0;
         gbc.gridy = 2;

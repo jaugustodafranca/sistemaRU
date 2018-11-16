@@ -56,7 +56,7 @@ class TelaPrincipal extends TelaPadrao{
         container.add(labelTitulo, gbc);
         
         labelLogin = new JLabel();
-        labelLogin.setText("Matricula");
+        labelLogin.setText("Matrícula: ");
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridwidth = 2;
