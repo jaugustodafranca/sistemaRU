@@ -47,11 +47,14 @@ public class TelaAdmListar extends TelaPadrao {
         Object [][] pessoas = dados;
         String [] colunas = {"Nome","Tipo de Cadastro", "Matrícula"};
         
+        
+        painelFundo = new JPanel();
+        
         tabela = new JTable(pessoas,colunas);
         barraRolagem = new JScrollPane(tabela);
         painelFundo.add(barraRolagem); 
         //container.add(painelFundo);
-        container.add(painelFundo, gbc);
+        container.add(painelFundo,gbc);
      
     
         //BOTAO VOLTAR 
