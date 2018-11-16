@@ -115,6 +115,8 @@ public class TelaAdmCadastro extends TelaPadrao{
         gbc.fill = GridBagConstraints.HORIZONTAL;
         container.add(textFieldNome, gbc);
         
+        setVisible(true);
+        
     }
     public void AdicionaCamposEstudante(){
         
@@ -128,14 +130,6 @@ public class TelaAdmCadastro extends TelaPadrao{
         @Override
         public void actionPerformed(ActionEvent ae) {
             TelaPadrao telaCadastro = ControladorAdm.getInstance().getTelaAdmListar();
-            JComboBox botaoBox = (JComboBox) ae.getSource();
-            String tipo = (String)botaoBox.getSelectedItem();
-            System.out.println("clicou: "+tipo);
-            switch (tipo){
-                case "USUÁRIO UFSC": AdicionaCamposUsuario();
-                    break;
-            }
-            
             if(ae.getSource() instanceof JButton){
                 JButton botao = (JButton) ae.getSource();
 
@@ -149,6 +143,14 @@ public class TelaAdmCadastro extends TelaPadrao{
                         System.out.println(e);
                     }
 
+                }
+            }else{
+                JComboBox botaoBox = (JComboBox) ae.getSource();
+                String tipo = (String)botaoBox.getSelectedItem();
+                System.out.println("clicou: "+tipo);
+                switch (tipo){
+                    case "USUÁRIO UFSC": AdicionaCamposUsuario();
+                        break;
                 }
             }
         }
