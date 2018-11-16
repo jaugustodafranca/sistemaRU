@@ -28,6 +28,7 @@ public class TelaAdmListar extends TelaPadrao {
     }
     @Override
     public void mostraConteudoTela() {
+        getContentPane().removeAll();
         Container container = getContentPane();
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -59,7 +60,6 @@ public class TelaAdmListar extends TelaPadrao {
             if(botao.equals(buttonVoltar)){
                 try{
                     ControladorAdm.getInstance().escondeTela(telaListar);
-                    ControladorAdm.getInstance().getTelaAdm().mostraConteudoTela();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);

@@ -46,7 +46,7 @@ public class TelaAdm extends TelaPadrao{
     
     @Override
     public void mostraConteudoTela(){
-        
+        getContentPane().removeAll();
         Container container = getContentPane();
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
