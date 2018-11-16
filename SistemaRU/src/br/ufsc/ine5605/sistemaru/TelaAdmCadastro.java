@@ -135,21 +135,21 @@ public class TelaAdmCadastro extends TelaPadrao{
                     break;
             }
             
-            
-            JButton botao = (JButton) ae.getSource();
-            
-            System.out.println("clicou: "+botao.getText());
-            if(botao.equals(buttonVoltar)){
-                try{
-                    ControladorAdm.getInstance().escondeTela(telaCadastro);
-                    ControladorAdm.getInstance().chamaTelaAdmListar();
-                }catch(Exception e){
-                    JOptionPane.showMessageDialog(null, e.getMessage());
-                    System.out.println(e);
+            if(ae.getSource() instanceof JButton){
+                JButton botao = (JButton) ae.getSource();
+
+                System.out.println("clicou: "+botao.getText());
+                if(botao.equals(buttonVoltar)){
+                    try{
+                        ControladorAdm.getInstance().escondeTela(telaCadastro);
+                        ControladorAdm.getInstance().chamaTelaAdmListar();
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                        System.out.println(e);
+                    }
+
                 }
-            
             }
-            
         }
     }
     
