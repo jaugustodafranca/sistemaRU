@@ -80,7 +80,7 @@ public class TelaUsuario extends TelaPadrao{
         if(ControladorUsuario.getInstance().getPessoa() instanceof UsuarioUFSC && ((UsuarioUFSC)ControladorUsuario.getInstance().getPessoa()).isAdmin()){
             gbc.gridx = 0;
             gbc.gridy = 2;
-            buttonAdm = new JButton("Menu Adm");
+            buttonAdm = new JButton("Menu ADM");
             buttonAdm.addActionListener(gerenciadorBotoes);
             buttonAdm.setPreferredSize(new Dimension(150, 100));
             container.add(buttonAdm, gbc);

@@ -6,6 +6,7 @@
 package br.ufsc.ine5605.sistemaru;
 
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -108,9 +109,12 @@ class TelaPrincipal extends TelaPadrao{
             }
         });
         buttonEntrar.setPreferredSize(new Dimension(80, 40));
-        gbc.gridx = 4;
+        buttonEntrar.setBackground(Color.CYAN);
+        gbc.gridx = 2;
         gbc.gridy = 3;
-        gbc.fill = GridBagConstraints.NONE;
+        gbc.gridwidth =2;
+        
+        
         container.add(buttonEntrar, gbc);
         
       
