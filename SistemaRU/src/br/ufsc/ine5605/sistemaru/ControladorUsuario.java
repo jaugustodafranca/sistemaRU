@@ -48,6 +48,7 @@ public class ControladorUsuario {
     
     public void validaRefeicao(int i) throws SaldoInsuficienteException{
         TipoRefeicao tipo = null;
+        Date hoje = ControladorPrincipal.getInstance().getRestaurante().getDiaAtual();
         switch(i){
             case 1: tipo = TipoRefeicao.JANTA;
                     break;
@@ -56,28 +57,32 @@ public class ControladorUsuario {
         
         }
         
-        String classeCompleta = pessoa.getClass().toString();
-        String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
         float preco = 0;
         
         if(pessoa instanceof Visitante){
             preco = 6.1f;
         }else if(pessoa instanceof UsuarioUFSC){
-            preco = 2.9f;
-        }else{
             if(!((Estudante)pessoa).isIsencao()){
                 preco = 1.5f;
+            }else{
+                pessoa.adicionaRefeicao(hoje, tipo);
+                telaUsuario.mostraSucessoRefeicao();
+                ControladorAdm.getInstance().getMapeadorPessoa().put(pessoa);
+                return;
             }
+        }else{
+            preco = 2.9f;
         }
         
-        if(consultarSaldo() >= preco){
+        if(consultarSaldo() >= preco ){
             pessoa.descontaSaldo(preco);
-            Date hoje = ControladorPrincipal.getInstance().getRestaurante().getDiaAtual();
+            
             pessoa.adicionaRefeicao(hoje, tipo);
             telaUsuario.mostraSucessoRefeicao();
         }else{
-            throw new SaldoInsuficienteException();
+            //throw new SaldoInsuficienteException();
         }
+        ControladorAdm.getInstance().getMapeadorPessoa().put(pessoa);
     }
     
     public void mostraTela(){
@@ -116,13 +121,15 @@ public class ControladorUsuario {
             mesUltimo = cal.getTime();
             cal.add(Calendar.MONTH, -1);
             mesPenultimo = cal.getTime();
-            dia = mesPenultimo;
+            dia = new Date(mesPenultimo.getTime() -1000*60*60);
+            
             
         }catch(ParseException e){
             System.out.println(e);
         }
         
         while(dia.before(mesUltimo)){
+            System.out.println(dia);
             ArrayList mes = (ArrayList) refeicoes.get(dia);
             if(mes != null){
                 countMesPenultimo += mes.size();
@@ -130,6 +137,7 @@ public class ControladorUsuario {
             dia = new Date(dia.getTime() + (1000*60*60*24));
         }
         while(dia.before(mesAtual)){
+            System.out.println(dia);
             ArrayList mes = (ArrayList) refeicoes.get(dia);
             if(mes != null){
                 countMesUltimo += mes.size();
@@ -137,6 +145,7 @@ public class ControladorUsuario {
             dia = new Date(dia.getTime() + (1000*60*60*24));
         }        
         while(dia.before(mesQVem)){
+            
             ArrayList mes = (ArrayList) refeicoes.get(dia);
             if(mes != null){
                 countMes += mes.size();

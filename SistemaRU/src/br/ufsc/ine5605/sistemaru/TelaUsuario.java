@@ -199,18 +199,18 @@ public class TelaUsuario extends TelaPadrao{
         return "SUA REFEIÇÃO FOI REALIZADA COM SUCESSO\n"+mostraTelaSaldo();
     }
 
-    void mostraRelatorioUsuario(int nRefeicoesMes1, int nRefeicoesMes2, int nRefeicoesMes3) {
-        System.out.println();
-        System.out.println("#######################");
-        System.out.println("#####  RELATÓRIO  #####");
-        System.out.println("#######################");
-        System.out.println();
+    public void mostraRelatorioUsuario(int nRefeicoesMes1, int nRefeicoesMes2, int nRefeicoesMes3) {
+        String s = "#######################\n";
+        s += "#####   RELATÓRIO   #####\n";
+        s +="#######################\n";
         
-        System.out.println("REFEIÇÕES NO MES: "+nRefeicoesMes1);
-        System.out.println("REFEIÇÕES NO ÚLTIMO MES: "+nRefeicoesMes2);
-        System.out.println("REFEIÇÕES NO PENÚLTIMO MES: "+nRefeicoesMes3);
-        System.out.println("");
-        System.out.println("#######################");
+        s +="REFEIÇÕES NO MES: "+nRefeicoesMes1+"\n";
+        s +="REFEIÇÕES NO ÚLTIMO MES: "+nRefeicoesMes2+"\n";
+        s +="REFEIÇÕES NO PENÚLTIMO MES: "+nRefeicoesMes3+"\n";
+        s +="\n";
+        s +="#######################";
+        
+       JOptionPane.showMessageDialog(null, s);
     }
 
     
@@ -249,7 +249,7 @@ public class TelaUsuario extends TelaPadrao{
                 
             }else if(botao.equals(buttonRelatorio)){
                 ControladorUsuario.getInstance().relatorioRefeicao();
-                //JOptionPane.showMessageDialog(null, mostraTelaSaldo());
+                
                 
             }else if(botao.equals(buttonAdm)){
                 ControladorUsuario.getInstance().escondeTela();
