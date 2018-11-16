@@ -51,9 +51,10 @@ public class TelaAdm extends TelaPadrao{
         
         
         
-        //BOTAO LISTAR 
+        //BOTAO Cadastros 
         gbc.gridx = 0;
         gbc.gridy = 0;
+        gbc.gridwidth = 4;
         buttonListar = new JButton("Cadastros");
         buttonListar.addActionListener(gerenciadorBotoes);
         buttonListar.setPreferredSize(new Dimension(500, 50));
