@@ -27,9 +27,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaAdm extends TelaPadrao{
     
-    private JButton buttonCadastrar;
-    private JButton buttonExcluir;
-    private JButton buttonEditar;
+    
     private JButton buttonListar;
     private JButton buttonAdicionarSaldo;
     private JButton buttonRelatorioRu;
@@ -51,36 +49,14 @@ public class TelaAdm extends TelaPadrao{
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         
-        //BOTAO CADASTRAR
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        buttonCadastrar = new JButton("Cadastrar");
-        buttonCadastrar.addActionListener(gerenciadorBotoes);
-        buttonCadastrar.setPreferredSize(new Dimension(125, 50));
-        container.add(buttonCadastrar, gbc);
         
-        //BOTAO EXCLUIR 
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        buttonExcluir = new JButton("Excluir");
-        buttonExcluir.addActionListener(gerenciadorBotoes);
-        buttonExcluir.setPreferredSize(new Dimension(125, 50));
-        container.add(buttonExcluir, gbc);
-        
-        //BOTAO EDITAR 
-        gbc.gridx = 2;
-        gbc.gridy = 0;
-        buttonEditar = new JButton("Editar");
-        buttonEditar.addActionListener(gerenciadorBotoes);
-        buttonEditar.setPreferredSize(new Dimension(125, 50));
-        container.add(buttonEditar, gbc);
         
         //BOTAO LISTAR 
-        gbc.gridx = 3;
+        gbc.gridx = 0;
         gbc.gridy = 0;
-        buttonListar = new JButton("Listar");
+        buttonListar = new JButton("Cadastros");
         buttonListar.addActionListener(gerenciadorBotoes);
-        buttonListar.setPreferredSize(new Dimension(125, 50));
+        buttonListar.setPreferredSize(new Dimension(500, 50));
         container.add(buttonListar, gbc);
         
         //BOTAO ADICIONAR SALDO 
@@ -143,33 +119,7 @@ public class TelaAdm extends TelaPadrao{
             JButton botao = (JButton) ae.getSource();
             TelaPadrao telAdm = ControladorAdm.getInstance().getTelaAdm();
             System.out.println("clicou: "+botao.getText());
-            if(botao.equals(buttonCadastrar)){
-                try{
-                    ControladorAdm.getInstance().escondeTela(telAdm);
-                    ControladorAdm.getInstance().chamaTelaAdmCadastro();
-                }catch(Exception e){
-                    JOptionPane.showMessageDialog(null, e.getMessage());
-                    System.out.println(e);
-                }
-            
-            }else if(botao.equals(buttonExcluir)){
-                try{
-                    ControladorAdm.getInstance().escondeTela(telAdm);
-                    ControladorAdm.getInstance().chamaTelaAdmExcluir();
-                    
-                }catch(Exception e){
-                    JOptionPane.showMessageDialog(null, e.getMessage());
-                    System.out.println(e);
-                }
-            }else if(botao.equals(buttonEditar)){
-                try{
-                    ControladorAdm.getInstance().escondeTela(telAdm);
-                    ControladorAdm.getInstance().chamaTelaAdmEditar();
-                }catch(Exception e){
-                    JOptionPane.showMessageDialog(null, e.getMessage());
-                    System.out.println(e);
-                }
-            }else if(botao.equals(buttonListar)){
+            if(botao.equals(buttonListar)){
                 try{
                     ControladorAdm.getInstance().escondeTela(telAdm);
                     ControladorAdm.getInstance().chamaTelaAdmListar();

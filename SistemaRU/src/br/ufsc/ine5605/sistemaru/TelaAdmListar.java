@@ -25,6 +25,9 @@ import javax.swing.JTable;
 public class TelaAdmListar extends TelaPadrao {
     private GerenciadorBotoes gerenciadorBotoes;
     private JButton buttonVoltar;
+    private JButton buttonCadastrar;
+    private JButton buttonExcluir;
+    private JButton buttonEditar;        
     private JTable tabela;
     private JScrollPane barraRolagem;
     private JPanel painelFundo;
@@ -44,20 +47,44 @@ public class TelaAdmListar extends TelaPadrao {
         Container container = getContentPane();
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
+        
+        //DADOS DA TABELA
         Object [][] pessoas = dados;
         String [] colunas = {"Nome","Tipo de Cadastro", "Matrícula"};
         
-        
+        //TABELA
         painelFundo = new JPanel();
-        
         tabela = new JTable(pessoas,colunas);
-        tabela.setPreferredScrollableViewportSize(tabela.getPreferredSize());
+        tabela.setPreferredScrollableViewportSize(new Dimension(500, 100));
         tabela.setFillsViewportHeight(true);
-
         barraRolagem = new JScrollPane(tabela);
         painelFundo.add(barraRolagem); 
         //container.add(painelFundo);
         container.add(painelFundo,gbc);
+        
+        //BOTAO CADASTRAR
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        buttonCadastrar = new JButton("Cadastrar");
+        buttonCadastrar.addActionListener(gerenciadorBotoes);
+        buttonCadastrar.setPreferredSize(new Dimension(50, 50));
+        container.add(buttonCadastrar, gbc);
+        
+        //BOTAO EXCLUIR 
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        buttonExcluir = new JButton("Excluir");
+        buttonExcluir.addActionListener(gerenciadorBotoes);
+        buttonExcluir.setPreferredSize(new Dimension(50, 50));
+        container.add(buttonExcluir, gbc);
+        
+        //BOTAO EDITAR 
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        buttonEditar = new JButton("Editar");
+        buttonEditar.addActionListener(gerenciadorBotoes);
+        buttonEditar.setPreferredSize(new Dimension(50, 50));
+        container.add(buttonEditar, gbc);
      
     
         //BOTAO VOLTAR 
@@ -70,7 +97,7 @@ public class TelaAdmListar extends TelaPadrao {
         container.add(buttonVoltar, gbc);
         
         
-        setSize(new Dimension(600, 400));
+        setSize(new Dimension(800, 600));
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -93,8 +120,35 @@ public class TelaAdmListar extends TelaPadrao {
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);
                 }
+            }else if(botao.equals(buttonCadastrar)){
+                try{
+                    ControladorAdm.getInstance().escondeTela(telaListar);
+                    ControladorAdm.getInstance().chamaTelaAdmCadastro();
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                    System.out.println(e);
+                }
             
+            }else if(botao.equals(buttonExcluir)){
+                try{
+                    ControladorAdm.getInstance().escondeTela(telaListar);
+                    ControladorAdm.getInstance().chamaTelaAdmExcluir();
+                    
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                    System.out.println(e);
+                }
+            }else if(botao.equals(buttonEditar)){
+                try{
+                    ControladorAdm.getInstance().escondeTela(telaListar);
+                    ControladorAdm.getInstance().chamaTelaAdmEditar();
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                    System.out.println(e);
+                }
             }
+            
+            
         }
     }
     
