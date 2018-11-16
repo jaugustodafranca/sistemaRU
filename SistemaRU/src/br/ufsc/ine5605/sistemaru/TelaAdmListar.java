@@ -14,6 +14,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -22,17 +25,35 @@ import javax.swing.JOptionPane;
 public class TelaAdmListar extends TelaPadrao {
     private GerenciadorBotoes gerenciadorBotoes;
     private JButton buttonVoltar;
+    private JTable tabela;
+    private JScrollPane barraRolagem;
+    private JPanel painelFundo;
+    
     
     public TelaAdmListar(){
         this.gerenciadorBotoes = new GerenciadorBotoes();
     }
+    
     @Override
     public void mostraConteudoTela() {
+    
+    }
+    
+    public void mostraConteudoTela(Object[][] dados) {
         getContentPane().removeAll();
         Container container = getContentPane();
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         
+        String [] colunas = {"Nome","Tipo de Cadastro", "Matrícula"};
+        
+        tabela = new JTable(null,colunas);
+        barraRolagem = new JScrollPane(tabela);
+        painelFundo.add(barraRolagem); 
+        //getContentPane().add(painelFundo);
+        //container.add(painelFundo, gbc);
+     
+    
         //BOTAO VOLTAR 
         gbc.gridx = 0;
         gbc.gridy = 3;
@@ -49,6 +70,8 @@ public class TelaAdmListar extends TelaPadrao {
         
         
     }
+
+    
     
     private class GerenciadorBotoes implements ActionListener{
 

@@ -172,15 +172,15 @@ public class TelaAdm extends TelaPadrao{
             }else if(botao.equals(buttonListar)){
                 try{
                     ControladorAdm.getInstance().escondeTela(telAdm);
-                    ControladorAdm.getInstance().getTelaAdmListar().mostraConteudoTela();
+                    ControladorAdm.getInstance().chamaTelaAdmListar();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);
                 }
             }else if(botao.equals(buttonVoltar)){
                 try{
-                    ControladorAdm.getInstance().escondeTela(telAdm);
                     ControladorUsuario.getInstance().getTelaUsuario().mostraConteudoTela();
+                    escondeTela();
                     
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());

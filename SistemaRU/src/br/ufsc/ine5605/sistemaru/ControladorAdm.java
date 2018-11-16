@@ -306,4 +306,29 @@ public class ControladorAdm {
     public MapeadorPessoa getMapeadorPessoa(){
         return this.mapeadorPessoa;
     }
+    
+    public void chamaTelaAdmListar(){
+        Object [][] dados = new Object[mapeadorPessoa.getList().size()][3];
+        for(int i=0;i<mapeadorPessoa.getList().size();i++){
+            Pessoa pessoa = mapeadorPessoa.getList().get(i);
+            dados[i][0] = pessoa.getNome();
+            dados[i][1] = pessoa.getClass().getSimpleName();
+            if(pessoa instanceof Visitante){
+                dados[i][2] = ((Visitante)pessoa).getId();
+            }else{
+                dados[i][2] = ((UsuarioUFSC)pessoa).getMatricula();
+            }
+        }
+        System.out.println(dados[0][0]);
+        telaAdmListar.mostraConteudoTela(dados);
+    }
+    public void chamaTelaAdmCadastro(){
+        telaAdmCadastro.mostraConteudoTela();
+    }
+    public void chamaTelaAdmEditar(){
+        telaAdmEditar.mostraConteudoTela();
+    }
+    public void chamaTelaAdmExcluir(){
+        telaAdmExcluir.mostraConteudoTela();
+    }
 }
