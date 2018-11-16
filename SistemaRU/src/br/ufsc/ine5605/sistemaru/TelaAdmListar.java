@@ -53,6 +53,8 @@ public class TelaAdmListar extends TelaPadrao {
         String [] colunas = {"Nome","Tipo de Cadastro", "Matrícula"};
         
         //TABELA
+        gbc.gridx = 0;
+        gbc.gridy = 0;                
         painelFundo = new JPanel();
         tabela = new JTable(pessoas,colunas);
         tabela.setPreferredScrollableViewportSize(new Dimension(500, 100));
@@ -64,26 +66,26 @@ public class TelaAdmListar extends TelaPadrao {
         
         //BOTAO CADASTRAR
         gbc.gridx = 0;
-        gbc.gridy = 0;
+        gbc.gridy = 2;
         buttonCadastrar = new JButton("Cadastrar");
         buttonCadastrar.addActionListener(gerenciadorBotoes);
-        buttonCadastrar.setPreferredSize(new Dimension(50, 50));
+        buttonCadastrar.setPreferredSize(new Dimension(150, 50));
         container.add(buttonCadastrar, gbc);
         
         //BOTAO EXCLUIR 
         gbc.gridx = 1;
-        gbc.gridy = 0;
+        gbc.gridy = 2;
         buttonExcluir = new JButton("Excluir");
         buttonExcluir.addActionListener(gerenciadorBotoes);
-        buttonExcluir.setPreferredSize(new Dimension(50, 50));
+        buttonExcluir.setPreferredSize(new Dimension(100, 50));
         container.add(buttonExcluir, gbc);
         
         //BOTAO EDITAR 
         gbc.gridx = 2;
-        gbc.gridy = 0;
+        gbc.gridy = 2;
         buttonEditar = new JButton("Editar");
         buttonEditar.addActionListener(gerenciadorBotoes);
-        buttonEditar.setPreferredSize(new Dimension(50, 50));
+        buttonEditar.setPreferredSize(new Dimension(100, 50));
         container.add(buttonEditar, gbc);
      
     
