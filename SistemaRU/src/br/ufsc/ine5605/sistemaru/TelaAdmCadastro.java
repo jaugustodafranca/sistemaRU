@@ -97,6 +97,7 @@ public class TelaAdmCadastro extends TelaPadrao{
         
     }
     public void AdicionaCamposUsuario(){
+        System.out.println("entrou");
         Container container = getContentPane();
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -129,7 +130,7 @@ public class TelaAdmCadastro extends TelaPadrao{
             TelaPadrao telaCadastro = ControladorAdm.getInstance().getTelaAdmListar();
             JComboBox botaoBox = (JComboBox) ae.getSource();
             String tipo = (String)botaoBox.getSelectedItem();
-            System.out.println("clicou: "+botaoBox.getName());
+            System.out.println("clicou: "+tipo);
             switch (tipo){
                 case "USUÁRIO UFSC": AdicionaCamposUsuario();
                     break;
