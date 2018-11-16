@@ -50,13 +50,14 @@ public class TelaAdmEditar extends TelaPadrao{
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         
-        
+        int linha = 0;
         
         //Nome
         labelNome = new JLabel();
         labelNome.setText("Nome:");
         gbc.gridx = 0;
-        gbc.gridy = 0;
+        gbc.gridy = linha;
+        linha++;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
         
@@ -79,7 +80,8 @@ public class TelaAdmEditar extends TelaPadrao{
         }
 
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = linha;
+        linha++;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
 
@@ -111,26 +113,69 @@ public class TelaAdmEditar extends TelaPadrao{
         
         //ADMIN
         if(pessoa instanceof UsuarioUFSC){
-            labelAdmin = new JLabel();
-            labelAdmin.setText("Admin:");
+            labelIsento = new JLabel();
+            labelIsento.setText("Admin:");
             gbc.gridx = 0;
-            gbc.gridy = 2;
+            gbc.gridy = linha;
+            linha++;
+            gbc.gridwidth = 1;
+            gbc.gridheight = 1;
+
+            container.add(labelIsento, gbc);
+
+            String[] bool = {"Sim","Não"};
+            comboBoxAdmin = new JComboBox(bool);
+            int isAdm = (((UsuarioUFSC) pessoa).isAdmin()) ? 0 : 1;
+            comboBoxAdmin.setSelectedIndex(isAdm);
+            gbc.gridx = 1;
+            gbc.gridwidth = 2;
+            container.add(comboBoxAdmin, gbc);
+        }
+        
+        //ISENÇÃO
+        if(pessoa instanceof Estudante){
+            labelAdmin = new JLabel();
+            labelAdmin.setText("Isento:");
+            gbc.gridx = 0;
+            gbc.gridy = linha;
+            linha++;
             gbc.gridwidth = 1;
             gbc.gridheight = 1;
 
             container.add(labelAdmin, gbc);
 
             String[] bool = {"Sim","Não"};
-            comboBoxAdmin = new JComboBox(bool);
+            comboBoxIsento = new JComboBox(bool);
+            int isIsent = (((Estudante) ((UsuarioUFSC) pessoa)).isIsencao()) ? 0 : 1;
+            comboBoxIsento.setSelectedIndex(isIsent);
             gbc.gridx = 1;
             gbc.gridwidth = 2;
-            container.add(comboBoxAdmin, gbc);
+            container.add(comboBoxIsento, gbc);
         }
         
+        //BOTAO EDITAR
+        gbc.gridx = 0;
+        gbc.gridy = linha;
+        linha++;
+        gbc.gridwidth = 4;
+        buttonEditar = new JButton("Editar");
+        buttonEditar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(pessoa instanceof Visitante){
+                    //pessoa.setNome(textFieldNome.getText());
+                }else if(pessoa instanceof Estudante){
+                
+                }else{
+                    ControladorAdm.getInstance().editarUsuarioUFSC(new ConteudoTelaAdm(textFieldNome.getText(), (int)formattedTextFieldMatricula.getValue(), StringToBoolean(comboBoxAdmin.getSelectedItem().toString())));
+                }
+            }
+        });
+        buttonEditar.setPreferredSize(new Dimension(500, 50));
+        container.add(buttonEditar, gbc);
         
         //BOTAO VOLTAR 
-        gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridx = 1;
         gbc.gridwidth = 4;
         buttonVoltar = new JButton("Voltar");
         buttonVoltar.addActionListener(gerenciadorBotoes);
@@ -142,6 +187,10 @@ public class TelaAdmEditar extends TelaPadrao{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         
+    }
+    
+    public boolean StringToBoolean(String s){
+        return s.equals("Sim");
     }
 
     @Override

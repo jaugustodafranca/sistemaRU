@@ -176,6 +176,13 @@ public class ControladorAdm {
         }    
     }
     
+    public void editarUsuarioUFSC(ConteudoTelaAdm conteudoTelaAdm){
+        UsuarioUFSC usuarioUFSC = desempacotaUsuarioUFSC(conteudoTelaAdm);
+        mapeadorPessoa.put(usuarioUFSC);
+        mapeadorPessoa.load();
+        
+    }
+    
     private Estudante desempacotaEstudante(ConteudoTelaAdm conteudoTelaAdm){
         return new Estudante (conteudoTelaAdm.nome,conteudoTelaAdm.codigo, conteudoTelaAdm.admin, conteudoTelaAdm.isencao);
     }
