@@ -146,7 +146,7 @@ public class TelaAdm extends TelaPadrao{
             if(botao.equals(buttonCadastrar)){
                 try{
                     ControladorAdm.getInstance().escondeTela(telAdm);
-                    ControladorAdm.getInstance().getTelaAdmCadastro().mostraConteudoTela();
+                    ControladorAdm.getInstance().chamaTelaAdmCadastro();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);
@@ -155,7 +155,7 @@ public class TelaAdm extends TelaPadrao{
             }else if(botao.equals(buttonExcluir)){
                 try{
                     ControladorAdm.getInstance().escondeTela(telAdm);
-                    ControladorAdm.getInstance().getTelaAdmExcluir().mostraConteudoTela();
+                    ControladorAdm.getInstance().chamaTelaAdmExcluir();
                     
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
@@ -164,7 +164,7 @@ public class TelaAdm extends TelaPadrao{
             }else if(botao.equals(buttonEditar)){
                 try{
                     ControladorAdm.getInstance().escondeTela(telAdm);
-                    ControladorAdm.getInstance().getTelaAdmEditar().mostraConteudoTela();
+                    ControladorAdm.getInstance().chamaTelaAdmEditar();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);

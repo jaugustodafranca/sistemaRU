@@ -44,14 +44,14 @@ public class TelaAdmListar extends TelaPadrao {
         Container container = getContentPane();
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        
+        Object [][] pessoas = dados;
         String [] colunas = {"Nome","Tipo de Cadastro", "Matrícula"};
         
-        tabela = new JTable(null,colunas);
+        tabela = new JTable(pessoas,colunas);
         barraRolagem = new JScrollPane(tabela);
         painelFundo.add(barraRolagem); 
-        //getContentPane().add(painelFundo);
-        //container.add(painelFundo, gbc);
+        //container.add(painelFundo);
+        container.add(painelFundo, gbc);
      
     
         //BOTAO VOLTAR 
