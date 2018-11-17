@@ -8,6 +8,7 @@ package br.ufsc.ine5605.sistemaru;
 import br.ufsc.ine5605.sistemaru.exceptions.MatriculainvalidaException;
 import br.ufsc.ine5605.sistemaru.controladores.ControladorPrincipal;
 import br.ufsc.ine5605.sistemaru.controladores.ControladorAdm;
+import br.ufsc.ine5605.sistemaru.exceptions.MatriculaJahExisteException;
 import br.ufsc.ine5605.sistemaru.telas.ConteudoTelaAdm;
 
 
@@ -41,7 +42,7 @@ public class SistemaRU {
             b.cadastraEstudante(d);
             b.cadastraEstudante(r);
             b.cadastraEstudante(h);
-        }catch (MatriculainvalidaException e){System.out.println(e);};
+        }catch (MatriculaJahExisteException e){System.out.println(e);};
         
         a.getTelaPrincipal().mostraConteudoTela();
         
