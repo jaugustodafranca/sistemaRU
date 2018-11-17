@@ -76,7 +76,7 @@ public class TelaAdmCadastro extends TelaPadrao{
         container.add(buttonVoltar, gbc);
         
         setSize(new Dimension(600, 400));
-        setVisible(true);
+        mostraTela();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         
@@ -155,7 +155,7 @@ public class TelaAdmCadastro extends TelaPadrao{
         buttonCadastrar.addActionListener(gerenciadorBotoes);
         container.add(buttonCadastrar, gbc);
         
-        setVisible(true);
+        mostraTela();
     }
     public void AdicionaCamposEstudante(){
         removeComponentes();
@@ -247,7 +247,7 @@ public class TelaAdmCadastro extends TelaPadrao{
         buttonCadastrar.addActionListener(gerenciadorBotoes);
         container.add(buttonCadastrar, gbc);
         
-        setVisible(true);
+        mostraTela();
         
     }
     public void AdicionaCamposVisitante(){
@@ -276,7 +276,7 @@ public class TelaAdmCadastro extends TelaPadrao{
         buttonCadastrar.addActionListener(gerenciadorBotoes);
         container.add(buttonCadastrar, gbc);
         
-        setVisible(true);
+        mostraTela();
     }
     
     public boolean StringToBoolean(String s){

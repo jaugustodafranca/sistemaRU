@@ -10,6 +10,7 @@ import br.ufsc.ine5605.sistemaru.exceptions.MatriculaJahExisteException;
 import br.ufsc.ine5605.sistemaru.exceptions.MatriculainvalidaException;
 import br.ufsc.ine5605.sistemaru.telas.*;
 import br.ufsc.ine5605.sistemaru.entidades.*;
+import br.ufsc.ine5605.sistemaru.exceptions.NaoSelecionadoException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -85,19 +86,13 @@ public class ControladorAdm {
             Pessoa logado = ControladorPrincipal.getInstance().getControladorUsuarios().getPessoa();
             if(logado instanceof UsuarioUFSC && ((UsuarioUFSC) logado).getMatricula() != id){
                 for (Pessoa pessoa: mapeadorPessoa.getList()){
-                    //String classeCompleta = pessoa.getClass().toString();
-                    //String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
-                    //if(classe.equals("Visitante")){
                     if(pessoa instanceof Visitante){
                         if(((Visitante)pessoa).getId() == id){
                             if (pessoa.getSaldo()> 0){
-//                                telaAdm.mostraDevolucaoDinheiro(pessoa);
-                                //pessoas.remove(pessoa);
                                 mapeadorPessoa.remove(pessoa);
                                 telaAdm.operacaoRealizada();
                                 return;
                             }else{
-                                //pessoas.remove(pessoa);
                                 mapeadorPessoa.remove(pessoa);
                                 telaAdm.operacaoRealizada();
                                 return;
@@ -106,13 +101,10 @@ public class ControladorAdm {
                     }else{
                         if(((UsuarioUFSC)pessoa).getMatricula() == id){
                              if (pessoa.getSaldo()> 0){
-//                                telaAdm.mostraDevolucaoDinheiro(pessoa);
-                                //pessoas.remove(pessoa);
                                 mapeadorPessoa.remove(pessoa);
                                 telaAdm.operacaoRealizada();
                                 return;
                             }else{
-                                //pessoas.remove(pessoa);
                                 mapeadorPessoa.remove(pessoa);
                                 telaAdm.operacaoRealizada();
                                 return;
@@ -362,11 +354,27 @@ public class ControladorAdm {
     public void chamaTelaAdmCadastro(){
         telaAdmCadastro.mostraConteudoTela();
     }
-    public void chamaTelaAdmEditar(int linha){
-        Pessoa pessoa = mapeadorPessoa.getList().get(linha);
-        telaAdmEditar.mostraConteudoTela(pessoa);
+    public void chamaTelaAdmEditar(int linha) throws NaoSelecionadoException{
+        if (linha <=0 ){
+            throw new NaoSelecionadoException(); 
+        }else{
+            Pessoa pessoa = mapeadorPessoa.getList().get(linha);
+            telaAdmEditar.mostraConteudoTela(pessoa);
+        }    
     }
-    public void chamaTelaAdmExcluir(){
-        telaAdmExcluir.mostraConteudoTela();
+    public void chamaTelaAdmExcluir(int linha) throws NaoSelecionadoException{
+        if (linha <=0 ){
+            throw new NaoSelecionadoException(); 
+        }else{
+            Pessoa pessoa = mapeadorPessoa.getList().get(linha);
+            telaAdmExcluir.mostraConteudoTela(pessoa);
+        }
+    }
+    public int getMatricula(Pessoa pessoa){
+        if(pessoa instanceof Visitante){
+             return((Visitante)pessoa).getId();
+        }else{
+            return ((UsuarioUFSC)pessoa).getMatricula();
+        }
     }
 }
