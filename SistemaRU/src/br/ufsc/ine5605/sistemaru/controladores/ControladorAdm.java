@@ -36,7 +36,7 @@ public class ControladorAdm {
     private TelaAdmListar telaAdmListar;
     private ConteudoTelaAdm conteudoTelaAdm;
 
-    public ControladorAdm() {
+    private ControladorAdm() {
         //this.pessoas = new ArrayList();
         this.mapeadorPessoa = new MapeadorPessoa();
         this.telaAdm = new TelaAdm();

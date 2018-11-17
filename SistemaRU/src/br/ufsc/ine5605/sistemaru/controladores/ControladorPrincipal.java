@@ -39,7 +39,7 @@ public class ControladorPrincipal {
         this.controladorRelatorioAdm = ControladorRelatorioAdm.getInstance();
         
         this.controladorUsuario = ControladorUsuario.getInstance();
-        this.controladorAdm = new ControladorAdm();
+        this.controladorAdm = ControladorAdm.getInstance();
     }
 
     public TelaPrincipal getTelaPrincipal() {
