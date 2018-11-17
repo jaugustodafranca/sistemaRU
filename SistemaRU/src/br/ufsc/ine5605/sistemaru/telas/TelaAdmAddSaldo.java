@@ -30,6 +30,7 @@ public class TelaAdmAddSaldo extends TelaPadrao{
     private JButton buttonVoltar;
     private JLabel labelTitulo;
     private JLabel labelMatricula;
+    private JFormattedTextField textFieldMatricula;
     
     
      public TelaAdmAddSaldo(){
@@ -78,12 +79,12 @@ public class TelaAdmAddSaldo extends TelaPadrao{
         
         // If you want the value to be committed on each keystroke instead of focus lost
         formatter.setCommitsOnValidEdit(true);
-        textField = new JFormattedTextField(formatter);
-        textFieldLogin.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+        textFieldMatricula = new JFormattedTextField(formatter);
+        textFieldMatricula.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
     
         gbc.gridx = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        container.add(textFieldLogin, gbc);
+        container.add(textFieldMatricula, gbc);
         
         
 
@@ -120,22 +121,9 @@ public class TelaAdmAddSaldo extends TelaPadrao{
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);
                 }
-            }else if (botao.equals(buttonExcluir)){
-                try{
-                    getContentPane().removeAll();
-                    ControladorAdm.getInstance().excluirUsiario(ControladorAdm.getInstance().getMatricula(pessoa));
-                    JOptionPane.showMessageDialog(null, "Usuário excluído com sucesso!");
-                    ControladorAdm.getInstance().chamaTelaAdmListar();
-                    escondeTela();
-                }catch(Exception e){
-                    JOptionPane.showMessageDialog(null, e.getMessage());
-                    System.out.println(e);
-                }
             }
         }
         
     }
-    
-}
     
 }
