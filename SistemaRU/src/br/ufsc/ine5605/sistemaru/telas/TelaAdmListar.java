@@ -154,11 +154,12 @@ public class TelaAdmListar extends TelaPadrao {
                 }
             }else if(botao.equals(buttonEditar)){
                 try{
-                    getContentPane().removeAll();
                     ControladorAdm.getInstance().chamaTelaAdmEditar(linhaSelecionada);
+                    getContentPane().removeAll();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, "Você não selecionou nenhum usuário!");
                     System.out.println(e);
+                    ControladorAdm.getInstance().getTelaAdmListar();
                 }
             }
             

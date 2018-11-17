@@ -30,7 +30,7 @@ public class Restaurante implements Serializable{
     
             
             
-    private Restaurante(){
+    public Restaurante(){
         Date dataDate = new Date();
         SimpleDateFormat dateFormatMonthYear = new SimpleDateFormat("dd-MM-yyyy");        
         String dateString = dateFormatMonthYear.format(dataDate);

@@ -67,14 +67,13 @@ public class TelaAdmEditar extends TelaPadrao{
         gbc.gridx = 0;
         gbc.gridy = linha;
         linha++;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
         
         container.add(labelNome, gbc);
         
         textFieldNome = new JTextField(pessoa.getNome());
         gbc.gridx = 1;
-        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridwidth=3;
         container.add(textFieldNome, gbc);
         
         int matricula;
@@ -118,6 +117,7 @@ public class TelaAdmEditar extends TelaPadrao{
 
         gbc.gridx = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridwidth=3;
         container.add(formattedTextFieldMatricula, gbc);
         
         //ADMIN
@@ -194,7 +194,7 @@ public class TelaAdmEditar extends TelaPadrao{
 
     @Override
     public void mostraConteudoTela() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
     
     private class GerenciadorBotoes implements ActionListener{
@@ -215,7 +215,8 @@ public class TelaAdmEditar extends TelaPadrao{
             System.out.println("clicou: "+botao.getText());
             if(botao.equals(buttonVoltar)){
                 try{
-                    ControladorAdm.getInstance().escondeTela(telaEditar);
+                    ControladorAdm.getInstance().chamaTelaAdmListar();
+                    getContentPane().removeAll();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);

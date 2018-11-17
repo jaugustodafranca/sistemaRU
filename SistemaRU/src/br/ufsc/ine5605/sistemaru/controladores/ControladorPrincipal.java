@@ -11,6 +11,7 @@ import br.ufsc.ine5605.sistemaru.telas.ConteudoTelaPrincipal;
 import br.ufsc.ine5605.sistemaru.telas.TelaPrincipal;
 import br.ufsc.ine5605.sistemaru.entidades.UsuarioUFSC;
 import br.ufsc.ine5605.sistemaru.entidades.Visitante;
+import br.ufsc.ine5605.sistemaru.mapeadores.MapeadorRestaurante;
 import com.sun.glass.ui.Cursor;
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -27,12 +28,12 @@ public class ControladorPrincipal {
     
     private TelaPrincipal telaPrincipal;
     private ControladorRelatorioAdm controladorRelatorioAdm;
-    private Restaurante restaurante;
+    private MapeadorRestaurante mapeadorRestaurante;
     private ControladorUsuario controladorUsuario;
     private ControladorAdm controladorAdm;
 
     private ControladorPrincipal() {
-        this.restaurante = Restaurante.getInstance();
+        this.mapeadorRestaurante = new MapeadorRestaurante();
         
         telaPrincipal.setData(dateToString(diaAtual()));
         this.telaPrincipal = new TelaPrincipal();
@@ -51,7 +52,7 @@ public class ControladorPrincipal {
     }
 
     public Restaurante getRestaurante() {
-        return restaurante;
+        return this.mapeadorRestaurante.getResturante();
     }
 
     public ControladorUsuario getControladorUsuarios() {
@@ -95,7 +96,7 @@ public class ControladorPrincipal {
     
     
     public Date diaAtual (){
-        Date diaAtual = restaurante.getDiaAtual();
+        Date diaAtual = getRestaurante().getDiaAtual();
         return diaAtual;
     }
     

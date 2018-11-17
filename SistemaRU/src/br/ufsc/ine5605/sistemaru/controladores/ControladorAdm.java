@@ -345,7 +345,7 @@ public class ControladorAdm {
         telaAdmCadastro.mostraConteudoTela();
     }
     public void chamaTelaAdmEditar(int linha) throws NaoSelecionadoException{
-        if (linha <=0 ){
+        if (linha <0 ){
             throw new NaoSelecionadoException(); 
         }else{
             Pessoa pessoa = mapeadorPessoa.getList().get(linha);
@@ -353,7 +353,7 @@ public class ControladorAdm {
         }    
     }
     public void chamaTelaAdmExcluir(int linha) throws NaoSelecionadoException{
-        if (linha <=0 ){
+        if (linha <0 ){
             throw new NaoSelecionadoException(); 
         }else{
             Pessoa pessoa = mapeadorPessoa.getList().get(linha);
