@@ -108,7 +108,7 @@ public class TelaAdmListar extends TelaPadrao {
         
         
         setSize(new Dimension(800, 600));
-        setVisible(true);
+        mostraTela();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         

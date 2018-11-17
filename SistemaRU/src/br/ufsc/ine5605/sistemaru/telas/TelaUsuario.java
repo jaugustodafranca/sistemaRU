@@ -98,7 +98,7 @@ public class TelaUsuario extends TelaPadrao{
         
         
         setSize(new Dimension(600, 400));
-        setVisible(true);
+        mostraTela();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         /*

@@ -143,16 +143,11 @@ public class TelaAdm extends TelaPadrao{
                     System.out.println(e);
                 }
             }else if(botao.equals(buttonPassarDia)){
-                try{
-                    getContentPane().removeAll();
-                    escondeTela();
-                    ControladorUsuario.getInstance().chamaTelaUsuario();
-                    
-                    
-                }catch(Exception e){
-                    JOptionPane.showMessageDialog(null, e.getMessage());
-                    System.out.println(e);
-                }
+                ControladorAdm.getInstance().passarProximoDia();
+                JOptionPane.showMessageDialog(null, "Operação realizada com sucesso");
+            }else if(botao.equals(buttonPassarMes)){
+                ControladorAdm.getInstance().passarProximoMes();
+                JOptionPane.showMessageDialog(null, "Operação realizada com sucesso");
             }    
             
 

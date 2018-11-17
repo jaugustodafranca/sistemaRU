@@ -47,7 +47,6 @@ public abstract class TelaPadrao extends JFrame{
     }
     
     
-    
     public JLabel getLabelDiaHoje() {
         labelDiaHoje = new JLabel(data);
         return labelDiaHoje;
