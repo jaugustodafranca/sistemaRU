@@ -39,12 +39,15 @@ public class TelaAdmEditar extends TelaPadrao{
     private JComboBox comboBoxAdmin;
     private JLabel labelIsento;
     private JComboBox comboBoxIsento;
+    private Pessoa pessoa;
     
     public TelaAdmEditar(){
-        this.gerenciadorBotoes = new GerenciadorBotoes();
+        this.gerenciadorBotoes = new GerenciadorBotoes(this);
     }
+    
 
     public void mostraConteudoTela(Pessoa pessoa) {
+        this.pessoa = pessoa;
         getContentPane().removeAll();
         Container container = getContentPane();
         container.setLayout(new GridBagLayout());
@@ -146,7 +149,7 @@ public class TelaAdmEditar extends TelaPadrao{
 
             String[] bool = {"Sim","Não"};
             comboBoxIsento = new JComboBox(bool);
-            int isIsent = (((Estudante) ((UsuarioUFSC) pessoa)).isIsencao()) ? 0 : 1;
+            int isIsent = ((((Estudante) pessoa)).isIsencao()) ? 0 : 1;
             comboBoxIsento.setSelectedIndex(isIsent);
             gbc.gridx = 1;
             gbc.gridwidth = 2;
@@ -157,29 +160,19 @@ public class TelaAdmEditar extends TelaPadrao{
         gbc.gridx = 0;
         gbc.gridy = linha;
         linha++;
-        gbc.gridwidth = 4;
+        gbc.gridwidth = 2;
         buttonEditar = new JButton("Editar");
-        buttonEditar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(pessoa instanceof Visitante){
-                    //pessoa.setNome(textFieldNome.getText());
-                }else if(pessoa instanceof Estudante){
-                
-                }else{
-                    ControladorAdm.getInstance().editarUsuarioUFSC(new ConteudoTelaAdm(textFieldNome.getText(), (int)formattedTextFieldMatricula.getValue(), StringToBoolean(comboBoxAdmin.getSelectedItem().toString())));
-                }
-            }
-        });
-        buttonEditar.setPreferredSize(new Dimension(500, 50));
+        buttonEditar.addActionListener(gerenciadorBotoes);
+        buttonEditar.setPreferredSize(new Dimension(100, 50));
         container.add(buttonEditar, gbc);
         
+        
         //BOTAO VOLTAR 
-        gbc.gridx = 1;
-        gbc.gridwidth = 4;
+        gbc.gridx = 2;
+        gbc.gridwidth = 2;
         buttonVoltar = new JButton("Voltar");
         buttonVoltar.addActionListener(gerenciadorBotoes);
-        buttonVoltar.setPreferredSize(new Dimension(500, 50));
+        buttonVoltar.setPreferredSize(new Dimension(100, 50));
         container.add(buttonVoltar, gbc);
         
         setSize(new Dimension(600, 400));
@@ -199,6 +192,15 @@ public class TelaAdmEditar extends TelaPadrao{
     }
     
     private class GerenciadorBotoes implements ActionListener{
+        
+        TelaAdmEditar tela;
+
+        public GerenciadorBotoes(TelaAdmEditar tela) {
+            this.tela = tela;
+            
+        }
+        
+        
 
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -212,6 +214,37 @@ public class TelaAdmEditar extends TelaPadrao{
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);
                 }
+            
+            }else if(botao.equals(buttonEditar)){
+                if(pessoa instanceof Visitante){
+                    try{
+                        ControladorAdm.getInstance().editarVisitante(new ConteudoTelaAdm((int)formattedTextFieldMatricula.getValue(),textFieldNome.getText()), pessoa);
+                        ControladorAdm.getInstance().escondeTela(ControladorAdm.getInstance().getTelaAdmEditar());
+                        JOptionPane.showMessageDialog(null, "Alterações realizadas com sucesso.");
+                        ControladorAdm.getInstance().chamaTelaAdmListar();
+                    }catch(MatriculaJahExisteException e){
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                    }
+                }else if(pessoa instanceof Estudante){
+                    try{
+                        ControladorAdm.getInstance().editarEstudante(new ConteudoTelaAdm(textFieldNome.getText(), (int)formattedTextFieldMatricula.getValue(), StringToBoolean(comboBoxAdmin.getSelectedItem().toString()), StringToBoolean(comboBoxIsento.getSelectedItem().toString())), pessoa);
+                        ControladorAdm.getInstance().escondeTela(ControladorAdm.getInstance().getTelaAdmEditar());
+                        JOptionPane.showMessageDialog(null, "Alterações realizadas com sucesso.");
+                        ControladorAdm.getInstance().chamaTelaAdmListar();
+                    }catch(MatriculaJahExisteException e){
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                    }
+                }else{
+                    try{
+                        ControladorAdm.getInstance().editarUsuarioUFSC(new ConteudoTelaAdm(textFieldNome.getText(), (int)formattedTextFieldMatricula.getValue(), StringToBoolean(comboBoxAdmin.getSelectedItem().toString())),pessoa);
+                        ControladorAdm.getInstance().escondeTela(ControladorAdm.getInstance().getTelaAdmEditar());
+                        JOptionPane.showMessageDialog(null, "Alterações realizadas com sucesso.");
+                        ControladorAdm.getInstance().chamaTelaAdmListar();
+                    }catch(MatriculaJahExisteException e){
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                    }
+                }
+                
             
             }
         }

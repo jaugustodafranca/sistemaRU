@@ -46,11 +46,9 @@ public class ConteudoTelaAdm {
         this.codigo = codigo; 
         this.saldo = saldo;
     }
-    
-    
-   
-
-    
-    
+    public ConteudoTelaAdm(int codigo,String nome) {
+        this.codigo = codigo; 
+        this.nome = nome;
+    }
     
 }

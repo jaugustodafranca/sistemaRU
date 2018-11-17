@@ -176,11 +176,36 @@ public class ControladorAdm {
         }    
     }
     
-    public void editarUsuarioUFSC(ConteudoTelaAdm conteudoTelaAdm){
+    public void editarUsuarioUFSC(ConteudoTelaAdm conteudoTelaAdm, Pessoa pessoa) throws MatriculaJahExisteException{
         UsuarioUFSC usuarioUFSC = desempacotaUsuarioUFSC(conteudoTelaAdm);
-        mapeadorPessoa.put(usuarioUFSC);
+        if(mapeadorPessoa.get(usuarioUFSC.getMatricula()) == null || mapeadorPessoa.get(usuarioUFSC.getMatricula()) == pessoa){
+            mapeadorPessoa.remove(pessoa);
+            mapeadorPessoa.put(usuarioUFSC);
+        }else{
+            throw new MatriculaJahExisteException();
+        }
         mapeadorPessoa.load();
-        
+    }
+    public void editarEstudante(ConteudoTelaAdm conteudoTelaAdm, Pessoa pessoa) throws MatriculaJahExisteException{
+        Estudante estudante = desempacotaEstudante(conteudoTelaAdm);
+        if(mapeadorPessoa.get(estudante.getMatricula()) == null || mapeadorPessoa.get(estudante.getMatricula()) == pessoa){
+            mapeadorPessoa.remove(pessoa);
+            mapeadorPessoa.put(estudante);
+        }else{
+            throw new MatriculaJahExisteException();
+        }
+        mapeadorPessoa.load();
+    }
+    public void editarVisitante(ConteudoTelaAdm conteudoTelaAdm, Pessoa pessoa) throws MatriculaJahExisteException{
+        Visitante visitante = desempacotaVisitante(conteudoTelaAdm);
+        if(mapeadorPessoa.get(visitante.getId()) == null || mapeadorPessoa.get(visitante.getId()) == pessoa){
+            mapeadorPessoa.remove(pessoa);
+            mapeadorPessoa.put(visitante);
+        }else{
+            throw new MatriculaJahExisteException();
+        }
+        mapeadorPessoa.put(visitante);
+        mapeadorPessoa.load();
     }
     
     private Estudante desempacotaEstudante(ConteudoTelaAdm conteudoTelaAdm){
@@ -191,15 +216,15 @@ public class ControladorAdm {
         return new UsuarioUFSC (conteudoTelaAdm.nome,conteudoTelaAdm.codigo, conteudoTelaAdm.admin);
     }
     private Visitante desempacotaVisitante(ConteudoTelaAdm conteudoTelaAdm){
-        int id =0;
+        /*int id =0;
         boolean idRepetido = false;
         do{ 
             id = geraID();
             if(idJaExiste(id)){
                 idRepetido=true;
             }
-        }while (idRepetido);
-        return new Visitante (id, conteudoTelaAdm.nome);
+        }while (idRepetido);*/
+        return new Visitante (conteudoTelaAdm.codigo, conteudoTelaAdm.nome);
     }
     
     
