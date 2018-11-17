@@ -140,6 +140,17 @@ public class TelaAdm extends TelaPadrao{
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);
                 }
+            }else if(botao.equals(buttonPassarDia)){
+                try{
+                    getContentPane().removeAll();
+                    escondeTela();
+                    ControladorUsuario.getInstance().chamaTelaUsuario();
+                    
+                    
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                    System.out.println(e);
+                }
             }    
             
 

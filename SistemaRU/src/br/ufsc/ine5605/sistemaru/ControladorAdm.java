@@ -278,7 +278,7 @@ public class ControladorAdm {
     }
     
     public void passarProximoDia(){
-        System.out.println("-> PROXIMO DIA");
+        //System.out.println("-> PROXIMO DIA");
         ControladorPrincipal.getInstance().getRestaurante().proximoDia();
         TelaPadrao.setData(ControladorPrincipal.getInstance().dateToString(ControladorPrincipal.getInstance().diaAtual()));
         telaAdm.operacaoRealizada();

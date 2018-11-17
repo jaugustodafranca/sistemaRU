@@ -80,7 +80,7 @@ public class ControladorUsuario {
             pessoa.adicionaRefeicao(hoje, tipo);
             telaUsuario.mostraSucessoRefeicao();
         }else{
-            //throw new SaldoInsuficienteException();
+            throw new SaldoInsuficienteException();
         }
         ControladorAdm.getInstance().getMapeadorPessoa().put(pessoa);
     }
@@ -129,7 +129,6 @@ public class ControladorUsuario {
         }
         
         while(dia.before(mesUltimo)){
-            System.out.println(dia);
             ArrayList mes = (ArrayList) refeicoes.get(dia);
             if(mes != null){
                 countMesPenultimo += mes.size();
@@ -137,7 +136,6 @@ public class ControladorUsuario {
             dia = new Date(dia.getTime() + (1000*60*60*24));
         }
         while(dia.before(mesAtual)){
-            System.out.println(dia);
             ArrayList mes = (ArrayList) refeicoes.get(dia);
             if(mes != null){
                 countMesUltimo += mes.size();
