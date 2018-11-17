@@ -57,7 +57,12 @@ public class Restaurante {
             
         }
         acessosRU.put(diaAtual,count);
-        this.diaAtual = new Date(this.diaAtual.getTime() + (1000*60*60*24));
+        
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(this.diaAtual);
+        cal.add(Calendar.DAY_OF_MONTH, 1);
+        this.diaAtual = cal.getTime();
+        //this.diaAtual = new Date(this.diaAtual.getTime() + (1000*60*60*24));
         
     }
     

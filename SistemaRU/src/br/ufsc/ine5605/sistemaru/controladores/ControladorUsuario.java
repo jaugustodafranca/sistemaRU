@@ -74,6 +74,7 @@ public class ControladorUsuario {
             }else{
                 pessoa.adicionaRefeicao(hoje, tipo);
                 telaUsuario.mostraSucessoRefeicao();
+                System.out.println("Comeu "+hoje);
                 ControladorAdm.getInstance().getMapeadorPessoa().put(pessoa);
                 return;
             }
@@ -90,6 +91,7 @@ public class ControladorUsuario {
             throw new SaldoInsuficienteException();
         }
         ControladorAdm.getInstance().getMapeadorPessoa().put(pessoa);
+        System.out.println("Comeu "+hoje);
     }
     
     public void mostraTela(){
@@ -117,6 +119,9 @@ public class ControladorUsuario {
         Date mesUltimo = null;
         Date mesPenultimo = null;
         Date mesQVem = null;
+        
+        
+        
         try{
             mesAtual = dateFormat.parse("01-"+mesAnoAtual);
             
@@ -128,34 +133,55 @@ public class ControladorUsuario {
             mesUltimo = cal.getTime();
             cal.add(Calendar.MONTH, -1);
             mesPenultimo = cal.getTime();
-            dia = new Date(mesPenultimo.getTime() -1000*60*60);
+            dia = new Date(mesPenultimo.getTime());
             
             
         }catch(ParseException e){
             System.out.println(e);
         }
-        
+        Calendar cal = Calendar.getInstance();
         while(dia.before(mesUltimo)){
-            ArrayList mes = (ArrayList) refeicoes.get(dia);
+            System.out.println(dia);
+            ArrayList mes = new ArrayList();
+            try{
+                mes = (ArrayList) refeicoes.get(dateFormat.parse(dia.getDate()+"-"+(dia.getMonth()+1)+"-"+(dia.getYear()+1900)));                
+            }catch(Exception e){System.out.println(e);}
             if(mes != null){
                 countMesPenultimo += mes.size();
             }
-            dia = new Date(dia.getTime() + (1000*60*60*24));
+            
+            cal.setTime(dia);
+            cal.add(Calendar.DAY_OF_MONTH, 1);
+            dia = cal.getTime();
+            //dia = new Date(dia.getTime() + (1000*60*60*24));
         }
         while(dia.before(mesAtual)){
-            ArrayList mes = (ArrayList) refeicoes.get(dia);
+            System.out.println(dia);
+            ArrayList mes = new ArrayList();
+            try{
+                mes = (ArrayList) refeicoes.get(dateFormat.parse(dia.getDate()+"-"+(dia.getMonth()+1)+"-"+(dia.getYear()+1900)));                
+            }catch(Exception e){System.out.println(e);}
             if(mes != null){
                 countMesUltimo += mes.size();
             }
-            dia = new Date(dia.getTime() + (1000*60*60*24));
+            cal.setTime(dia);
+            cal.add(Calendar.DAY_OF_MONTH, 1);
+            dia = cal.getTime();
+            //dia = new Date(dia.getTime() + (1000*60*60*24));
         }        
         while(dia.before(mesQVem)){
-            
-            ArrayList mes = (ArrayList) refeicoes.get(dia);
+            System.out.println(dia);
+            ArrayList mes = new ArrayList();
+            try{
+                mes = (ArrayList) refeicoes.get(dateFormat.parse(dia.getDate()+"-"+(dia.getMonth()+1)+"-"+(dia.getYear()+1900)));                
+            }catch(Exception e){System.out.println(e);}
             if(mes != null){
                 countMes += mes.size();
             }
-            dia = new Date(dia.getTime() + (1000*60*60*24));
+            cal.setTime(dia);
+            cal.add(Calendar.DAY_OF_MONTH, 1);
+            dia = cal.getTime();
+            //dia = new Date(dia.getTime() + (1000*60*60*24));
         }
         
         telaUsuario.mostraRelatorioUsuario(countMes,countMesUltimo,countMesPenultimo);
