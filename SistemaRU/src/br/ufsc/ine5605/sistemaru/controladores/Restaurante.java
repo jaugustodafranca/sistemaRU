@@ -8,6 +8,7 @@ package br.ufsc.ine5605.sistemaru.controladores;
 import br.ufsc.ine5605.sistemaru.enuns.TipoRefeicao;
 import br.ufsc.ine5605.sistemaru.entidades.Pessoa;
 import br.ufsc.ine5605.sistemaru.controladores.ControladorPrincipal;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,7 +21,7 @@ import java.util.HashMap;
  *
  * @author Usuario
  */
-public class Restaurante {
+public class Restaurante implements Serializable{
     
     private static Restaurante restaurante;
     
