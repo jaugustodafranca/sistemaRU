@@ -74,8 +74,10 @@ public class ControladorUsuario {
             }else{
                 pessoa.adicionaRefeicao(hoje, tipo);
                 telaUsuario.mostraSucessoRefeicao();
-                System.out.println("Comeu "+hoje);
                 ControladorAdm.getInstance().getMapeadorPessoa().put(pessoa);
+                int nRefeicoes = (Restaurante.getInstance().getAcessosRU().get(hoje) != null) ? Restaurante.getInstance().getAcessosRU().get(hoje) :0;
+                Restaurante.getInstance().getAcessosRU().put(hoje, nRefeicoes+1);
+                System.out.println(nRefeicoes+1);
                 return;
             }
         }else{
@@ -91,7 +93,9 @@ public class ControladorUsuario {
             throw new SaldoInsuficienteException();
         }
         ControladorAdm.getInstance().getMapeadorPessoa().put(pessoa);
-        System.out.println("Comeu "+hoje);
+        int nRefeicoes = (Restaurante.getInstance().getAcessosRU().get(hoje) != null) ? Restaurante.getInstance().getAcessosRU().get(hoje) :0;
+        Restaurante.getInstance().getAcessosRU().put(hoje, nRefeicoes+1);
+        System.out.println(nRefeicoes+1);
     }
     
     public void mostraTela(){

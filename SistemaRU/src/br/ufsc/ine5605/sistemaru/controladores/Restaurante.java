@@ -49,13 +49,13 @@ public class Restaurante {
         
         // conta o numero de pessoas que comeu no dia e guarda no hash
         int count = 0;
-        for (Pessoa pessoaCadastrada : ControladorPrincipal.getInstance().getControladorAdm().getPessoas()){
+        /*for (Pessoa pessoaCadastrada : ControladorPrincipal.getInstance().getControladorAdm().getPessoas()){
             ArrayList <TipoRefeicao> refeicoesHoje = pessoaCadastrada.getRegistrosRefeicoes().get(this.diaAtual);
             if (refeicoesHoje!=null){
                 count+= refeicoesHoje.size();
             }
             
-        }
+        }*/
         acessosRU.put(diaAtual,count);
         
         Calendar cal = Calendar.getInstance();
