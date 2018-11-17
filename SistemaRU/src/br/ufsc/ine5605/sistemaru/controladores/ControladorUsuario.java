@@ -206,4 +206,7 @@ public class ControladorUsuario {
     public void chamaTelaUsuario(){
         telaUsuario.mostraConteudoTela();
     }
+    public void chamaTelaAdm(){
+        ControladorPrincipal.getInstance().getControladorAdm().chamaTelaAdm();
+    }
 }

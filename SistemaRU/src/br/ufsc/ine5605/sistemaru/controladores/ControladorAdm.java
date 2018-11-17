@@ -35,6 +35,7 @@ public class ControladorAdm {
     private TelaAdmExcluir telaAdmExcluir;
     private TelaAdmEditar telaAdmEditar;
     private TelaAdmListar telaAdmListar;
+    private TelaAdmAddSaldo telaAdmAddSaldo;
     private ConteudoTelaAdm conteudoTelaAdm;
 
     private ControladorAdm() {
@@ -46,6 +47,7 @@ public class ControladorAdm {
         this.telaAdmEditar = new TelaAdmEditar();
         this.telaAdmListar = new TelaAdmListar();
         this.conteudoTelaAdm = new ConteudoTelaAdm();
+        this.telaAdmAddSaldo = new TelaAdmAddSaldo();
     }
 
     public ArrayList<Pessoa> getPessoas() {
@@ -270,22 +272,10 @@ public class ControladorAdm {
         return ControladorPrincipal.getInstance();
     }
     public void adicionarSaldo(ConteudoTelaAdm conteudoTela) throws MatriculainvalidaException{
-        if (idJaExiste(conteudoTela.codigo)){
-            for (Pessoa pessoa: mapeadorPessoa.getList()){
-                if(pessoa instanceof Visitante){
-                    if(((Visitante)pessoa).getId() == conteudoTela.codigo){
-                        pessoa.adicionarSaldo(conteudoTela.saldo);
-                        telaAdm.operacaoRealizada();
-                        return;
-                    }
-                }else{
-                    if(((UsuarioUFSC)pessoa).getMatricula() == conteudoTela.codigo){
-                        pessoa.adicionarSaldo(conteudoTela.saldo);
-                        telaAdm.operacaoRealizada();
-                        return;
-                    }
-                }         
-            }
+        if (mapeadorPessoa.get(conteudoTela.codigo) != null){
+            Pessoa pessoa = mapeadorPessoa.get(conteudoTela.codigo);
+            pessoa.adicionarSaldo(conteudoTela.saldo);
+            mapeadorPessoa.put(pessoa);
         } else{
             throw new MatriculainvalidaException();
         }   
@@ -369,6 +359,12 @@ public class ControladorAdm {
             Pessoa pessoa = mapeadorPessoa.getList().get(linha);
             telaAdmExcluir.mostraConteudoTela(pessoa);
         }
+    }
+    public void chamaTelaAddSaldo(){
+        telaAdmAddSaldo.mostraConteudoTela();
+    }
+    public void chamaTelaAdm(){
+        telaAdm.mostraConteudoTela();
     }
     public int getMatricula(Pessoa pessoa){
         if(pessoa instanceof Visitante){

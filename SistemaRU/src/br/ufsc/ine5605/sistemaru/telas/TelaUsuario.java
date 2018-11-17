@@ -5,6 +5,7 @@
  */
 package br.ufsc.ine5605.sistemaru.telas;
 
+import br.ufsc.ine5605.sistemaru.controladores.ControladorAdm;
 import br.ufsc.ine5605.sistemaru.controladores.ControladorPrincipal;
 import br.ufsc.ine5605.sistemaru.controladores.ControladorUsuario;
 import br.ufsc.ine5605.sistemaru.entidades.UsuarioUFSC;
@@ -260,7 +261,7 @@ public class TelaUsuario extends TelaPadrao{
                 
             }else if(botao.equals(buttonAdm)){
                 ControladorUsuario.getInstance().escondeTela();
-                ControladorPrincipal.getInstance().getControladorAdm().getTelaAdm().mostraConteudoTela();
+                ControladorUsuario.getInstance().chamaTelaAdm();
                 
             }else if(botao.equals(buttonSair)){
                 ControladorUsuario.getInstance().escondeTela();

@@ -12,13 +12,18 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
+import javax.swing.JFormattedTextField.AbstractFormatter;
+import javax.swing.JFormattedTextField.AbstractFormatterFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.text.InternationalFormatter;
 import javax.swing.text.NumberFormatter;
 
 /**
@@ -31,7 +36,8 @@ public class TelaAdmAddSaldo extends TelaPadrao{
     private JLabel labelTitulo;
     private JLabel labelMatricula;
     private JFormattedTextField textFieldMatricula;
-    
+    private JButton buttonAddSaldo;
+    private JFormattedTextField valor;  
     
      public TelaAdmAddSaldo(){
         this.gerenciadorBotoes = new GerenciadorBotoes();
@@ -48,20 +54,18 @@ public class TelaAdmAddSaldo extends TelaPadrao{
         
         //TITULO
         labelTitulo = new JLabel();
-        labelTitulo.setText("Adicionar Saldo:");
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = 4;
+        labelTitulo.setText("ADICIONAR SALDO");
+        gbc.fill = GridBagConstraints.HORIZONTAL;
         container.add(labelTitulo, gbc);
         
         //MATRICULA
         labelMatricula = new JLabel();
         labelMatricula.setText("Matrícula: ");
         gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.gridwidth = 2;
-        gbc.gridheight = 1;
+        gbc.gridy = 1;
         container.add(labelMatricula, gbc);
+        
+        //CAMPO MATRICULA        
         NumberFormat format = NumberFormat.getInstance();
         NumberFormatter formatter = new NumberFormatter(format) {
             public Object stringToValue(String string)
@@ -77,19 +81,62 @@ public class TelaAdmAddSaldo extends TelaPadrao{
         formatter.setMaximum(Integer.MAX_VALUE);
         formatter.setAllowsInvalid(false);
         
-        // If you want the value to be committed on each keystroke instead of focus lost
         formatter.setCommitsOnValidEdit(true);
         textFieldMatricula = new JFormattedTextField(formatter);
         textFieldMatricula.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
-    
-        gbc.gridx = 2;
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.gridwidth = 4;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        
         container.add(textFieldMatricula, gbc);
         
-        
-
-        //BOTAO VOLTAR 
+        //SALDO
+        labelMatricula = new JLabel();
+        labelMatricula.setText("Valor: ");
         gbc.gridx = 0;
+        gbc.gridy = 2;
+        container.add(labelMatricula, gbc);
+        
+        //CAMPO SALDO
+        
+        valor = new JFormattedTextField();
+        valor.setFormatterFactory(new AbstractFormatterFactory() {
+
+            @Override
+            public AbstractFormatter getFormatter(JFormattedTextField tf) {
+                NumberFormat format = DecimalFormat.getInstance();
+                format.setMinimumFractionDigits(2);
+                format.setMaximumFractionDigits(2);
+                format.setRoundingMode(RoundingMode.HALF_UP);
+                InternationalFormatter formatter = new InternationalFormatter(format);
+                formatter.setAllowsInvalid(false);
+                formatter.setMinimum(0.0);
+                formatter.setMaximum(999999.00);
+                return formatter;
+            }
+        });
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.gridwidth = 4;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        
+        container.add(valor, gbc);
+        
+        
+        
+        //BOTAO ADICIONAR SALDO 
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 2;
+        buttonAddSaldo = new JButton("Adicionar Saldo");
+        buttonAddSaldo.addActionListener(gerenciadorBotoes);
+        buttonAddSaldo.setPreferredSize(new Dimension(200, 50));
+        container.add(buttonAddSaldo, gbc);
+        
+        
+        //BOTAO VOLTAR 
+        gbc.gridx = 2;
         gbc.gridy = 3;
         gbc.gridwidth = 2;
         buttonVoltar = new JButton("Voltar");
@@ -120,6 +167,19 @@ public class TelaAdmAddSaldo extends TelaPadrao{
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);
+                }
+            }
+            if(botao.equals(buttonAddSaldo)){
+                try{
+                    System.out.println("ENTROU");
+                    System.out.println(valor.getValue());
+                    System.out.println(textFieldMatricula.getValue());
+                    ControladorAdm.getInstance().adicionarSaldo(new ConteudoTelaAdm((int)textFieldMatricula.getValue(),Float.parseFloat(valor.getValue().toString())));
+                    ControladorAdm.getInstance().chamaTelaAdm();
+                    JOptionPane.showMessageDialog(null, "Saldo adicionado com sucesso!");
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                    System.out.println(e);                    
                 }
             }
         }
