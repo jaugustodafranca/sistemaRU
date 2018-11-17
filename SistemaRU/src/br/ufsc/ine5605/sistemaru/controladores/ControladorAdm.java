@@ -50,35 +50,31 @@ public class ControladorAdm {
     public ArrayList<Pessoa> getPessoas() {
         return mapeadorPessoa.getList();
     }
-    public void cadastraUsuarioUFSC (ConteudoTelaAdm conteudoTelaAdm) throws MatriculainvalidaException{
+    public void cadastraUsuarioUFSC (ConteudoTelaAdm conteudoTelaAdm) throws MatriculaJahExisteException{
         UsuarioUFSC usuario = desempacotaUsuarioUFSC(conteudoTelaAdm);
         if (!idJaExiste(conteudoTelaAdm.codigo)){
-            //pessoas.add(usuario);
             mapeadorPessoa.put(usuario);
-            telaAdm.operacaoRealizada();
         }else{
-            throw new MatriculainvalidaException();
+            throw new MatriculaJahExisteException();
         }
     }
-    public void cadastraEstudante (ConteudoTelaAdm conteudoTelaAdm) throws MatriculainvalidaException{
+    public void cadastraEstudante (ConteudoTelaAdm conteudoTelaAdm) throws MatriculaJahExisteException{
         Estudante estudante = desempacotaEstudante(conteudoTelaAdm);
         if (!idJaExiste(conteudoTelaAdm.codigo)){
-            //pessoas.add(estudante);
             mapeadorPessoa.put(estudante);
-            telaAdm.operacaoRealizada();
         }else{
-            throw new MatriculainvalidaException();
+            throw new MatriculaJahExisteException();
         }
     }    
             
-    public void cadastraVisitante(ConteudoTelaAdm conteudoTelaAdm) throws MatriculainvalidaException{
+    public void cadastraVisitante(ConteudoTelaAdm conteudoTelaAdm) throws MatriculaJahExisteException{
         Visitante visitante = desempacotaVisitante(conteudoTelaAdm);
+        int codigo = geraID(); 
+        visitante.setId(codigo);
         if (!idJaExiste(conteudoTelaAdm.codigo)){
-            //pessoas.add(visitante);
             mapeadorPessoa.put(visitante);
-            telaAdm.operacaoRealizada();
         }else{
-            throw new MatriculainvalidaException();
+            throw new MatriculaJahExisteException();
         }
     }
     

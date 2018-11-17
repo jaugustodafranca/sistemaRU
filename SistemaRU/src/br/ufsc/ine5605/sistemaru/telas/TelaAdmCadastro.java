@@ -141,7 +141,7 @@ public class TelaAdmCadastro extends TelaPadrao{
         gbc.gridheight = 1;
         gbc.fill = GridBagConstraints.CENTER;
         container.add(labelAdm, gbc);
-        String [] ehAdm = {"SIM", "NÃO"};
+        String [] ehAdm = {"Sim", "Não"};
         boxAdm = new JComboBox(ehAdm);
         gbc.gridx = 1;
         gbc.gridy = 3;
@@ -218,7 +218,7 @@ public class TelaAdmCadastro extends TelaPadrao{
         gbc.fill = GridBagConstraints.CENTER;
         container.add(labelAdm, gbc);
         
-        String [] ehAdm = {"SIM", "NÃO"};
+        String [] ehAdm = {"Sim", "Não"};
         boxAdm = new JComboBox(ehAdm);
         gbc.gridx = 1;
         gbc.gridy = 3;
@@ -233,7 +233,7 @@ public class TelaAdmCadastro extends TelaPadrao{
         gbc.gridheight = 1;
         gbc.fill = GridBagConstraints.CENTER;
         container.add(labelIsencao, gbc);
-        String [] ehIsento = {"SIM", "NÃO"};
+        String [] ehIsento = {"Sim", "Não"};
         boxIsento = new JComboBox(ehIsento);
         gbc.gridx = 1;
         gbc.gridy = 4;
@@ -279,6 +279,10 @@ public class TelaAdmCadastro extends TelaPadrao{
         setVisible(true);
     }
     
+    public boolean StringToBoolean(String s){
+        return s.equals("Sim");
+    }
+    
     private void removeComponentes(){
         if (labelNome != null && labelNome.getParent() == getContentPane()){
             getContentPane().remove(labelNome);
@@ -318,6 +322,32 @@ public class TelaAdmCadastro extends TelaPadrao{
                         System.out.println(e);
                     }
 
+                }else if(botao.equals(buttonCadastrar)){
+                    try{
+                        if (box.getSelectedItem().toString().equals("USUÁRIO UFSC")){
+                            ControladorAdm.getInstance().cadastraUsuarioUFSC(new ConteudoTelaAdm(textFieldNome.getText(),(int)textFieldMatricula.getValue(),StringToBoolean((String)boxAdm.getSelectedItem())));
+                            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+                            getContentPane().removeAll();
+                            escondeTela();
+                            ControladorAdm.getInstance().chamaTelaAdmListar();
+                        }else if (box.getSelectedItem().toString().equals("ESTUDANTE")){
+                            ControladorAdm.getInstance().cadastraEstudante(new ConteudoTelaAdm(textFieldNome.getText(),(int)textFieldMatricula.getValue(),StringToBoolean((String)boxAdm.getSelectedItem()),StringToBoolean((String)boxIsento.getSelectedItem())));
+                            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+                            getContentPane().removeAll();
+                            escondeTela();
+                            ControladorAdm.getInstance().chamaTelaAdmListar();
+                        }else{
+                            ControladorAdm.getInstance().cadastraVisitante(new ConteudoTelaAdm(textFieldNome.getText()));
+                            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+                            getContentPane().removeAll();
+                            escondeTela();
+                            ControladorAdm.getInstance().chamaTelaAdmListar();
+                            
+                        }
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                        System.out.println(e);
+                    }
                 }
             }else{
                 JComboBox botaoBox = (JComboBox) ae.getSource();
